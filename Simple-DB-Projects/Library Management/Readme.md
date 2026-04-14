@@ -11,7 +11,7 @@ The main objective of this database design project idea is help to 
 ## Logical Design
 ### Entities and attriutes:
 
-- **Addresse**
+- **Address**
     - address id (PK, surrogate key)
     - province (text, not null)
     - district (text, not null)
@@ -32,7 +32,7 @@ The main objective of this database design project idea is help to 
     - email (text, not null, unique)
     - membership type (values:Basic/Standard/Premium, not null, default: Basic)
     - address id (number, not null, FK -> Addresses.id)
-    - phone number (text, not null, lenght = 12)
+    - phone number (text, not null, length = 12)
     - membership status (values:Active/Expired, not null, default: Active)
 
 - **Staff**
@@ -41,12 +41,12 @@ The main objective of this database design project idea is help to 
     - role (values:Admin/Employee, not null, default:Employee)
 
 - **Publisher**
-    - id (Pk, surrogate key)
+    - id (PK, surrogate key)
     - name (text, unique, not null)
-    - stablish year (year date, nullable)
+    - establish year (year date, nullable)
 
-- **Genra**
-    - id (Pk, surrogate key)
+- **Genre**
+    - id (PK, surrogate key)
     - name (text, not null, unique)
     - description (text, nullable)
 
@@ -54,16 +54,16 @@ The main objective of this database design project idea is help to 
     - isbn (text, PK)
     - title (text, not null)
     - publisher id (number, not null, FK -> Publishers.id)
-    - genra id (number, not null, FK -> Genras.id)
+    - genre id (number, not null, FK -> Genres.id)
     - publication year (year, nullable)
     - edition (text, not null)
     - price (Decimal, not null, price > 0)
-    - is_availabil (boolean, not null, default: true)
+    - is_available (boolean, not null, default: true)
 
 - **Book_Author**
     - book isbn (text, not null, FK -> Book.ISBN)
     - author id (number, not null, FK -> Authors.id)
-    - Pk (book isbn, author id)
+    - PK (book isbn, author id)
 
 - **Transaction**
     - id (PK, surrogate key)
@@ -74,14 +74,14 @@ The main objective of this database design project idea is help to 
     - is returned (boolean, not null, default: false)
 
 - **Fine**
-    - transiction id (PK, FK -> Transactions.id)
+    - transaction id (PK, FK -> Transactions.id)
     - amount (decimal, not null, default: 0)
-    - is paid (boolean, not null, default:false)
+    - is paid (boolean, not null, default: false)
 
 - **Schedule**
     - id (PK, surrogate key)
     - staff id (number, not null, FK -> Staff.id, on delete: cascade)
-    - day of week(values: days of week, not null)
+    - day of week (values: days of week, not null)
     - start time (time, not null)
     - end time (time, not null)
 
@@ -111,6 +111,23 @@ The main objective of this database design project idea is help to 
 - Staff (1) ────< (N) Schedule
 - Staff (1) ────< (N) Log
 
+### ERD
 
---- Pass Normalization to 3NF
---- Make the ERD
+
+### Normalization Summary
+This Design has pass three normal form of normalization  
+- **1NF:**
+    - Each table has a primary key that uniquely identifies each row
+    - All attributes contain atomic/indivisible values
+    - There are no repeating groups attributes
+
+- **2NF:**
+    - Already in 1NF
+    - No partial dependencies exist in any table
+
+- **3NF:**
+    - Already in 2NF
+    - There are no transitive dependencies between non-key attributes
+
+
+## Physical Design Considerations
