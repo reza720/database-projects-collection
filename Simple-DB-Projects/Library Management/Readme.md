@@ -11,40 +11,47 @@ The main objective of this database design project idea is help to 
 ## Logical Design
 ### Entities and attriutes:
 
-- **Persons**
-    - id (surrogate key)
+- **Addresse**
+    - address id (PK, surrogate key)
+    - province (text, not null)
+    - district (text, not null)
+    - street (text, not null)
+    - house number (text, not null)
+
+- **Person**
+    - id (PK, surrogate key)
     - first name (text, not null)
     - last name (text, not null)
 
-- **Authors**
-    - id (number, PK, FK -> Persons.id)
+- **Author**
+    - id (number, PK, FK -> Person.id, on delete:cascade)
     - date of birth (date, nullable)
 
-- **Members**
-    - id (number, PK, FK -> Persons.id)
+- **Member**
+    - id (number, PK, FK -> Person.id, on delete:cascade)
     - email (text, not null, unique)
-    - membership type (values:Basic, Standard, Premium, not null, default: Basic)
+    - membership type (values:Basic/Standard/Premium, not null, default: Basic)
     - address id (number, not null, FK -> Addresses.id)
     - phone number (text, not null, lenght = 12)
-    - membership status (values:Active, Expired, not null, default: Active)
+    - membership status (values:Active/Expired, not null, default: Active)
 
 - **Staff**
-    - id (number, PK, FK -> Persons.id)
+    - id (number, PK, FK -> Person.id, on delete:cascade)
     - address id (number, not null, FK -> Addresses.id)
-    - role (enum:Admin, Employee, not null, default:Employee)
+    - role (values:Admin/Employee, not null, default:Employee)
 
-- **Publishers**
-    - id (surrogate key)
+- **Publisher**
+    - id (Pk, surrogate key)
     - name (text, unique, not null)
     - stablish year (year date, nullable)
 
-- **Genras**
-    - id (surrogate key)
+- **Genra**
+    - id (Pk, surrogate key)
     - name (text, not null, unique)
     - description (text, nullable)
 
-- **Books**
-    - ISBN (text, PK)
+- **Book**
+    - isbn (text, PK)
     - title (text, not null)
     - publisher id (number, not null, FK -> Publishers.id)
     - genra id (number, not null, FK -> Genras.id)
@@ -53,48 +60,57 @@ The main objective of this database design project idea is help to 
     - price (Decimal, not null, price > 0)
     - is_availabil (boolean, not null, default: true)
 
-- **Book_Authors**
-    - book ISBN (text, not null, FK -> Books.ISBN)
+- **Book_Author**
+    - book isbn (text, not null, FK -> Book.ISBN)
     - author id (number, not null, FK -> Authors.id)
-    - Pk (book ISBN, author id)
+    - Pk (book isbn, author id)
 
-- **Addresses**
-    - id (surrogate key)
-    - province (text, not null)
-    - district (text, not null)
-    - street (text, not null)
-    - house number (text, not null)
-
-- **Transactions**
-    - id (surrogate key)
+- **Transaction**
+    - id (PK, surrogate key)
     - member id (number, not null, FK -> Members.id) 
-    - book ISBN (text, not null, FK -> Books.ISBN)
+    - book isbn (text, not null, FK -> Books.ISBN)
     - book issue date (date, not null, default: current date)
     - book return date (date, nullable)
     - is returned (boolean, not null, default: false)
 
-- **Fines**
+- **Fine**
     - transiction id (PK, FK -> Transactions.id)
     - amount (decimal, not null, default: 0)
     - is paid (boolean, not null, default:false)
 
-- **Scheduals**
-    - id (surrogate key)
-    - staff id (number, not null, FK -> Staff.id)
-    - work day start (enum: days of week, not null, default:Starday)
+- **Schedule**
+    - id (PK, surrogate key)
+    - staff id (number, not null, FK -> Staff.id, on delete: cascade)
     - day of week(values: days of week, not null)
     - start time (time, not null)
     - end time (time, not null)
 
 - **Logs**
-    - id (surrogate key)
-    - staff id (number, not null, FK -> Staff.id)
+    - id (PK, surrogate key)
+    - staff id (number, not null, FK -> Staff.id, on delete:cascade) 
     - login time (datetime, not null)
     - logout time (datetime, not null, logout time > login time)
 
+### Relationships
+- Person (1) ── (1) Author
+- Person (1) ── (1) Staff
+- Person (1) ── (1) Member
+
+- Member (1) ────< (N) Address
+- Staff  (1) ────< (N) Address
+
+- Publisher (1) ────< (N) Book
+- Genre    (1) ────< (N) Book
+
+- Book (M) ────< Book_Authors >──── (M) Author
+
+- Member (1) ────< (N) Transaction
+- Book   (1) ────< (N) Transaction
+- Transaction (1) ──── (0..1) Fine
+
+- Staff (1) ────< (N) Schedule
+- Staff (1) ────< (N) Log
 
 
---- Define Referential Actions
---- Define Cardinalities
 --- Pass Normalization to 3NF
 --- Make the ERD
