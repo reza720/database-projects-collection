@@ -20,15 +20,21 @@ The main objective of this database design project idea is help to 
     - district (text, not null)
     - street (text, not null)
     - house number (text, not null)
+    - created at (timestamp)
+    - update at (timestamp)
 
 - **Person**
     - id (PK, surrogate key)
     - first name (text, not null)
     - last name (text, not null)
+    - created at (timestamp)
+    - update at (timestamp)
 
 - **Author**
     - id (number, PK, FK -> Person.id, on delete:cascade)
     - date of birth (date, nullable)
+    - created at (timestamp)
+    - update at (timestamp)
 
 - **Member**
     - id (number, PK, FK -> Person.id, on delete:cascade)
@@ -37,11 +43,15 @@ The main objective of this database design project idea is help to 
     - address id (number, not null, FK -> Addresses.id)
     - phone number (text, not null, length = 12)
     - membership status (values:Active/Expired, not null, default: Active)
+    - created at (timestamp)
+    - update at (timestamp)
 
 - **Staff**
     - id (number, PK, FK -> Person.id, on delete:cascade)
     - address id (number, not null, FK -> Addresses.id)
     - role (values:Admin/Employee, not null, default:Employee)
+    - created at (timestamp)
+    - update at (timestamp)
 
 - **Publisher**
     - id (PK, surrogate key)
@@ -62,6 +72,8 @@ The main objective of this database design project idea is help to 
     - edition (text, not null)
     - price (Decimal, not null, price > 0)
     - is_available (boolean, not null, default: true)
+    - created at (timestamp)
+    - update at (timestamp)
 
 - **Book_Author**
     - book isbn (text, not null, FK -> Book.ISBN)
@@ -75,6 +87,8 @@ The main objective of this database design project idea is help to 
     - book issue date (date, not null, default: current date)
     - book return date (date, nullable)
     - is returned (boolean, not null, default: false)
+    - created at (timestamp)
+    - update at (timestamp)
 
 - **Fine**
     - transaction id (PK, FK -> Transactions.id)
@@ -87,12 +101,16 @@ The main objective of this database design project idea is help to 
     - day of week (values: days of week, not null)
     - start time (time, not null)
     - end time (time, not null)
+    - created at (timestamp)
+    - update at (timestamp)
 
 - **Logs**
     - id (PK, surrogate key)
     - staff id (number, not null, FK -> Staff.id, on delete:cascade) 
     - login time (datetime, not null)
     - logout time (datetime, not null, logout time > login time)
+    - created at (timestamp)
+    - update at (timestamp)
 
 ### Relationships
 - Person (1) ── (1) Author
@@ -134,5 +152,6 @@ This Design has pass three normal form of normalization
 
 
 ---
+
 
 ## Physical Design Considerations
