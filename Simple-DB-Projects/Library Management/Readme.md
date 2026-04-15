@@ -134,6 +134,7 @@ The main objective of this database design project idea is help to 
 
 ### ERD
 
+![ERD](assets.ERD.png)
 
 ### Normalization Summary
 This Design has pass three normal form of normalization  
