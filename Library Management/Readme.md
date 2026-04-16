@@ -157,7 +157,7 @@ This Design has pass three normal form of normalization
 
 ## Physical Design Considerations
 
-### Indexing Strategy
+### Indexing
 In addition to automatically created indexes, the following indexes are defined to optimize query performance
 
 - **Address Table**
@@ -200,3 +200,23 @@ In this database, no tables require partitioning due to data size; however, for 
     - Partitioned by book issue date
 - **Log Table**
     - Partitioned by login time
+
+### Controlling Access of Users
+- **Admin**
+    - Has full system privileges and can create, read, update, and delete all data across the system.
+- **Employee**
+    - Has restricted access, Cannot manage staff, log, and schedul.
+
+### ACID Transactions
+- **Issue Book Transaction**
+    - Check book is available, Insert into Transaction, and Set is available = false
+- **Return Book Transaction**
+    - Update Transaction (set return date, is returned = true) and Set is available = true
+- **Fine Payment Transaction**
+    - Set is paid = true
+- **Member Registration Transaction**
+    - Add Person, Member, and Address
+- **Staff Registration Transaction**
+    - Add Person, Staff, and Address
+- **Author Registration Transaction**
+    - Add Person and Author
