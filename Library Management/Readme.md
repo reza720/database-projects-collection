@@ -163,6 +163,8 @@ This Design has pass three normal form of normalization
     - List all Staff with full profile
     - List Staff Logs
     - List Staff Schedules
+    - Search Staff by fist name/last name/id
+
 - **Member Queries**
     - Full Member Profile: Person + Member + Address
     - List all Member with full Profile
@@ -170,6 +172,8 @@ This Design has pass three normal form of normalization
     - List all Member fines
     - List Members based on membership type
     - List Members based on membership status
+    - Search Member by first name/last name/id/email
+
 - **Book Queries**
     - Full Book Profile: Book, Authors, Genre, Publisher
     - List all Books with full profile
@@ -181,6 +185,8 @@ This Design has pass three normal form of normalization
     - List Books based on publication year
     - List Books based on price range
     - List all available Books
+    - Search Book by isbn/title
+
 - **Other Queries**
     - Full Profile of Author: Person + Author
     - List all Authors with full profile
@@ -191,6 +197,12 @@ This Design has pass three normal form of normalization
     - List all unpaied/Paid Fines
     - List all Schedules
     - List all Logs
+    - Search Author by id/first name/last name
+    - Search Publisher by id/name
+    - Search Genre by id/name    
+
+- **Analytical Queries**
+
 
 
 ### Indexing
