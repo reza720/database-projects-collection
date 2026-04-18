@@ -104,7 +104,7 @@ The main objective of this database design project idea is help to 
     - created at (timestamp)
     - update at (timestamp)
 
-- **Logs**
+- **Log**
     - id (PK, surrogate key)
     - staff id (number, not null, FK -> Staff.id, on delete:cascade) 
     - login time (datetime, not null)
@@ -157,6 +157,42 @@ This Design has pass three normal form of normalization
 
 ## Physical Design Considerations
 
+### Defining Use Case Queries
+- **Staff Queries**
+    - Full Staff Profile: Person + Staff + Address
+    - List all Staff with full profile
+    - List Staff Logs
+    - List Staff Schedules
+- **Member Queries**
+    - Full Member Profile: Person + Member + Address
+    - List all Member with full Profile
+    - List all Member transactions
+    - List all Member fines
+    - List Members based on membership type
+    - List Members based on membership status
+- **Book Queries**
+    - Full Book Profile: Book, Authors, Genre, Publisher
+    - List all Books with full profile
+    - List all book transactions
+    - List Books of an Author
+    - List Authors of a Book
+    - List Books based on publisher
+    - List Books based on genre
+    - List Books based on publication year
+    - List Books based on price range
+    - List all available Books
+- **Other Queries**
+    - Full Profile of Author: Person + Author
+    - List all Authors with full profile
+    - List all Publishers
+    - List all Genres
+    - List all Transactions
+    - List all Fines
+    - List all unpaied/Paid Fines
+    - List all Schedules
+    - List all Logs
+
+
 ### Indexing
 In addition to automatically created indexes, the following indexes are defined to optimize query performance
 
@@ -201,26 +237,6 @@ In this database, no tables require partitioning due to data size; however, for 
 - **Log Table**
     - Partitioned by login time
 
-### Controlling Access of Users
-- **Admin**
-    - Has full system privileges and can create, read, update, and delete all data across the system.
-- **Employee**
-    - Has restricted access, Cannot manage staff, log, and schedul.
-
-### ACID Transactions
-- **Issue Book Transaction**
-    - Check book is available, Insert into Transaction, and Set is available = false
-- **Return Book Transaction**
-    - Update Transaction (set return date, is returned = true) and Set is available = true
-- **Fine Payment Transaction**
-    - Set is paid = true
-- **Member Registration Transaction**
-    - Add Person, Member, and Address
-- **Staff Registration Transaction**
-    - Add Person, Staff, and Address
-- **Author Registration Transaction**
-    - Add Person and Author
-
 ### Defining Views
 - **member_details_view**
     - Tables involved: Person, Member, and Address
@@ -236,3 +252,23 @@ In this database, no tables require partitioning due to data size; however, for 
     - Tables involved: Fine, Transaction, Member, Person, and Book
 - **staff_activity_view**
     - Tables involved: Staff, Person, Logs, and Schedule
+
+### ACID Transactions
+- **Issue Book Transaction**
+    - Check book is available, Insert into Transaction, and Set is available = false
+- **Return Book Transaction**
+    - Update Transaction (set return date, is returned = true) and Set is available = true
+- **Fine Payment Transaction**
+    - Set is paid = true
+- **Member Registration Transaction**
+    - Add Person, Member, and Address
+- **Staff Registration Transaction**
+    - Add Person, Staff, and Address
+- **Author Registration Transaction**
+    - Add Person and Author
+
+### Controlling Access of Users
+- **Admin**
+    - Has full system privileges and can create, read, update, and delete all data across the system.
+- **Employee**
+    - Has restricted access, Cannot manage staff, log, and schedul.
