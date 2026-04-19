@@ -201,9 +201,53 @@ This Design has pass three normal form of normalization
     - Search Publisher by id/name
     - Search Genre by id/name    
 
-- **Analytical Queries**
-
-
+- **Dashboard Queries**
+    - **Core**
+        - Total Authors
+        - Total Members
+        - Total Publishers
+        - Total Genres
+        - Total Books
+        - Total Transactions
+        - Sum of Fines
+        - Total available Books
+        - Total unavailable Books
+        - Total unpaid Fines
+        - Min Books Price
+        - Max Books Price
+        - Average Books Price
+        - Percentage/ratio of Members membership types
+        - Percentaeg/ratio of Members membership status
+        - Percentage/ration of Book availablity
+        - Distribution of Books Price
+        - Variance of Books Price
+        - Standard Deviation of Books Price
+        - Total books issued per month
+    - **Segmented**
+        - Total Members per province
+        - Total Members per membership type
+        - Total Members per membership status
+        - Total Books per publisher
+        - Total Books per genre
+        - Total Books available
+        - Total Books unavailable
+        - Total Books per Author
+        - Total Transaction per Member
+        - Total Transaction per Book
+        - Total Logs per Staff
+        - Total Schedule per Staff
+    - **Ranking**
+        - Top 5 province with most Members
+        - Top 3 Authors with most Books
+        - Top 3 Genre with most Books
+        - Top 3 Publisher with most Books
+        - Top 10 Members with most Transactions
+        - Top 10 Books with most Transactions
+        - Top 3 Staff with most Schedules 
+    - **Comparative** 
+        - Compare province based on their total Members
+        - Compare membership types by their total of Transactions
+        - Compare Genre based on their Transactions
 
 ### Indexing
 In addition to automatically created indexes, the following indexes are defined to optimize query performance
