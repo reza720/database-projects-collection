@@ -422,6 +422,7 @@ In this database, no tables require partitioning due to data size; however, for 
 ---
 
 ## Implementation Order
+In a relational database management system (RDBMS), implement this database using the following steps:
 1. **Tables + Indexing**  
 2. **ACID Transactions**  
 3. **Partitioning**  
