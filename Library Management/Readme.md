@@ -69,7 +69,7 @@ The main objective of this database design project idea is help to 
     - publisher id (number, not null, FK -> Publishers.id)
     - genre id (number, not null, FK -> Genres.id)
     - publication year (year, nullable)
-    - edition (text, not null)
+    - edition (number, not nullable)
     - price (Decimal, not null, price > 0)
     - is_available (boolean, not null, default: true)
     - created at (timestamp)
@@ -80,12 +80,12 @@ The main objective of this database design project idea is help to 
     - author id (number, not null, FK -> Authors.id)
     - PK (book isbn, author id)
 
-- **Transaction**
+- **Book_Transaction**
     - id (PK, surrogate key)
     - member id (number, not null, FK -> Members.id) 
     - book isbn (text, not null, FK -> Books.ISBN)
     - book issue date (date, not null, default: current date)
-    - book return date (date, nullable)
+    - due_date (date, not null)
     - is returned (boolean, not null, default: false)
     - created at (timestamp)
     - update at (timestamp)
@@ -108,7 +108,7 @@ The main objective of this database design project idea is help to 
     - id (PK, surrogate key)
     - staff id (number, not null, FK -> Staff.id, on delete:cascade) 
     - login time (datetime, not null)
-    - logout time (datetime, not null, logout time > login time)
+    - logout time (datetime, nullable, logout time > login time)
     - created at (timestamp)
     - update at (timestamp)
 
@@ -151,9 +151,7 @@ This Design has pass three normal form of normalization
     - Already in 2NF
     - There are no transitive dependencies between non-key attributes
 
-
 ---
-
 
 ## Physical Design Considerations
 
@@ -250,10 +248,10 @@ This Design has pass three normal form of normalization
         - Compare Genre based on their Transactions
 
 ### Indexing
-In addition to automatically created indexes, the following indexes are defined to optimize query performance
+In addition to automatically created indexes, the following indexes are defined to optimize Use Case Queries performance
 
 - **Address Table**
-    - Composite index on (city, district, street)  
+    - Composite index on (province, district, street)  
 - **Person Table**
     - Composite index on (firstname, last name)  
 - **Book Table**
@@ -262,7 +260,7 @@ In addition to automatically created indexes, the following indexes are defined 
     - Index on title 
 - **Book_Author Table**
     - Index on author id: This index ensures optimized queries when filtering by author id alone
-- **Transaction Table**
+- **Book_Transaction Table**
     - Index on member id  
     - Index on book isbn    
     - Composite index on (member id, is returned): Supports queries identifying returned vs. unreturned books per member.
