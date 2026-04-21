@@ -179,7 +179,7 @@ This Design has pass three normal form of normalization
 ---
 
 ## Physical Design 
-Optimizing the database for performance, storage, and real world usage.
+Optimizing the database for performance, storage, and real business usage.
 
 ### Use Case Queries
 - **Staff Queries**
@@ -296,28 +296,43 @@ In addition to automatically created indexes, the following indexes are defined 
 - **Logs Table**
     - Index on staff id
 
-### Transactional Operations
-- **Issue Book Transaction**
-    - Check book is available, Insert into Transaction, and Set is available = false
-- **Return Book Transaction**
-    - Update Transaction (set return date, is returned = true) and Set is available = true
-- **Fine Payment Transaction**
-    - Set is paid = true
-- **Member Registration Transaction**
-    - Add Person, Member, and Address
-- **Staff Registration Transaction**
-    - Add Person, Staff, and Address
-- **Author Registration Transaction**
-    - Add Person and Author
+### Table Partitioning Strategy
+In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies are applied to selected tables based on their access patterns.
+- **Address Table**
+    - Partitioned by province
+- **Author Table**
+    - Partitioned by date of birth
+- **Member Table**
+    - Partitioned by membership status
+    - Partitioned by membership type
+- **Staff Table**
+    - Partitioned by role
+- **Book Table**
+    - Partitioned by publisher id
+    - Partitioned by genre id
+    - Partitioned by publication year
+    - Partitioned by is available
+- **Transaction Table**
+    - Partitioned by book issue date
+- **Log Table**
+    - Partitioned by login time
 
-### Transactional Procedure Layer
-For each Transaction define a stored procedure
-- Issue Book Procedure
-- Return Book Procedure
-- Fine Payment Procedure
-- Member Registration Procedure
-- Staff Registration Procedure
-- Author Registration Procedure
+### Logical Data Views
+Create views to simplify data reading queries
+- **member_details_view**
+    - Tables involved: Person, Member, and Address
+- **staff_details_view**
+    - Tables involved: Person, Staff, and Address
+- **author_details_view**
+    - Tables involved: Person and Author
+- **book_details_view**
+    - Tables involved: Book, Publisher, Genre, Book_Author, Author, and Person
+- **transaction_details_view**
+    - Tables involved: Transaction, Member, Person, and Book
+- **fine_details_view**
+    - Tables involved: Fine, Transaction, Member, Person, and Book
+- **staff_activity_view**
+    - Tables involved: Staff, Person, Logs, and Schedule
 
 ### Database Utility Functions
 Use Stored Functions as helper functions for calculations
@@ -364,50 +379,35 @@ Use Stored Functions as helper functions for calculations
 - **Available Books Percentage Function**
     - Returns percentage of available books
 
+### Transactional Operations
+- **Issue Book Transaction**
+    - Check book is available, Insert into Transaction, and Set is available = false
+- **Return Book Transaction**
+    - Update Transaction (set return date, is returned = true) and Set is available = true
+- **Fine Payment Transaction**
+    - Set is paid = true
+- **Member Registration Transaction**
+    - Add Person, Member, and Address
+- **Staff Registration Transaction**
+    - Add Person, Staff, and Address
+- **Author Registration Transaction**
+    - Add Person and Author
+
+### Transactional Procedure Layer
+For each Transaction define a stored procedure
+- Issue Book Procedure
+- Return Book Procedure
+- Fine Payment Procedure
+- Member Registration Procedure
+- Staff Registration Procedure
+- Author Registration Procedure
+
 ### Event-Driven Database Rules
 Use Triggers to automatically run the events of Transactions.
 - **Book Issue Trigger**
     - Mark Book as unavailable
 - **Book Return Triggers**
     - Mark Book as available
-
-### Logical Data Views
-Create views to simplify data reading queries
-- **member_details_view**
-    - Tables involved: Person, Member, and Address
-- **staff_details_view**
-    - Tables involved: Person, Staff, and Address
-- **author_details_view**
-    - Tables involved: Person and Author
-- **book_details_view**
-    - Tables involved: Book, Publisher, Genre, Book_Author, Author, and Person
-- **transaction_details_view**
-    - Tables involved: Transaction, Member, Person, and Book
-- **fine_details_view**
-    - Tables involved: Fine, Transaction, Member, Person, and Book
-- **staff_activity_view**
-    - Tables involved: Staff, Person, Logs, and Schedule
-
-### Table Partitioning Strategy
-In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies are applied to selected tables based on their access patterns.
-- **Address Table**
-    - Partitioned by province
-- **Author Table**
-    - Partitioned by date of birth
-- **Member Table**
-    - Partitioned by membership status
-    - Partitioned by membership type
-- **Staff Table**
-    - Partitioned by role
-- **Book Table**
-    - Partitioned by publisher id
-    - Partitioned by genre id
-    - Partitioned by publication year
-    - Partitioned by is available
-- **Transaction Table**
-    - Partitioned by book issue date
-- **Log Table**
-    - Partitioned by login time
 
 ### Role-Based Access Control
 - **Admin**
