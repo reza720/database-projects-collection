@@ -321,21 +321,18 @@ Since these columns are not part of the primary key, MySQL does not support this
 To simplify data retrieval for use case queries that require joins, create views.
 - **Staff Views**
     - Full Staff Profile: Person + Staff + Address
-    - Staff List: Basic info of Staff
     - Staff Logs: Person + Staff + Log
     - Staff Schedules: Person + Staff + Schedule
 - **Member Views**
     - Full Member Profile: Person + Member + Address
-    - Member List: Basic info of Member
     - Member Transactions: Member + Transaction + Book
     - Member Fines: Fine + Transaction + Member
 - **Book Views**
     - Full Book Profile: Book + Publisher + Genre
-    - Book List: Basic info of Book
     - Book Transactions: Book + Transaction + Member
     - Book Authors: Book_Author + Person
     - Available Books: filtered Book 
-- **Other Views**
+- **Additional Views**
     - Full Author Profile: Person + Author
     - Transactions: Book_Transaction + Member + Book
     - Fines: Fine + Transaction + Member
@@ -343,7 +340,7 @@ To simplify data retrieval for use case queries that require joins, create views
     - Schedules: Schedule + Staff + Person
 
 ### Database Utility Functions
-Use Stored Functions as helper functions for calculations
+Use stored functions as reusable helper functios for calculations in use case queries specifically Dashboard Queries that require computed results.
 - **Total Authors Function**
     - Returns total number of authors
 - **Total Members Function**
