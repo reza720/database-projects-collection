@@ -182,6 +182,7 @@ This Design has pass three normal form of normalization
 Optimizing the database for performance, storage, and real business usage.
 
 ### Use Case Queries
+Business needs that the database must support.
 - **Staff Queries**
     - Full Staff Profile by id: Person + Staff + Address
     - List all Staff with full profile, supports(sorting & pagination)
@@ -325,19 +326,13 @@ To simplify data retrieval for use case queries that require joins, create views
     - Staff Schedules: Person + Staff + Schedule
 - **Member Views**
     - Full Member Profile: Person + Member + Address
-    - Member Transactions: Member + Transaction + Book
-    - Member Fines: Fine + Transaction + Member
+    - Member Fines: Fine + Transaction + Member + Person
+    - Member Transactions: Book_Transaction + Member + Book
+    - Fines: Fine + Transaction + Membe
 - **Book Views**
-    - Full Book Profile: Book + Publisher + Genre
-    - Book Transactions: Book + Transaction + Member
+    - Book Details: Book + Publisher + Genre
     - Book Authors: Book_Author + Person
-    - Available Books: filtered Book 
-- **Additional Views**
     - Full Author Profile: Person + Author
-    - Transactions: Book_Transaction + Member + Book
-    - Fines: Fine + Transaction + Member
-    - Logs: Log + Staff + Person
-    - Schedules: Schedule + Staff + Person
 
 ### Database Utility Functions
 Use stored functions as reusable helper functios for calculations in use case queries specifically Dashboard Queries that require computed results.
