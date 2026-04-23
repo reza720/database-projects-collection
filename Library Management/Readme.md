@@ -328,7 +328,6 @@ To simplify data retrieval for use case queries that require joins, create views
     - Full Member Profile: Person + Member + Address
     - Member Fines: Fine + Transaction + Member + Person
     - Member Transactions: Book_Transaction + Member + Book
-    - Fines: Fine + Transaction + Membe
 - **Book Views**
     - Book Details: Book + Publisher + Genre
     - Book Authors: Book_Author + Person
