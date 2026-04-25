@@ -380,7 +380,7 @@ Use Triggers to automatically run the events of Transactions.
 
 ---
 
-## Implementation Order
+## Implementation Layer
 In a relational database management system (RDBMS), implement this database using the following steps:
 1. Tables + Indexing + Partitioning  
 2. Views  
