@@ -14,30 +14,77 @@ The main objective of this database design project idea is help to 
 Understanding Domain entities and Their Relationships
 
 ### Domain Objects and Their Attributes
+
+- **Address**
+    - province 
+    - district 
+    - street 
+    - house_number 
+- **Person**
+    - first_name
+    - last_name
+- **Author**
+    - date_of_birth
 - **Member**
-    - Full name
-    - Address
-    - Phone number
-- **Book**
-    - Title
-    - Author
-    - Genre
-    - Publisher
+    - email 
+    - membership_type: values:Basic/Standard/Premium
+    - phone_number 
+    - membership_status: values:Active/Expired
 - **Staff**
-    - Full name
-    - Schedule
-    - Logs
+    - role: values:Admin/Employee
+- **Publisher**
+    - name
+    - establish_year 
+- **Genre**
+    - name 
+    - description 
+- **Book**
+    - isbn 
+    - title 
+    - publication_year 
+    - edition 
+    - price 
+- **Book_Transaction**
+    - book_issue_date 
+    - due_date 
+- **Fine**
+    - amount 
+- **Schedule**
+    - day_of_week 
+    - start_time 
+    - end_time 
+- **Log**
+    - login_time
+    - logout_time
 
 ### Relationships Between Domain Objects
-- Members borrow books
-- Staff manage books and members
+- Person (1) ---- (1) Author -> One person is exactly one author, and one author is exactly one person.
+- Person (1) ---- (1) Staff -> One person is exactly one staff member, and one staff member is exactly one person.
+- Person (1) ---- (1) Member -> One person is exactly one member, and one member is exactly one person.
+
+- Member (1) ----< (N) Address -> One member can have many addresses, but each address belongs to one member.
+- Staff (1) ----< (N) Address -> One staff member can have many addresses, but each address belongs to one staff member.
+
+- Publisher (1) ----< (N) Book -> One publisher can publish many books, but each book belongs to one publisher.
+- Genre (1) ----<  (N) Book -> One genre can include many books, but each book belongs to one genre.
+
+- Book (M) ----< Book_Authors >---- (M) Author -> One book can have many authors, and one author can write many books (many-to-many relationship resolved using a junction table).
+
+- Member (1) ----< (N) Transaction -> One member can make many transactions, but each transaction belongs to one member.
+- Book (1) ----< (N) Transaction -> One book can appear in many transactions, but each transaction is linked to one book.
+- Transaction (1) ---- (0..1) Fine -> A transaction may or may not have a fine, but each fine belongs to exactly one transaction.
+
+- Staff (1) ----< (N) Schedule -> One staff member can have many schedules, but each schedule belongs to one staff member.
+- Staff (1) ----< (N) Log -> One staff member can have many logs, but each log belongs to one staff member.
+
+### Entity Relationship Diagram (ERD)
+
+![ERD](assets/ERD.png)
 
 ---
 
 ## Logical Design
 Turning the domain entities into database tables, one domain entity may become many database tables
-
-### Entities and attriutes:
 
 - **Address**
     - address id (PK, surrogate key)
@@ -137,29 +184,6 @@ Turning the domain entities into database tables, one domain entity may become m
     - created at (timestamp)
     - update at (timestamp)
 
-### Relationships
-- Person (1) ---- (1) Author -> One person is exactly one author, and one author is exactly one person.
-- Person (1) ---- (1) Staff -> One person is exactly one staff member, and one staff member is exactly one person.
-- Person (1) ---- (1) Member -> One person is exactly one member, and one member is exactly one person.
-
-- Member (1) ----< (N) Address -> One member can have many addresses, but each address belongs to one member.
-- Staff (1) ----< (N) Address -> One staff member can have many addresses, but each address belongs to one staff member.
-
-- Publisher (1) ----< (N) Book -> One publisher can publish many books, but each book belongs to one publisher.
-- Genre (1) ----<  (N) Book -> One genre can include many books, but each book belongs to one genre.
-
-- Book (M) ----< Book_Authors >---- (M) Author -> One book can have many authors, and one author can write many books (many-to-many relationship resolved using a junction table).
-
-- Member (1) ----< (N) Transaction -> One member can make many transactions, but each transaction belongs to one member.
-- Book (1) ----< (N) Transaction -> One book can appear in many transactions, but each transaction is linked to one book.
-- Transaction (1) ---- (0..1) Fine -> A transaction may or may not have a fine, but each fine belongs to exactly one transaction.
-
-- Staff (1) ----< (N) Schedule -> One staff member can have many schedules, but each schedule belongs to one staff member.
-- Staff (1) ----< (N) Log -> One staff member can have many logs, but each log belongs to one staff member.
-
-### Entity Relationship Diagram (ERD)
-
-![ERD](assets/ERD.png)
 
 ### Normalization Summary
 This Design has pass three normal form of normalization  
