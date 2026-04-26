@@ -11,7 +11,6 @@ The main objective of this database design project idea is help to 
 ---
 
 ## Conceptual Design
-Understanding Domain entities and Their Relationships
 
 ### Domain Objects and Their Attributes
 
@@ -58,34 +57,121 @@ Understanding Domain entities and Their Relationships
     - logout_time
 
 ### Relationships Between Domain Objects
-- Person (1) ---- (1) Author -> One person is exactly one author, and one author is exactly one person.
-- Person (1) ---- (1) Staff -> One person is exactly one staff member, and one staff member is exactly one person.
-- Person (1) ---- (1) Member -> One person is exactly one member, and one member is exactly one person.
-
-- Member (1) ----< (N) Address -> One member can have many addresses, but each address belongs to one member.
-- Staff (1) ----< (N) Address -> One staff member can have many addresses, but each address belongs to one staff member.
-
-- Publisher (1) ----< (N) Book -> One publisher can publish many books, but each book belongs to one publisher.
-- Genre (1) ----<  (N) Book -> One genre can include many books, but each book belongs to one genre.
-
-- Book (M) ----< Book_Authors >---- (M) Author -> One book can have many authors, and one author can write many books (many-to-many relationship resolved using a junction table).
-
-- Member (1) ----< (N) Transaction -> One member can make many transactions, but each transaction belongs to one member.
-- Book (1) ----< (N) Transaction -> One book can appear in many transactions, but each transaction is linked to one book.
-- Transaction (1) ---- (0..1) Fine -> A transaction may or may not have a fine, but each fine belongs to exactly one transaction.
-
-- Staff (1) ----< (N) Schedule -> One staff member can have many schedules, but each schedule belongs to one staff member.
-- Staff (1) ----< (N) Log -> One staff member can have many logs, but each log belongs to one staff member.
+- Every Author is a Person (1:1)
+- Every Staff is a Person (1:1)
+- Every Member is a Person (1:1)
+- Every Member has an Address (1:1)
+- Every Staff has an Address (1:1)
+- Every Book is published by a Publisher (1:N)
+- Every Book fits in a Genre (1:N)
+- Every Book has Many Author and Each Author may have written many Books (M:N)
+- A Member makes Transactions (1:N)
+- A Book is involved in Transactions (1:N)
+- A Transaction may generate a Fine (0..1)
+- Every Staff has Schedules (1:N)
+- Every Staff has Logs (1:N)
 
 ### Entity Relationship Diagram (ERD)
 
 ![ERD](assets/ERD.png)
 
+### Use Case Queries
+- **Staff Queries**
+    - Full Staff Profile by id: Person + Staff + Address
+    - List all Staff with full profile, supports(sorting & pagination)
+    - List Staff Logs, supports(sorting & pagination)
+    - List Staff Schedules, supports(sorting & pagination)
+    - Search Staff by fist name/last name, supports(sorting & pagination) 
+
+- **Member Queries**
+    - Full Member Profile by id/email: Person + Member + Address
+    - List all Member with full Profile, supports(sorting & pagination)
+    - List all Member transactions, supports(sorting & pagination)
+    - List all Member fines, supports(sorting & pagination)
+    - List Members based on membership type, supports(sorting & pagination)
+    - List Members based on membership status, supports(sorting & pagination)
+    - Search Member by first name/last name, supports(sorting & pagination)
+
+- **Book Queries**
+    - Full Book Profile by isbn: Book, Authors, Genre, Publisher
+    - List all Books with full profile, supports(sorting & pagination)
+    - List all book transactions, supports(sorting & pagination)
+    - List Books of an Author, supports(sorting & pagination)
+    - List Authors of a Book, supports(sorting & pagination)
+    - List Books based on publisher, supports(sorting & pagination)
+    - List Books based on genre, supports(sorting & pagination)
+    - List Books based on publication year, supports(sorting & pagination)
+    - List Books based on price range, supports(sorting & pagination)
+    - List all available Books, supports(sorting & pagination)
+    - Search Book by title, supports(sorting & pagination)
+
+- **Other Queries**
+    - Full Profile of Author by id: Person + Author
+    - List all Authors with full profile, supports(sorting & pagination)
+    - List all Publishers, supports(sorting & pagination)
+    - List all Genres, supports(sorting & pagination)
+    - List all Transactions, supports(sorting & pagination)
+    - List all Fines, supports(sorting & pagination)
+    - List all unpaied/Paid Fines,supports(sorting & pagination)
+    - List all Schedules, supports(sorting & pagination)
+    - List all Logs, supports(sorting & pagination)
+    - Search Author by first name/last name, supports(sorting & pagination) 
+    - Search Publisher by id/name, supports(sorting & pagination)
+    - Search Genre by id/name, supports(sorting & pagination)
+
+- **Dashboard Queries**
+    - **Core**
+        - Total Authors
+        - Total Members
+        - Total Publishers
+        - Total Genres
+        - Total Books
+        - Total Transactions
+        - Sum of Fines
+        - Total available Books
+        - Total unavailable Books
+        - Total unpaid Fines
+        - Min Books Price
+        - Max Books Price
+        - Average Books Price
+        - Percentage/ratio of Members membership types
+        - Percentaeg/ratio of Members membership status
+        - Percentage/ration of Book availablity
+        - Distribution of Books Price
+        - Variance of Books Price
+        - Standard Deviation of Books Price
+        - Total books issued per month
+    - **Segmented**
+        - Total Members per province
+        - Total Members per membership type
+        - Total Members per membership status
+        - Total Books per publisher
+        - Total Books per genre
+        - Total Books available
+        - Total Books unavailable
+        - Total Books per Author
+        - Total Transaction per Member
+        - Total Transaction per Book
+        - Total Logs per Staff
+        - Total Schedule per Staff
+    - **Ranking**
+        - Top 5 province with most Members
+        - Top 3 Authors with most Books
+        - Top 3 Genre with most Books
+        - Top 3 Publisher with most Books
+        - Top 10 Members with most Transactions
+        - Top 10 Books with most Transactions
+        - Top 3 Staff with most Schedules 
+    - **Comparative** 
+        - Compare province based on their total Members
+        - Compare membership types by their total of Transactions
+        - Compare Genre based on their Transactions
+
 ---
 
 ## Logical Design
-Turning the domain entities into database tables, one domain entity may become many database tables
 
+### Tables
 - **Address**
     - address id (PK, surrogate key)
     - province (text, not null)
@@ -203,100 +289,6 @@ This Design has pass three normal form of normalization
 ---
 
 ## Physical Design 
-Optimizing the database for performance, storage, and real business usage.
-
-### Use Case Queries
-Business needs that the database must support. 
-- **Staff Queries**
-    - Full Staff Profile by id: Person + Staff + Address
-    - List all Staff with full profile, supports(sorting & pagination)
-    - List Staff Logs, supports(sorting & pagination)
-    - List Staff Schedules, supports(sorting & pagination)
-    - Search Staff by fist name/last name, supports(sorting & pagination) 
-
-- **Member Queries**
-    - Full Member Profile by id/email: Person + Member + Address
-    - List all Member with full Profile, supports(sorting & pagination)
-    - List all Member transactions, supports(sorting & pagination)
-    - List all Member fines, supports(sorting & pagination)
-    - List Members based on membership type, supports(sorting & pagination)
-    - List Members based on membership status, supports(sorting & pagination)
-    - Search Member by first name/last name, supports(sorting & pagination)
-
-- **Book Queries**
-    - Full Book Profile by isbn: Book, Authors, Genre, Publisher
-    - List all Books with full profile, supports(sorting & pagination)
-    - List all book transactions, supports(sorting & pagination)
-    - List Books of an Author, supports(sorting & pagination)
-    - List Authors of a Book, supports(sorting & pagination)
-    - List Books based on publisher, supports(sorting & pagination)
-    - List Books based on genre, supports(sorting & pagination)
-    - List Books based on publication year, supports(sorting & pagination)
-    - List Books based on price range, supports(sorting & pagination)
-    - List all available Books, supports(sorting & pagination)
-    - Search Book by title, supports(sorting & pagination)
-
-- **Other Queries**
-    - Full Profile of Author by id: Person + Author
-    - List all Authors with full profile, supports(sorting & pagination)
-    - List all Publishers, supports(sorting & pagination)
-    - List all Genres, supports(sorting & pagination)
-    - List all Transactions, supports(sorting & pagination)
-    - List all Fines, supports(sorting & pagination)
-    - List all unpaied/Paid Fines,supports(sorting & pagination)
-    - List all Schedules, supports(sorting & pagination)
-    - List all Logs, supports(sorting & pagination)
-    - Search Author by first name/last name, supports(sorting & pagination) 
-    - Search Publisher by id/name, supports(sorting & pagination)
-    - Search Genre by id/name, supports(sorting & pagination)
-
-- **Dashboard Queries**
-    - **Core**
-        - Total Authors
-        - Total Members
-        - Total Publishers
-        - Total Genres
-        - Total Books
-        - Total Transactions
-        - Sum of Fines
-        - Total available Books
-        - Total unavailable Books
-        - Total unpaid Fines
-        - Min Books Price
-        - Max Books Price
-        - Average Books Price
-        - Percentage/ratio of Members membership types
-        - Percentaeg/ratio of Members membership status
-        - Percentage/ration of Book availablity
-        - Distribution of Books Price
-        - Variance of Books Price
-        - Standard Deviation of Books Price
-        - Total books issued per month
-    - **Segmented**
-        - Total Members per province
-        - Total Members per membership type
-        - Total Members per membership status
-        - Total Books per publisher
-        - Total Books per genre
-        - Total Books available
-        - Total Books unavailable
-        - Total Books per Author
-        - Total Transaction per Member
-        - Total Transaction per Book
-        - Total Logs per Staff
-        - Total Schedule per Staff
-    - **Ranking**
-        - Top 5 province with most Members
-        - Top 3 Authors with most Books
-        - Top 3 Genre with most Books
-        - Top 3 Publisher with most Books
-        - Top 10 Members with most Transactions
-        - Top 10 Books with most Transactions
-        - Top 3 Staff with most Schedules 
-    - **Comparative** 
-        - Compare province based on their total Members
-        - Compare membership types by their total of Transactions
-        - Compare Genre based on their Transactions
 
 ### Indexing Strategy
 In addition to automatically created indexes, the following indexes are defined to optimize Use Case Queries performance
@@ -341,6 +333,15 @@ Since these columns are not part of the primary key, MySQL does not support this
     - Partitioned by book issue date
 - **Log Table**
     - Partitioned by login time
+
+- **Admin**
+    - Has full system privileges and can create, read, update, and delete all data across the system.
+- **Employee**
+    - Has restricted access, Cannot manage staff, log, and schedul.
+
+---
+
+## Implementation Phase
 
 ### Logical Data Views
 To simplify data retrieval for use case queries that require joins, create views.
@@ -397,20 +398,3 @@ Use Triggers to automatically run the events of Transactions.
     - Mark Book as available
 
 ### Role-Based Access Control
-- **Admin**
-    - Has full system privileges and can create, read, update, and delete all data across the system.
-- **Employee**
-    - Has restricted access, Cannot manage staff, log, and schedul.
-
----
-
-## Implementation Layer
-In a relational database management system (RDBMS), implement this database using the following steps:
-1. Tables + Indexing + Partitioning  
-2. Views  
-3. Stored Functions  
-4. Stored Procedures + Transactions  
-5. Triggers  
-6. Access Control  
-7. Use Case Queries  
-
