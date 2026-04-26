@@ -13,7 +13,6 @@ The main objective of this database design project idea is help to 
 ## Conceptual Design
 
 ### Domain Objects and Their Attributes
-
 - **Address**
     - province 
     - district 
@@ -173,13 +172,13 @@ The main objective of this database design project idea is help to 
 
 ### Tables
 - **Address**
-    - address id (PK, surrogate key)
-    - province (text, not null)
-    - district (text, not null)
-    - street (text, not null)
-    - house number (text, not null)
-    - created at (timestamp)
-    - update at (timestamp)
+    - address_id (PK, surrogate key)
+    - province (text, mandatory)
+    - district (text, mandatory)
+    - street (text, mandatory)
+    - house_number (text, mandatory)
+    - created_at (timestamp)
+    - update_at (timestamp)
 
 - **Person**
     - id (PK, surrogate key)
@@ -341,7 +340,7 @@ Since these columns are not part of the primary key, MySQL does not support this
 
 ---
 
-## Implementation Phase
+## Implementation Notes
 
 ### Logical Data Views
 To simplify data retrieval for use case queries that require joins, create views.
