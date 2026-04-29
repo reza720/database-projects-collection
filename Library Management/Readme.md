@@ -214,39 +214,39 @@ The main objective of this database design project idea is help to 
     - publisher_id - INTEGER, Mandatory, FK -> Publishers.id
     - genre_id -  INTEGER, Mandatory, FK -> Genres.id
     - publication_year - YEAR, Optional
-    - edition - INTEGER, (number, optional)
-    - price - DECIMAL, (Decimal, mandatory, price > 0)
-    - is_available - BOOLEAN,  (boolean, mandatory, default: true)
-    - created_at - TIMESTAMP, (timestamp, mandatory)
+    - edition - INTEGER, Optional
+    - price - DECIMAL, Mandatory, price > 0
+    - is_available - BOOLEAN, Mandatory, default: true
+    - created_at - TIMESTAMP, Mandatory
     - update_at - TIMESTAMP, Mandatory
 - **Book_Author**
-    - book_isbn - VARCHAR,  (text, mandatory, FK -> Book.ISBN)
-    - author_id - INTEGER, (number, mandatory, FK -> Authors.id)
+    - book_isbn - VARCHAR, Mandatory, FK -> Book.ISBN
+    - author_id - INTEGER, Mandatory, FK -> Authors.id
     - PK (book_isbn, author_id)
 - **Book_Transaction**
     - id - Surrogate PK, INTEGER, 
-    - member_id - INTEGER, (number, mandatory, FK -> Members.id) 
-    - book_isbn - VARCHAR,  (text, mandatory, FK -> Books.ISBN)
-    - book_issue_date - DATE, (date, mandatory, default: current date)
-    - due_date - DATE,  (date, mandatory)
-    - is_returned - BOOLEAN,  (boolean, mandatory, default: false)
+    - member_id - INTEGER, Mandatory, FK -> Members.id 
+    - book_isbn - VARCHAR, Mandatory, FK -> Books.ISBN
+    - book_issue_date - DATE, Mandatory, default: current date
+    - due_date - DATE, Mandatory
+    - is_returned - BOOLEAN, Mandatory, default: false
     - created_at - TIMESTAMP, Mandatory
 - **Fine**
-    - book_transaction_id - Surrogate PK, INTEGER, FK -> Transactions.id)
-    - amount - DECIMAL, (decimal, mandatory, default: 0), Derived from days pass due date of transaction but not returned: days * 5
-    - is_paid - BOOLEAN, (boolean, mandatory, default: false)
+    - book_transaction_id - Surrogate PK, INTEGER, FK -> Transactions.id
+    - amount - DECIMAL, Mandatory, default: 0
+    - is_paid - BOOLEAN, Mandatory, default: false
     - created_at - TIMESTAMP, Mandatory
 - **Schedule**
     - id - Surrogate PK, INTEGER, 
-    - staff_id - INTEGER, (number, mandatory, FK -> Staff.id, on delete: cascade)
-    - day_of_week - ENUM:days of week, mandatory)
-    - start_time - TIME, (time, mandatory)
+    - staff_id - INTEGER, Mandatory, FK -> Staff.id, on delete: cascade
+    - day_of_week - ENUM(days of week), Mandatory
+    - start_time - TIME, Mandatory
     - end_time - TIMESTAMP
     - created_at - TIMESTAMP, Mandatory
 - **Log**
-    - id - Surrogate PK, INTEGER; System generated unique identifier for each staff log
-    - staff_id - INTEGER, FK(Staff.id), on delete:cascade, Refernce the Long to a Staff (number, mandatory) 
-    - login_time - DATETIME
+    - id - Surrogate PK, INTEGER
+    - staff_id - INTEGER, Mandatory, FK(Staff.id), on delete:cascade
+    - login_time - DATETIME, Opional
     - logout_time - TIMESTAMP, Mandatory
     - created_at - TIMESTAMP, Mandatory
 
