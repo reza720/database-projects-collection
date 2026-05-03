@@ -245,7 +245,7 @@ The main objective of this database design project idea is help to 
     - created_at - TIMESTAMP, Mandatory
 - **Log**
     - id - Surrogate PK, INTEGER
-    - staff_id - INTEGER, Mandatory, FK(Staff.id), on delete:cascade
+    - staff_id - INTEGER, Mandatory, FK -> Staff.id, on delete:cascade
     - login_time - DATETIME, Opional
     - logout_time - TIMESTAMP, Mandatory
     - created_at - TIMESTAMP, Mandatory
