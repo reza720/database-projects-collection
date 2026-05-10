@@ -190,7 +190,7 @@ The main objective of this database design project idea is help to 
     - email - VARCHAR, Mandatory, unique
     - membership_type ENUM(Basic/Standard/Premium), Mandatory, default: Basic
     - address_id - INTEGER, Mandatory, FK -> Addresses.id
-    - phone number- VARCHAR, Mandatory, length = 12
+    - phone_number- VARCHAR, Mandatory, length = 12
     - membership_status - ENUM(Active/Expired), Mandatory, default: Active
     - created_at - TIMESTAMP, Mandatory
     - update_at - TIMESTAMP, Mandatory
