@@ -15,7 +15,9 @@ Each project covers
 - Implementation Notes
 
 ## SQL/
-- schema.sql: Includes (Tables, Indexes, and Partitioning)
+- tables.sql
+- indexes.sql
+- partitionings.sql
 - views.sql  
 - transactional_procedure.sql  
 - access_control.sq 
