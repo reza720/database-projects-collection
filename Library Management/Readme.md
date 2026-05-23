@@ -75,6 +75,7 @@ The main objective of this database design project idea is help to 
 ![ERD](assets/ERD.png)
 
 ### Use Case Queries
+The database should be designed and implemented to support the following queries:
 - **Staff Queries**
     - Full Staff Profile by id: Person + Staff + Address
     - List all Staff with full profile, supports(sorting & pagination)
@@ -311,8 +312,8 @@ Since these columns are not part of the primary key, MySQL does not support this
 
 ## Implementation Notes
 
-### Logical Data Views
-To simplify data retrieval for use case queries that require joins
+### Views
+To simplify data retrieval for queries that require joins these views are needed:
 - **Staff Views**
     - Full Staff Profile: Person + Staff + Address
     - Staff Logs: Person + Staff + Log
@@ -326,37 +327,31 @@ To simplify data retrieval for use case queries that require joins
     - Book Authors: Book_Author + Person
     - Full Author Profile: Person + Author
 
-### Database Utility Functions
-Use stored functions as reusable helper functios for calculations in use case queries specifically Dashboard Queries that require computed results.
-For simple calculations don’t need SQL functions and are better written directly inside queries.
+### Functions
+Some of dashboard Queries need these helper functions:
 - **Member Total Fine Function**
 - **Member Transaction Count Function** 
 - **Member Active Status Function**
 - **Book Availability Check Function**
 - **Transaction Overdue Check Function**
 
-### Transactional Operations
-- **Issue Book Transaction**
-    - Check book is available, Insert into Transaction, and Set is available = false
-- **Return Book Transaction**
-    - Update Transaction (set return date, is returned = true) and Set is available = true
-- **Fine Payment Transaction**
-    - Set is paid = true
-- **Member Registration Transaction**
-    - Add Person, Member, and Address
-- **Staff Registration Transaction**
-    - Add Person, Staff, and Address
-- **Author Registration Transaction**
-    - Add Person and Author
+### Transactions
+To keep data correct and consistent, the following transactions which ensure multiple database queries run together as one operation are used:
+- **Issue Book Transaction:** Check book is available, Insert into book transaction, and Set is_available = false
+- **Return Book Transaction:** Update bok transaction (set return date, is_returned = true) and Set is_available = true
+- **Fine Payment Transaction:** Set is_paid = true
+- **Member Registration Transaction:** Add full profile of a Member: Person + Member + Address
+- **Staff Registration Transaction:** Add full profile of a Staff: Person + Staff + Address
+- **Author Registration Transaction:** Add full profile of an Author: Person + Author
 
-### Transactional Procedure Layer
-For each Transaction define a stored procedure
-- Issue Book Procedure
-- Return Book Procedure
-- Fine Payment Procedure
-- Member Registration Procedure
-- Staff Registration Procedure
-- Author Registration Procedure
+### Procedures
+To automate database operations/transactions, the following procedures are used:
+- **Issue Book Procedure**
+- **Return Book Procedure**
+- **Fine Payment Procedure**
+- **Member Registration Procedure**
+- **Staff Registration Procedure**
+- **Author Registration Procedure**
 
 ### Event-Driven Database Rules
 Use Triggers to automatically run the events of Transactions.
@@ -366,7 +361,5 @@ Use Triggers to automatically run the events of Transactions.
     - Mark Book as available
 
 ### Role-Based Access Control
-- **Admin**
-    - Has full system privileges and can create, read, update, and delete all data across the system.
-- **Employee**
-    - Has restricted access, Cannot manage staff, log, and schedul.
+- **Admin:** Has full system privileges and can create, read, update, and delete all data across the system.
+- **Employee:** Has restricted access, Cannot manage staff, log, and schedul.
