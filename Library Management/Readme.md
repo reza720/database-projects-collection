@@ -74,95 +74,6 @@ The main objective of this database design project idea is help to 
 
 ![ERD](assets/ERD.png)
 
-### Use Case Queries
-The database should be designed and implemented to support the following queries:
-- **Staff Queries**
-    - Full Staff Profile by id: Person + Staff + Address
-    - List all Staff with full profile, supports(sorting & pagination)
-    - List Staff Logs, supports(sorting & pagination)
-    - List Staff Schedules, supports(sorting & pagination)
-    - Search Staff by fist name/last name, supports(sorting & pagination) 
-- **Member Queries**
-    - Full Member Profile by id/email: Person + Member + Address
-    - List all Member with full Profile, supports(sorting & pagination)
-    - List all Member transactions, supports(sorting & pagination)
-    - List all Member fines, supports(sorting & pagination)
-    - List Members based on membership type, supports(sorting & pagination)
-    - List Members based on membership status, supports(sorting & pagination)
-    - Search Member by first name/last name, supports(sorting & pagination)
-- **Book Queries**
-    - Full Book Profile by isbn: Book, Authors, Genre, Publisher
-    - List all Books with full profile, supports(sorting & pagination)
-    - List all book transactions, supports(sorting & pagination)
-    - List Books of an Author, supports(sorting & pagination)
-    - List Authors of a Book, supports(sorting & pagination)
-    - List Books based on publisher, supports(sorting & pagination)
-    - List Books based on genre, supports(sorting & pagination)
-    - List Books based on publication year, supports(sorting & pagination)
-    - List Books based on price range, supports(sorting & pagination)
-    - List all available Books, supports(sorting & pagination)
-    - Search Book by title, supports(sorting & pagination)
-- **Other Queries**
-    - Full Profile of Author by id: Person + Author
-    - List all Authors with full profile, supports(sorting & pagination)
-    - List all Publishers, supports(sorting & pagination)
-    - List all Genres, supports(sorting & pagination)
-    - List all Transactions, supports(sorting & pagination)
-    - List all Fines, supports(sorting & pagination)
-    - List all unpaied/Paid Fines,supports(sorting & pagination)
-    - List all Schedules, supports(sorting & pagination)
-    - List all Logs, supports(sorting & pagination)
-    - Search Author by first name/last name, supports(sorting & pagination) 
-    - Search Publisher by id/name, supports(sorting & pagination)
-    - Search Genre by id/name, supports(sorting & pagination)
-- **Dashboard Queries**
-    - **Core**
-        - Total Authors
-        - Total Members
-        - Total Publishers
-        - Total Genres
-        - Total Books
-        - Total Transactions
-        - Sum of Fines
-        - Total available Books
-        - Total unavailable Books
-        - Total unpaid Fines
-        - Min Books Price
-        - Max Books Price
-        - Average Books Price
-        - Percentage/ratio of Members membership types
-        - Percentaeg/ratio of Members membership status
-        - Percentage/ration of Book availablity
-        - Distribution of Books Price
-        - Variance of Books Price
-        - Standard Deviation of Books Price
-        - Total books issued per month
-    - **Segmented**
-        - Total Members per province
-        - Total Members per membership type
-        - Total Members per membership status
-        - Total Books per publisher
-        - Total Books per genre
-        - Total Books available
-        - Total Books unavailable
-        - Total Books per Author
-        - Total Transaction per Member
-        - Total Transaction per Book
-        - Total Logs per Staff
-        - Total Schedule per Staff
-    - **Ranking**
-        - Top 5 province with most Members
-        - Top 3 Authors with most Books
-        - Top 3 Genre with most Books
-        - Top 3 Publisher with most Books
-        - Top 10 Members with most Transactions
-        - Top 10 Books with most Transactions
-        - Top 3 Staff with most Schedules 
-    - **Comparative** 
-        - Compare province based on their total Members
-        - Compare membership types by their total of Transactions
-        - Compare Genre based on their Transactions
-
 ---
 
 ## Logical Design
@@ -310,30 +221,122 @@ Since these columns are not part of the primary key, MySQL does not support this
 
 ---
 
-## Implementation Notes
+## Application of Database
 
-### Views
-To simplify data retrieval for queries that require joins these views are needed:
-- **Staff Views**
-    - Full Staff Profile: Person + Staff + Address
-    - Staff Logs: Person + Staff + Log
-    - Staff Schedules: Person + Staff + Schedule
-- **Member Views**
-    - Full Member Profile: Person + Member + Address
-    - Member Fines: Fine + Transaction + Member + Person
-    - Member Transactions: Book_Transaction + Member + Book
-- **Book Views**
-    - Book Details: Book + Publisher + Genre
-    - Book Authors: Book_Author + Person
-    - Full Author Profile: Person + Author
+Now this database should be able to support the following queries:
+- **Staff Queries**
+    - Full Staff Profile by id: Person + Staff + Address
+    - List all Staff with full profile, supports(sorting & pagination)
+    - List Staff Logs, supports(sorting & pagination)
+    - List Staff Schedules, supports(sorting & pagination)
+    - Search Staff by fist name/last name, supports(sorting & pagination) 
+- **Member Queries**
+    - Full Member Profile by id/email: Person + Member + Address
+    - List all Member with full Profile, supports(sorting & pagination)
+    - List all Member transactions, supports(sorting & pagination)
+    - List all Member fines, supports(sorting & pagination)
+    - List Members based on membership type, supports(sorting & pagination)
+    - List Members based on membership status, supports(sorting & pagination)
+    - Search Member by first name/last name, supports(sorting & pagination)
+- **Book Queries**
+    - Full Book Profile by isbn: Book, Authors, Genre, Publisher
+    - List all Books with full profile, supports(sorting & pagination)
+    - List all book transactions, supports(sorting & pagination)
+    - List Books of an Author, supports(sorting & pagination)
+    - List Authors of a Book, supports(sorting & pagination)
+    - List Books based on publisher, supports(sorting & pagination)
+    - List Books based on genre, supports(sorting & pagination)
+    - List Books based on publication year, supports(sorting & pagination)
+    - List Books based on price range, supports(sorting & pagination)
+    - List all available Books, supports(sorting & pagination)
+    - Search Book by title, supports(sorting & pagination)
+- **Other Queries**
+    - Full Profile of Author by id: Person + Author
+    - List all Authors with full profile, supports(sorting & pagination)
+    - List all Publishers, supports(sorting & pagination)
+    - List all Genres, supports(sorting & pagination)
+    - List all Transactions, supports(sorting & pagination)
+    - List all Fines, supports(sorting & pagination)
+    - List all unpaied/Paid Fines,supports(sorting & pagination)
+    - List all Schedules, supports(sorting & pagination)
+    - List all Logs, supports(sorting & pagination)
+    - Search Author by first name/last name, supports(sorting & pagination) 
+    - Search Publisher by id/name, supports(sorting & pagination)
+    - Search Genre by id/name, supports(sorting & pagination)
+- **Dashboard Queries**
+    - **Core**
+        - Total Authors
+        - Total Members
+        - Total Publishers
+        - Total Genres
+        - Total Books
+        - Total Transactions
+        - Sum of Fines
+        - Total available Books
+        - Total unavailable Books
+        - Total unpaid Fines
+        - Min Books Price
+        - Max Books Price
+        - Average Books Price
+        - Percentage/ratio of Members membership types
+        - Percentaeg/ratio of Members membership status
+        - Percentage/ration of Book availablity
+        - Distribution of Books Price
+        - Variance of Books Price
+        - Standard Deviation of Books Price
+        - Total books issued per month
+    - **Segmented**
+        - Total Members per province
+        - Total Members per membership type
+        - Total Members per membership status
+        - Total Books per publisher
+        - Total Books per genre
+        - Total Books available
+        - Total Books unavailable
+        - Total Books per Author
+        - Total Transaction per Member
+        - Total Transaction per Book
+        - Total Logs per Staff
+        - Total Schedule per Staff
+    - **Ranking**
+        - Top 5 province with most Members
+        - Top 3 Authors with most Books
+        - Top 3 Genre with most Books
+        - Top 3 Publisher with most Books
+        - Top 10 Members with most Transactions
+        - Top 10 Books with most Transactions
+        - Top 3 Staff with most Schedules 
+    - **Comparative** 
+        - Compare province based on their total Members
+        - Compare membership types by their total of Transactions
+        - Compare Genre based on their Transactions
 
-### Functions
-Some of dashboard Queries need these helper functions:
-- **Member Total Fine Function**
-- **Member Transaction Count Function** 
-- **Member Active Status Function**
-- **Book Availability Check Function**
-- **Transaction Overdue Check Function**
+However, to make writing the above use cases queries easier we write these Views, Functios, and Triggers
+
+- **Views:** To simplify data retrieval for queries that require joins these views are needed:
+    - Staff Views
+        - Full Staff Profile: Person + Staff + Address
+        - Staff Logs: Person + Staff + Log
+        - Staff Schedules: Person + Staff + Schedule
+    - Member Views
+        - Full Member Profile: Person + Member + Address
+        - Member Fines: Fine + Transaction + Member + Person
+        - Member Transactions: Book_Transaction + Member + Book
+    - Book Views
+        - Book Details: Book + Publisher + Genre
+        - Book Authors: Book_Author + Person
+        - Full Author Profile: Person + Author
+
+- **Functions:** Some of dashboard Queries need these helper functions:
+    - Member total fine function
+    - Member transaction count function 
+    - Member active status function
+    - Book availability check function
+    - Transaction overdue check function
+
+- **Triggers:** To automatically run these events we need these triggers:
+    - Book Issue Trigger: Mark Book as unavailable
+    - Book Return Trigger: Mark Book as available
 
 ### Transactions
 To keep data correct and consistent, the following transactions which ensure multiple database queries run together as one operation are used:
@@ -352,13 +355,6 @@ To automate database operations/transactions, the following procedures are used:
 - **Member Registration Procedure**
 - **Staff Registration Procedure**
 - **Author Registration Procedure**
-
-### Triggers
-Use Triggers to automatically run the events of Transactions.
-- **Book Issue Trigger**
-    - Mark Book as unavailable
-- **Book Return Trigger**
-    - Mark Book as available
 
 ### Access Control
 - **Admin:** Has full system privileges and can create, read, update, and delete all data across the system.
