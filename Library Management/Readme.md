@@ -353,13 +353,13 @@ To automate database operations/transactions, the following procedures are used:
 - **Staff Registration Procedure**
 - **Author Registration Procedure**
 
-### Event-Driven Database Rules
+### Triggers
 Use Triggers to automatically run the events of Transactions.
 - **Book Issue Trigger**
     - Mark Book as unavailable
-- **Book Return Triggers**
+- **Book Return Trigger**
     - Mark Book as available
 
-### Role-Based Access Control
+### Access Control
 - **Admin:** Has full system privileges and can create, read, update, and delete all data across the system.
 - **Employee:** Has restricted access, Cannot manage staff, log, and schedul.
