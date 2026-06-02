@@ -146,3 +146,59 @@ values
 
 
 -- Transactional Data Insertion: Inserting data through stored procedures with transactions
+
+-- Register 2 Members via Stored Procedure
+call Register_Member(
+	"Naser",
+    "Dawoodi",
+    "NaserDawoodi@gmail.com",
+    "Basic",
+    "0093789087654",
+    "Takhar",
+    "Farkhar",
+    "Main road",
+    "A34"
+);
+
+call Register_Member(
+	"Abbass",
+    "Ghuri",
+    "GhuriAbass@gmail.com",
+    "Standard",
+    "0093789287654",
+    "Ghur",
+    "Dawlat Abad",
+    "1st",
+    "T2"
+);
+
+-- Register 2 Staff via Stored Procedure
+call Register_Staff(
+	"Jafar",
+    "Najafi",
+    "Admin",
+    "Parwan",
+    "Sia Gerd",
+    "Main Highway",
+    "E23"
+);
+
+call Register_Staff(
+	"Jawad",
+    "Naji",
+    "Admin",
+    "Helmad",
+    "Sang gen",
+    "3th",
+    "B4"
+);
+
+-- Register 1 Author via Stored Procedure
+call Register_Author(
+	"Sorush",
+    "Jalali",
+    null
+);
+
+
+
