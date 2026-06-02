@@ -1,5 +1,7 @@
 use library_management;
 
+-- Direct Data Insertion: Inserting data directly into tables
+
 -- Inserting 5 Members; Before insertting members, we need to insert their supertypes(Person) and addresses
 insert into Person(first_name, last_name)
 values 
@@ -143,3 +145,4 @@ values
 
 
 
+-- Transactional Data Insertion: Inserting data through stored procedures with transactions
