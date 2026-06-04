@@ -1,6 +1,6 @@
 ## Scenario
 ### Khorshid Library 
-Right now, the library is managed using a paper-based system. Staff manually write down records for books, members, and book loans. This often causes problems like mistakes in records, missing information, and slow daily work for both staff and management.
+Khorshid Library is a private library located in Kabul City. Right now, the library is managed using a paper-based system. Staff manually write down records for books, members, and book loans. This often causes problems like mistakes in records, missing information, and slow daily work for both staff and management.
 
 Because of these issues, the library needs a proper database system to make everything more organized, accurate, and easier to manage. So, the goal is to design and build a database that handles the core library operations in a structured way.
 
@@ -12,11 +12,36 @@ What this database should do
 - Keep track of fines for late returns and whether they are paid
 - Control access based on staff and manager roles
 
+In this project, I designed and implemented the database. I also demonstrate how to use it directly without an application layer.
+
 ---
 
 ## Conceptual Design
 
 ### Domain Objects and Their Attributes
+- Core Domain Objects
+    - Book
+    - Staff
+    - Member
+
+- Supporting Objects
+    - Book Supporting Objects
+        - Author
+        - Publisher
+        - Genre
+-   - Staff Supporting Objects
+        - Schedule
+        - Log
+    - Member Supporting Objects
+        - Book Transaction
+        - Fine (for late return of books)
+
+- Supertype Object
+    - Person; parent for Staff, Member, and Author
+
+- Entities from Grouped Attributes
+    - Address
+
 - **Address**
     - province 
     - district 
