@@ -18,7 +18,7 @@ In this project, I designed and implemented the database. I also demonstrate how
 
 ## Conceptual Design
 
-### Domain Objects and Their Attributes
+### Domain Objects 
 - Core Domain Objects
     - Book
     - Staff
@@ -42,6 +42,7 @@ In this project, I designed and implemented the database. I also demonstrate how
 - Entities from Grouped Attributes
     - Address
 
+### Attributes of Objects
 - **Address**
     - province 
     - district 
