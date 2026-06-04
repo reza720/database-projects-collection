@@ -29,7 +29,7 @@ In this project, I designed and implemented the database. I also demonstrate how
         - Author
         - Publisher
         - Genre
--   - Staff Supporting Objects
+    - Staff Supporting Objects
         - Schedule
         - Log
     - Member Supporting Objects
@@ -85,7 +85,7 @@ In this project, I designed and implemented the database. I also demonstrate how
     - login_time
     - logout_time
 
-### Relationships Between Domain Objects
+### Relationships Between Objects
 - Every Author is a Person (1:1)
 - Every Staff is a Person (1:1)
 - Every Member is a Person (1:1)
