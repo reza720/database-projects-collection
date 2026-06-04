@@ -9,7 +9,7 @@ The system should support the following functions:
 - Purchase billing and sales billing
 - Management of payments for both purchase and sales transactions
 
-In this project, I design and implement the database that will serve as the foundation of this pharmacy information system.
+In this project, I design and implement the database that will serve as the foundation of this pharmacy information system. Also demonstrates how use directly the database with no API or appliation layer.
 
 --- 
 
