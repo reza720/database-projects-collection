@@ -252,8 +252,8 @@ Since these columns are not part of the primary key, MySQL does not support this
 
 ---
 
-## Database Operational Specification
-This section defines how the database is used in practice. <br>
+## Database Usage
+This section defines how the database is used in practice directly with no application layer <br>
 
 ### Use Case Queries  
 The database should be able to support the following use case queries:

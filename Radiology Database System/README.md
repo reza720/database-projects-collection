@@ -33,4 +33,4 @@ In addition to the design and implementation of the database, this project also 
 
 --- 
 
-## Database Operational Specification
+## Database Usage

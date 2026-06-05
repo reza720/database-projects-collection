@@ -29,4 +29,4 @@ In this project, I design and implement the database that will serve as the foun
 
 --- 
 
-## Database Operational Specification
+## Database Usage

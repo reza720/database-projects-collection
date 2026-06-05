@@ -32,4 +32,4 @@ In this project, I design and implement the database for this information system
 
 --- 
 
-## Database Operational Specification
+## Database Usage

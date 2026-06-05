@@ -36,4 +36,4 @@ During each visit, the doctor records and manages the following information in t
 
 --- 
 
-## Database Operational Specification
+## Database Usage

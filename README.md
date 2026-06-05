@@ -1,11 +1,12 @@
 # Overview
 This repository contains SQL database projects.
 Each project covers
+- **Scenario:** Describes the business, the problems it faces, why it needs a database system, and the business requirements that the database must support, whether it is used directly or through an application layer.
 - **Conceptual Design:** Understand the domain objects, their attributes, and their relationships.
 - **Logical Design:** Convert the conceptual model into a relational schema.
 - **Physical Design:** Optimize structures for performance, storage efficiency, and workload requirements
-- **Database Operational Specification:** Defines how the database is used in practice.
-- **Implementation** Implemented the design in a SQL database management system such as MySQL or PostgreSQL.
+- **Database Usage:** Describes how the database can be used directly without any applicaton layer.
+- **Database Implementation (SQL Scripts):** Contains the SQL files used to implement the database.
 
 # Project Structure
 ## README.md
@@ -13,7 +14,7 @@ Each project covers
 - Conceptual Design
 - Logical Design 
 - Physical Design 
-- Database Operational Specification
+- Database Usage
 
 ## implementation/
 - tables.sql
