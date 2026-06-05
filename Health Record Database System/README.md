@@ -1,5 +1,5 @@
 ## Scenario
-### Electronic Health Record Database System
+### Electronic Health Record 
 
 This database project is designed and implemented to transform paper-based health record management into an electronic database system. The system enables efficient storage, management, retrieval, and maintenance of patient health records.
 

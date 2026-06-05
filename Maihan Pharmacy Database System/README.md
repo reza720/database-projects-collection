@@ -1,5 +1,5 @@
 ## Scenario
-### Maihan Pharmacy Database System
+### Maihan Pharmacy 
 
 Maihan Pharmacy is located in Kabul and currently operates without an electronic information system to manage its daily activities. As a result, the pharmacy faces significant challenges in managing drug inventory, tracking payments, monitoring drug expiration dates, and handling other operational processes. To improve efficiency and ensure better management, the pharmacy owner plans to implement an electronic information system.
 
