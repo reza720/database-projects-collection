@@ -19,12 +19,12 @@ In this project, I designed and implemented the database. I also demonstrate how
 ## Conceptual Design
 
 ### Domain Objects 
-- Core Domain Objects
+- **Core Domain Objects**
     - Book
     - Staff
     - Member
 
-- Supporting Objects
+- **Supporting Objects**
     - Book Supporting Objects
         - Author
         - Publisher
@@ -36,10 +36,10 @@ In this project, I designed and implemented the database. I also demonstrate how
         - Book Transaction
         - Fine (for late return of books)
 
-- Supertype Object
+- **Supertype Object**
     - Person; parent for Staff, Member, and Author
 
-- Entities from Grouped Attributes
+- **Objects from Grouped Attributes**
     - Address
 
 ### Attributes of Objects
@@ -86,19 +86,19 @@ In this project, I designed and implemented the database. I also demonstrate how
     - logout_time
 
 ### Relationships Between Objects
-- Every Author is a Person (1:1)
-- Every Staff is a Person (1:1)
-- Every Member is a Person (1:1)
-- Every Member has an Address (1:1)
-- Every Staff has an Address (1:1)
-- Every Book is published by a Publisher (1:N)
-- Every Book fits in a Genre (1:N)
-- Every Book has Many Author and Each Author may have written many Books (M:N)
-- A Member makes Transactions (1:N)
-- A Book is involved in Transactions (1:N)
-- A Transaction may generate a Fine (0..1)
-- Every Staff has Schedules (1:N)
-- Every Staff has Logs (1:N)
+- Every Author is a Person 
+- Every Staff is a Person 
+- Every Member is a Person 
+- Every Member has an Address 
+- Every Staff has an Address 
+- Every Book is published by a Publisher 
+- Every Book fits in a Genre
+- Every Book has Many Author and Each Author may have written many Books 
+- A Member makes Transactions 
+- A Book is involved in Transactions 
+- A Transaction may generate a Fine 
+- Every Staff has Schedules 
+- Every Staff has Logs 
 
 ### Entity Relationship Diagram (ERD)
 
