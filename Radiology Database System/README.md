@@ -6,7 +6,7 @@ Many radiology departments in Afghanistan still rely on paper-based processes. T
 
 A typical radiology information system should support the following functions:
 - Management of radiology staff and their work activities
-- Management of imaging orders received from other hospital departments/Other hospitals or clinics
+- Management of imaging orders received from other hospital departments/Other clinics
 - Management of patients
 - Management of imaging procedures
 - Management of medical images 
@@ -24,20 +24,60 @@ In addition to the design and implementation of the database, this project also 
     - Imaging Order
     - Imaging
 
-- **Supporting Objects:** All objects that complement the core entities, including supertypes, multi‑valued attributes, and grouped attributes, are considered supporting objects here:
+- **Supporting Objects:** All objects that complement the core Objects, including objects created from supertypes, multi‑valued attributes, and grouped attributes, are considered supporting objects here:
     - Person: Supertype for Staff and Patient
     - Contact: Related to Staff, Request Sender, and Patient
     - Address: Related to Staff, Request Sender, and Patient
-    - StaffDoc: Staff related
-    - Schedule: Staff related   
+    - Staff Document: Staff related
+    - Staff Schedule: Staff related   
     - Imaging Request Sender: Imaging Order related 
+    - Clinic: Imaging Request Sender related
+    - Hospital Department: Imaging Request Sender related
     - Patient: Imaging Order related    
     - Requested Image: Imaging Order related    
     - Image: Imaging related    
     - Imaging Payment: Imaging related
 
 ### Attributes of Objects
-
+- **Person**
+    - First Name
+    - Last Name
+    - Gender
+- **Staff**
+    - Role
+- **Imaging Order**
+    - Date
+- **Imaging**
+    - Date
+- **Contact**
+    - Phone Number
+    - Email
+- **Address**
+    - Province
+    - District
+    - Street
+- **Staff Document**
+    - Tazkira Scan / Nation Id Scan
+    - Contract Scan
+- **Staff Schedule**
+    - Date of Week
+    - Start Time
+    - End Time
+- **Imaging Request Sender**
+    - Doctor Name
+- **Clinic**
+    - Clinic Name
+- **Hospital Department**
+    - Department Name
+- **Patient**
+    - Age
+- **Requested Image**
+    - Body Part
+    - Type of Image
+- **Image**
+    - Date
+- **Imaging Payment**
+    - amount
 
 ### Relationships Between Objects
 
