@@ -26,15 +26,14 @@ In this project, I designed and implemented the database. I also demonstrate how
 
 - **Supporting Objects**
     - Person; parent for Staff, Member, and Author
-    - Author
-    - Publisher
-    - Genre
-    - Schedule
-    - Log
-    - Book_Transaction
-    - Fine (for late return of books)
-    - Address
-    
+    - Author: Book related
+    - Publisher: Book realted
+    - Genre: Book related
+    - Schedule: Staff related
+    - Log: Staff related
+    - Book Transaction: Member related
+    - Fine (for late return of books): Member related
+    - Address: Staff and Member related
 
 ### Attributes of Objects
 - **Address**
