@@ -6,8 +6,8 @@ Many radiology departments in Afghanistan still rely on paper-based processes. T
 
 A typical radiology information system should support the following functions:
 - Management of radiology staff and their work activities
-- Management of imaging orders received from other hospital departments
-- Management of patient records
+- Management of imaging orders received from other hospital departments/Other hospitals or clinics
+- Management of patients
 - Management of imaging procedures
 - Management of medical images 
 - Management of imaging payments
@@ -18,6 +18,31 @@ In addition to the design and implementation of the database, this project also 
 --- 
 
 ## Conceptual Design
+### Domain Objects:
+- **Core Radiology Objects**
+    - Staff (Technicians, Manager)
+    - Imaging Order
+    - Imaging
+
+- **Supporting Objects:** All objects that complement the core entities, including supertypes, multi‑valued attributes, and grouped attributes, are considered supporting objects here:
+    - Person: Supertype for Staff and Patient
+    - Contact: Related to Staff, Request Sender, and Patient
+    - Address: Related to Staff, Request Sender, and Patient
+    - StaffDoc: Staff related
+    - Schedule: Staff related   
+    - Imaging Request Sender: Imaging Order related 
+    - Patient: Imaging Order related    
+    - Requested Image: Imaging Order related    
+    - Image: Imaging related    
+    - Imaging Payment: Imaging related
+
+### Attributes of Objects
+
+
+### Relationships Between Objects
+
+
+### Entity Relationship Diagram (ERD)
 
 
 ---
