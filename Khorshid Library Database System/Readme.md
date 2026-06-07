@@ -19,28 +19,22 @@ In this project, I designed and implemented the database. I also demonstrate how
 ## Conceptual Design
 
 ### Domain Objects 
-- **Core Domain Objects**
+- **Core Khorshid Library Objects**
     - Book
     - Staff
     - Member
 
 - **Supporting Objects**
-    - Book Supporting Objects
-        - Author
-        - Publisher
-        - Genre
-    - Staff Supporting Objects
-        - Schedule
-        - Log
-    - Member Supporting Objects
-        - Book Transaction
-        - Fine (for late return of books)
-
-- **Supertype Object**
     - Person; parent for Staff, Member, and Author
-
-- **Objects from Grouped Attributes**
+    - Author
+    - Publisher
+    - Genre
+    - Schedule
+    - Log
+    - Book_Transaction
+    - Fine (for late return of books)
     - Address
+    
 
 ### Attributes of Objects
 - **Address**
