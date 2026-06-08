@@ -93,13 +93,14 @@ In this project, I designed and implemented the database. I also demonstrate how
 - Every Staff has Schedules 
 - Every Staff has Logs 
 
+---
+
+## Logical Design
+
 ### Entity Relationship Diagram (ERD)
 
 ![ERD](assets/ERD.png)
 
----
-
-## Logical Design
 ### Tables
 - **Address**
     - address_id - Surrogate PK, INTEGER; auto-generated unique identifier for each address

@@ -46,9 +46,9 @@ In addition to the design and implementation of the database, this project also 
 - **Staff**
     - Role
 - **Imaging Order**
-    - Date
+    - Order Date
 - **Imaging**
-    - Date
+    - Imaging Date
 - **Contact**
     - Phone Number
     - Email
@@ -75,19 +75,28 @@ In addition to the design and implementation of the database, this project also 
     - Body Part
     - Type of Image
 - **Image**
-    - Date
 - **Imaging Payment**
-    - amount
+    - Amount
 
 ### Relationships Between Objects
-
-
-### Entity Relationship Diagram (ERD)
-
+- Person is the supertype of Staff Member and Patient.
+- A Staff, Patient, or Request Sender can be associated with many Contacts and Addresses.
+- Each Staff has exactly one Staff Document.
+- Each Staff Member can generate many Staff Schedules.
+- Each Imaging Order comes from one Imaging Request Sender.
+- Each Imaging Request Sender belongs to either the Hospital Department or an external Clinic.
+- Each Imaging Order is issued for one Patient.
+- Each Imaging Order requests one Imaging Type.
+- Each completed Imaging Procedure produces one or more Images.
+- Each completed Imaging Procedure requires a corresponding Payment
 
 ---
 
 ## Logical Design
+
+### Entity Relationship Diagram (ERD)
+
+### Tables
 
 
 
