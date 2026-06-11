@@ -30,7 +30,7 @@ In this project, I design and implement the database for this information system
     - Patient: Related to Test Order
     - Test Result: Related to Test
     - Test Payment: Related to Test
-    - Test Approval: Realted to Test
+    - Test Result Approval: Realted to Test Result
 
 ### Attributes of Object
 - **Person**
@@ -67,7 +67,15 @@ In this project, I design and implement the database for this information system
     - Test Date
     
 ### Relationships Between Objects
-
+- Person is a supertype of a Staff or a Patient.
+- Each Staff, Patient, and Order Sender can have zero, one, or many Addresses.
+- Each Staff, Patient, and Order Sender must have at least one Contact.
+- Each Staff must have a Staff Document.
+- Each Test Order contains an Order Sender.
+- Each Test Order contains a Patient.
+- Each Test generates a Test Result.
+- Each Test requires a Payment.
+- Each Test Result requires a Test Result Approval.
 
 
 
