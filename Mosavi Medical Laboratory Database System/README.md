@@ -77,8 +77,6 @@ In this project, I design and implement the database for this information system
 - Each Test requires a Payment.
 - Each Test Result requires a Test Result Approval.
 
-
-
 ---
 
 ## Logical Design
