@@ -21,7 +21,13 @@ In this project, I design and implement the database for this system and demonst
 ## Conceptual Design
 ### Domain Entities:
 - **Core Mohsene Blood Bank Entities**
-    
+    - Blood Doner
+    - Blood Donation
+    - Staff
+    - Blood Test
+    - Blood Request
+    - Blood Issuance
+
 
 - **Supporting Entities:**
 
