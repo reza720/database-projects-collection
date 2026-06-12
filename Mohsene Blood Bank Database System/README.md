@@ -19,7 +19,16 @@ In this project, I design and implement the database for this system and demonst
 --- 
 
 ## Conceptual Design
+### Domain Entities:
+- **Core Mohsene Blood Bank Entities**
+    
 
+- **Supporting Entities:**
+
+### Attributes of Entites
+
+
+### Entities Relationships
 
 ---
 
