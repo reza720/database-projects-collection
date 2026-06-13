@@ -1,5 +1,5 @@
 # Overview
-This repository contains SQL database projects.
+This repository contains database projects.
 Each project covers
 - **Scenario:** Describes the business, the problems it faces, why it needs a database system, and the business requirements that the database must support, whether it is used directly or through an application layer.
 - **Conceptual Design:** Understand the domain objects, their attributes, and their relationships.
@@ -10,13 +10,15 @@ Each project covers
 
 # Project Structure
 ## README.md
-- Scenario / Business Problem 
+Contains:
+- Scenario 
 - Conceptual Design
 - Logical Design 
 - Physical Design 
 - Database Usage
 
 ## implementation/
+Contains:
 - tables.sql
 - indexes.sql
 - partitionings.sql
@@ -29,4 +31,7 @@ Each project covers
 - triggers.sql
 
 ## Assets
+Contains:
 - Images of ERD
+
+# How I Design and Implement Database Projects
