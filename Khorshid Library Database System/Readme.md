@@ -25,15 +25,15 @@ In this project, I designed and implemented the database. I also demonstrate how
     - Member
 
 - **Supporting Objects**
-    - Person; parent for Staff, Member, and Author
-    - Author: Book related
-    - Publisher: Book realted
-    - Genre: Book related
-    - Schedule: Staff related
-    - Log: Staff related
-    - Book Transaction: Member related
-    - Fine (for late return of books): Member related
-    - Address: Staff and Member related
+    - Person: acts as the supertype of Staff, Member, and Author  
+    - Author: holds details of book authors  
+    - Publisher: holds book publisher details  
+    - Genre: stores book categorization details  
+    - Schedule: keeps records of staff daily presence  
+    - Log: stores staff logs in the system  
+    - Book Transaction: handles the transaction process  
+    - Fine (for late return of books): handles the fine process  
+    - Address: hold location details of Staff and Member 
 
 ### Attributes of Objects
 - **Address**
