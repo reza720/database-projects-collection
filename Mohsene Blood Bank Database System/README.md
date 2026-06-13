@@ -84,6 +84,16 @@ In this project, I design and implement the database for this system and demonst
     - Is Issued (True, False)
 
 ### Entities Relationships
+- Each Person is a supertype of Staff or Donor
+- Each Staff, Donor, and Blood Request Sender has one or more Addresses
+- Each Staff, Donor, and Blood Request Sender has one or more Contacts
+- Each Blood Donation creates one or more Blood Units
+- Each Blood Unit belongs to a Blood Group
+- Each Blood Unit needs to be tested
+- Each Staff Presence creates a Staff Schedule
+- Each Staff has at least one Staff Document
+- Each Blood Request is sent by a Blood Request Sender
+- Each Blood Request may create one Blood Issuance
 
 ---
 
