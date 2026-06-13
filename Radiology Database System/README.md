@@ -24,19 +24,19 @@ In addition to the design and implementation of the database, this project also 
     - Imaging Order
     - Imaging
 
-- **Supporting Objects:** All objects that complement the core Objects, including objects created from supertypes, multi‑valued attributes, and grouped attributes, are considered supporting objects here:
-    - Person: Supertype for Staff and Patient
-    - Contact: Related to Staff, Request Sender, and Patient
-    - Address: Related to Staff, Request Sender, and Patient
-    - Staff Document: Staff related
-    - Staff Schedule: Staff related   
-    - Imaging Request Sender: Imaging Order related 
-    - Clinic: Imaging Request Sender related
-    - Hospital Department: Imaging Request Sender related
-    - Patient: Imaging Order related    
-    - Requested Image: Imaging Order related    
-    - Image: Imaging related    
-    - Imaging Payment: Imaging related
+- **Supporting Objects:**
+    - Person: supertype for Staff and Patient  
+    - Contact: communication details of Staff, Request Sender, and Patient  
+    - Address: location details of Staff, Request Sender, and Patient  
+    - Staff Document: staff personal details  
+    - Staff Schedule: staff presence in the lab  
+    - Imaging Request Sender: imaging order identifier details  
+    - Clinic: details of the clinic sending the imaging request  
+    - Hospital Department: identification details of the hospital department sending the imaging request  
+    - Patient: personal details of the person for whom the imaging is issued  
+    - Requested Image: details of the type of image to be performed  
+    - Image: images generated after imaging patients  
+    - Imaging Payment: supports the payment process / holds details of imaging payments
 
 ### Attributes of Objects
 - **Person**
