@@ -14,8 +14,22 @@ In this project, I design and implement the database that will serve as the foun
 --- 
 
 ## Conceptual Design
+### Domain Objects
+- **Core Objects**
+    - Purchase
+    - Sale
+    - Medical Device
+    - Drug
 
-
+- **Supporting Objects**    
+    - Supplier: drugs and medical devices supplier details
+    - Supplier Contact: Communication details of supplier
+    - Supplier Address: Location details of supplier
+    - Purchase Bill: Holds the complete bill information for a purchase
+    - Purchase Bill Payment: Payment details for a purchase bill
+    - Sale Bill: Holds the complete bill information for a sale
+    - Sale Bill Payment: Payment details for a sale bill
+ 
 ---
 
 ## Logical Design
