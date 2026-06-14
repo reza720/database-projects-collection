@@ -29,6 +29,14 @@ In this project, I design and implement the database that will serve as the foun
     - Purchase Bill Payment: Payment details for a purchase bill
     - Sale Bill: Holds the complete bill information for a sale
  
+### Objects Relationships
+- Each Purchase is done from a Supplier
+- Each Supplier has one or many Addresses and Contacts
+- Each Purchase may includes many Drugs and Medical Devices
+- Each Purchase generate one Purchase Bill
+- Each Purchase Bill generate one Payment
+- Each Sale generate a Sale Bill
+
 ### Objects Attributes
 - **Supplier**
     - Name
@@ -60,9 +68,6 @@ In this project, I design and implement the database that will serve as the foun
     - Sold Items
     - Bill Total
 - **Sale**
-
-### Objects Relationships
-
 
 ---
 
