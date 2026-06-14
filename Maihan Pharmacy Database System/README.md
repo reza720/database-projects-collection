@@ -26,16 +26,16 @@ In this project, I design and implement the database that will serve as the foun
     - Supplier Contact: Communication details of supplier
     - Supplier Address: Location details of supplier
     - Purchase Bill: Holds the complete bill information for a purchase
-    - Purchase Bill Payment: Payment details for a purchase bill
+    - Payment: Payment details for a purchase bill
     - Sale Bill: Holds the complete bill information for a sale
  
 ### Objects Relationships
-- Each Purchase is done from a Supplier
-- Each Supplier has one or many Addresses and Contacts
-- Each Purchase may includes many Drugs and Medical Devices
-- Each Purchase generate one Purchase Bill
-- Each Purchase Bill generate one Payment
-- Each Sale generate a Sale Bill
+- Each Purchase is made from one Supplier
+- Each Supplier has one or more Addresses and Contacts
+- Each Purchase may include many Drugs and Medical Devices
+- Each Purchase generates one Purchase Bill
+- Each Purchase Bill generates one Payment
+- Each Sale generates one Sale Bill
 
 ### Objects Attributes
 - **Supplier**
