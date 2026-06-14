@@ -7,7 +7,7 @@ The system should support the following functions:
 - Management of drug and medical device inventory
 - Storage of supplier information and contact details
 - Purchase billing and sales billing
-- Management of payments for both purchase and sales transactions
+- Purchase payments management
 
 In this project, I design and implement the database that will serve as the foundation of this pharmacy information system. Also demonstrates how use directly the database with no API or appliation layer.
 
@@ -16,20 +16,54 @@ In this project, I design and implement the database that will serve as the foun
 ## Conceptual Design
 ### Domain Objects
 - **Core Objects**
-    - Purchase
-    - Sale
+    - Purchase: Handle acquisition of drugs and medical devices from suppliers
     - Medical Device
     - Drug
+    - Sale: Handle Selling drugs and medical devices to customers
 
 - **Supporting Objects**    
-    - Supplier: drugs and medical devices supplier details
+    - Supplier
     - Supplier Contact: Communication details of supplier
     - Supplier Address: Location details of supplier
     - Purchase Bill: Holds the complete bill information for a purchase
     - Purchase Bill Payment: Payment details for a purchase bill
     - Sale Bill: Holds the complete bill information for a sale
-    - Sale Bill Payment: Payment details for a sale bill
  
+### Objects Attributes
+- **Supplier**
+    - Name
+- **Supplier Address**
+    - Province
+    - District
+    - Street
+    - Building Number
+- **Supplier Contact**
+    - Phone Number
+    - Email
+    - Whatsapp Number
+- **Purchase Bill**
+    - Purchase Date
+    - Purchased Items
+    - Bill Total
+- **Purchase Bill Payment**
+    - Date
+- **Medical Device**
+    - Name
+    - Brand Name
+- **Drug**
+    - Name 
+    - Brand Name
+    - Expiration Date
+- **Purchase**
+- **Sale Bill**
+    - Sale Date
+    - Sold Items
+    - Bill Total
+- **Sale**
+
+### Objects Relationships
+
+
 ---
 
 ## Logical Design
