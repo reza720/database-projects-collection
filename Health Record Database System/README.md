@@ -30,7 +30,9 @@ During each visit, the doctor records and manages the following information in t
     - Address: Stores location information for doctors and patients.
     - Contact: Stores communication details for doctors and patients.
     - Doctor Document: Stores doctors' personal and professional documents.
-    - History of Present Illness: Stores details about the timeline and progression of a patient's current illness.
+    - Hospital Department: Keeps details of hospital sections where patients go for visit
+
+    - History of Present Illness: Stores details about the timeline, severity and symptoms
     - Vital Signs: Stores patients' vital signs recorded during a visit.
     - Diagnosis: Stores details of a patient's confirmed diagnosis.
     - Lab Order: Stores details of laboratory tests ordered by a doctor.
@@ -38,11 +40,14 @@ During each visit, the doctor records and manages the following information in t
     - Radiology Order: Stores details of radiology imaging studies ordered by a doctor.
     - Radiology Image: Stores radiology images associated with imaging studies.
     - Prescription: Stores details of prescriptions issued to patients by doctors.
-    - Progress Note: Stores notes recorded by doctors during patient visits.
 
 ### Relationships of Objects
 - Each Patient and Doctor is considered a Person.
 - Each Patient and Doctor has one or more Contacts and Addresses.
+- Each Doctor has one Doctor Document.
+- Each Doctor works in one or more Hospital Departments.
+- Each Visit involves one Doctor and one Patient.
+- Each Visit takes place in one Hospital Department.
 - Each Visit requires one History of Present Illness.
 - Each Visit may include one Vital Signs record.
 - Each Visit may result in one Diagnosis.
@@ -53,6 +58,56 @@ During each visit, the doctor records and manages the following information in t
 - Each Visit may include one or more Progress Notes.
 
 ### Attributes of Objects
+- **Person**
+    - First Name
+    - Last Name
+    - Gender
+    - Date of Birth
+- **Contact**
+    - Email
+    - Phone Number
+    - Whatsapp Number
+- **Address**
+    - Province
+    - District
+    - Street
+    - House Number
+- **Patient**
+- **Doctor Document**
+    - Photo
+    - Job Contact Scan
+    - National ID Scan
+    - CV
+- **Hospital Department**
+    - Department Name
+- **Doctor**
+- **History of Present Illness**
+    - Symptoms
+    - Symptom Timeline
+    - Symptom Severity
+- **Vital Signs**
+    - Blood Pressure
+    - Heart Rate
+    - Temperature
+    - Oxygen saturation
+- **Diagnosis**
+    - Condition Name
+    - Note
+- **Lab Order**
+    - Test Name
+- **Lab Test Result**
+    - Result File
+- **Radiology Order**
+    - Body Part
+    - Image Name
+- **Radiology Image**
+    - Digital Image File
+- **Prescription**
+    - Prescription File
+- **Visit**
+    - Date
+    - Reason
+    - Progress Note
 
 ---
 
