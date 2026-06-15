@@ -41,7 +41,16 @@ During each visit, the doctor records and manages the following information in t
     - Progress Note: Stores notes recorded by doctors during patient visits.
 
 ### Relationships of Objects
-- 
+- Each Patient and Doctor is considered a Person.
+- Each Patient and Doctor has one or more Contacts and Addresses.
+- Each Visit requires one History of Present Illness.
+- Each Visit may include one Vital Signs record.
+- Each Visit may result in one Diagnosis.
+- Each Visit may require one or more Lab Orders and Radiology Orders.
+- Each Lab Order may have one Lab Test Result.
+- Each Radiology Order may have one or more Radiology Images.
+- Each Visit may generate one or more Prescriptions.
+- Each Visit may include one or more Progress Notes.
 
 ### Attributes of Objects
 
