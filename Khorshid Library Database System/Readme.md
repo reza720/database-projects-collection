@@ -17,7 +17,6 @@ In this project, I designed and implemented the database. I also demonstrate how
 ---
 
 ## Conceptual Design
-
 ### Domain Objects 
 - **Core Khorshid Library Objects**
     - Book
@@ -34,6 +33,21 @@ In this project, I designed and implemented the database. I also demonstrate how
     - Book Transaction: handles the transaction process  
     - Fine (for late return of books): handles the fine process  
     - Address: hold location details of Staff and Member 
+
+### Relationships Between Objects
+- Every Author is a Person 
+- Every Staff is a Person 
+- Every Member is a Person 
+- Every Member has an Address 
+- Every Staff has an Address 
+- Every Book is published by a Publisher 
+- Every Book fits in a Genre
+- Every Book has Many Author and Each Author may have written many Books 
+- A Member makes Transactions 
+- A Book is involved in Transactions 
+- A Transaction may generate a Fine 
+- Every Staff has Schedules 
+- Every Staff has Logs 
 
 ### Attributes of Objects
 - **Address**
@@ -78,29 +92,9 @@ In this project, I designed and implemented the database. I also demonstrate how
     - login_time
     - logout_time
 
-### Relationships Between Objects
-- Every Author is a Person 
-- Every Staff is a Person 
-- Every Member is a Person 
-- Every Member has an Address 
-- Every Staff has an Address 
-- Every Book is published by a Publisher 
-- Every Book fits in a Genre
-- Every Book has Many Author and Each Author may have written many Books 
-- A Member makes Transactions 
-- A Book is involved in Transactions 
-- A Transaction may generate a Fine 
-- Every Staff has Schedules 
-- Every Staff has Logs 
-
 ---
 
 ## Logical Design
-
-### Entity Relationship Diagram (ERD)
-
-![ERD](assets/ERD.png)
-
 ### Tables
 - **Address**
     - address_id - Surrogate PK, INTEGER; auto-generated unique identifier for each address
@@ -185,6 +179,9 @@ In this project, I designed and implemented the database. I also demonstrate how
     - login_time - DATETIME, Mandatory, Default value(Current Date)
     - logout_time - TIMESTAMP, Optional, logout_time > login_time
     - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp) 
+
+### Logical Data Model 
+![LDM](assets/LDM.png)
 
 ### Normalization Summary
 The logical design has been normalized up to Third Normal Form (3NF):
