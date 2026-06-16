@@ -16,7 +16,7 @@ In this project, I designed and implemented the database. I also demonstrate how
 
 ---
 
-## Conceptual Design
+## Conceptual Model
 ### Domain Objects 
 - **Core Khorshid Library Objects**
     - Book
@@ -183,23 +183,12 @@ In this project, I designed and implemented the database. I also demonstrate how
 ### Logical Data Model 
 ![LDM](assets/LDM.png)
 
-### Normalization Summary
-The logical design has been normalized up to Third Normal Form (3NF):
-- **First Normal Form (1NF)**:
-    - Each table has a defined primary key that uniquely identifies every row.
-    - All attributes contain atomic (indivisible) values.
-    - No repeating groups attributes exist.
-- **Second Normal Form (2NF):**
-    - The design satisfies all conditions of 1NF.
-    - No partial dependencies are present; every non-key attribute is fully dependent on the entire primary key.
-- **Third Normal Form (3NF):**
-    - The design satisfies all conditions of 2NF.
-    - No transitive dependencies exist; non-key attributes depend only on the primary key.
+### Note: This design is normalized to Third Normal Form (3NF).
 
 ---
 
 ## Physical Design 
-### Indexing Strategy
+### Indexing
 - **Address Table**
     - Composite index on (province, district, street)  
 - **Person Table**
@@ -220,7 +209,7 @@ The logical design has been normalized up to Third Normal Form (3NF):
 - **Logs Table**
     - Index on staff id
 
-### Table Partitioning Strategy
+### Partitioning 
 In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies can be applied as follow based on their access patterns. 
 Since these columns are not part of the primary key, MySQL does not support this partitioning, but some DBMSs like PostgreSQL can handle it. 
 - **Address Table**
