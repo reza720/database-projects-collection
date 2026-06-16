@@ -2,9 +2,9 @@
 This repository contains database projects.
 Each project covers
 - **Scenario:** Describes the business, the problems it faces, why it needs a database system, and the business requirements that the database must support, whether it is used directly or through an application layer.
-- **Conceptual Design:** Understand the domain objects, their attributes, and their relationships.
-- **Logical Design:** Convert the conceptual model into a relational schema.
-- **Physical Design:** Optimize structures for performance, storage efficiency, and workload requirements
+- **Conceptual Design:** Defines domain objects, attributes, relationships, and possibly a conceptual model diagram.
+- **Logical Design:** Translates the conceptual model into a relational schema. Includes: tables, possibly a Logical Schema Diagram and a short note on normalization.
+- **Physical Design:** Focuses on optimization techniques such as indexing or partitioning and may includes a database schema diagram.
 - **Database Usage:** Describes how the database can be used directly without any applicaton layer.
 - **Database Implementation (SQL Scripts):** Contains the SQL files used to implement the database.
 
@@ -32,6 +32,6 @@ Contains:
 
 ## Assets
 Contains:
-- Images of ERD
+- Diagram Images
 
 # How I Design and Implement Database Projects
