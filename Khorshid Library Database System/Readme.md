@@ -180,8 +180,8 @@ In this project, I designed and implemented the database. I also demonstrate how
     - logout_time - TIMESTAMP, Optional, logout_time > login_time
     - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp) 
 
-### Logical Data Model 
-![LDM](assets/LDM.png)
+### ERD
+![ERD](assets/ERD.png)
 
 ### Note: This design is normalized to Third Normal Form (3NF).
 
