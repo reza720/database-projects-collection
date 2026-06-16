@@ -1,15 +1,15 @@
 # Overview
-This repository contains database projects.
-Each project covers
-- **Scenario:** Describes the business, the problems it faces, why it needs a database system, and the business requirements that the database must support, whether it is used directly or through an application layer.
-- **Conceptual Design:** Defines domain objects, attributes, relationships, and possibly a conceptual model diagram.
-- **Logical Design:** Translates the conceptual model into a relational schema. Includes: tables, possibly a Logical Schema Diagram and a short note on normalization.
-- **Physical Design:** Focuses on optimization techniques such as indexing or partitioning and may includes a database schema diagram.
-- **Database Usage:** Describes how the database can be used directly without any applicaton layer.
-- **Database Implementation (SQL Scripts):** Contains the SQL files used to implement the database.
+This repository contains database projects for real businesses.
+For each project, I discuss the following:
+- **Scenario:** The business context, why it needs a database system, and what the database must support.
+- **Conceptual Model:** Business entities and relationships.
+- **Logical Model:** Relational schema.
+- **Physical Model:** Storage and performance design.
+- **Database Usage:** Notes on how the database can be used directly without any application layer.
+- **Implementation:** SQL Scripts
 
-# Project Structure
-## README.md
+## Project Structure
+### README.md
 Contains:
 - Scenario 
 - Conceptual Design
@@ -17,7 +17,7 @@ Contains:
 - Physical Design 
 - Database Usage
 
-## implementation/
+### implementation/
 Contains:
 - tables.sql
 - indexes.sql
@@ -30,7 +30,7 @@ Contains:
 - functions.sql
 - triggers.sql
 
-## Assets
+### Assets
 Contains:
 - Diagram Images
 
