@@ -57,10 +57,10 @@ In addition to the design and implementation of the database, this project also 
     - District
     - Street
 - **Staff Document**
-    - Tazkira Scan / Nation Id Scan
-    - Contract Scan
+    - Tazkira/National ID Card Docuemnt
+    - Contract Document
 - **Staff Schedule**
-    - Date of Week
+    - Day of Week
     - Start Time
     - End Time
 - **Imaging Request Sender**
@@ -83,15 +83,15 @@ In addition to the design and implementation of the database, this project also 
 - Each Staff, Patient, or Request Sender can be associated with many Contacts and Addresses.
 - Each Staff has exactly one Staff Document.
 - Each Staff Member can generate many Staff Schedules.
-- Each Imaging Order comes from one Imaging Request Sender.
-- Each Imaging Request Sender belongs to either the Hospital Department or an external Clinic.
+- Each Imaging Request Sender can send many Imaging Order.
+- Each Imaging Request Sender is either a Hospital Department or an external Clinic.
 - Each Imaging Order is issued for one Patient.
-- Each Imaging Order requests one Imaging Type.
+- Each Imaging Order may needs many Imaging
 - Each completed Imaging Procedure produces one or more Images.
 - Each completed Imaging Procedure requires a corresponding Payment
 
 ### ERD
-
+![ERD](Assets/ERD.drawio.png)
 ---
 
 
