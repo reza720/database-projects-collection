@@ -79,8 +79,8 @@ In addition to the design and implementation of the database, this project also 
     - Amount
 
 ### Relationships Between Objects
-- Person is the supertype of Staff Member and Patient.
-- A Staff, Patient, or Request Sender can be associated with many Contacts and Addresses.
+- Each Person is the supertype of a Staff Member or a Patient.
+- Each Staff, Patient, or Request Sender can be associated with many Contacts and Addresses.
 - Each Staff has exactly one Staff Document.
 - Each Staff Member can generate many Staff Schedules.
 - Each Imaging Order comes from one Imaging Request Sender.
@@ -90,11 +90,17 @@ In addition to the design and implementation of the database, this project also 
 - Each completed Imaging Procedure produces one or more Images.
 - Each completed Imaging Procedure requires a corresponding Payment
 
+### ERD
+
 ---
 
-## Logical Design
 
-### Entity Relationship Diagram (ERD)
+## Logical Design
+### Tables
+
+
+### Normalization Notes
+
 
 ### Tables
 
