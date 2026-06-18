@@ -45,8 +45,8 @@ In this project, I design and implement the database for this information system
     - Email
     - Phone Number
 - **Staff Document**
-    - National Id Scan
-    - Contract Scan
+    - Tazkira Document
+    - Contract Document
 - **Staff**
     - Role
 - **Order Sender**
@@ -73,6 +73,7 @@ In this project, I design and implement the database for this information system
 - Each Staff must have a Staff Document.
 - Each Test Order contains an Order Sender.
 - Each Test Order contains a Patient.
+- Each Test Order may needs one to many Tests
 - Each Test generates a Test Result.
 - Each Test requires a Payment.
 - Each Test Result requires a Test Result Approval.
