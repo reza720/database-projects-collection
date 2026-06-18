@@ -92,8 +92,8 @@ In addition to the design and implementation of the database, this project also 
 
 ### ERD
 ![ERD](Assets/ERD.drawio.png)
----
 
+---
 
 ## Logical Design
 ### Tables
