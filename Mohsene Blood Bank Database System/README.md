@@ -96,6 +96,9 @@ In this project, I design and implement the database for this system and demonst
 - Each Blood Request is sent by a Blood Request Sender
 - Each Blood Request may create one Blood Issuance
 
+### ERD
+![ERD](Assets/ERD.png)
+
 ---
 
 ## Logical Design
