@@ -67,10 +67,10 @@ In this project, I design and implement the database for this system and demonst
     - Day of Week
     - Start Time
     - End Time
-- **Staff Documentation**
-    - National ID Scan
+- **Staff Documents**
+    - National Id Document
     - Photo
-    - Contact Scan
+    - Contact Document
 - **Staff**
     - Status (Active, Left)
 - **Blood Request Sender**
@@ -81,12 +81,13 @@ In this project, I design and implement the database for this system and demonst
     - Request Date
     - Requested Blood Type
     - Requested Units
-    - Is Issued (True, False)
+
 
 ### Entities Relationships
 - Each Person is a supertype of Staff or Donor
 - Each Staff, Donor, and Blood Request Sender has one or more Addresses
 - Each Staff, Donor, and Blood Request Sender has one or more Contacts
+- Each Donor donates one to many times
 - Each Blood Donation creates one or more Blood Units
 - Each Blood Unit belongs to a Blood Group
 - Each Blood Unit needs to be tested
