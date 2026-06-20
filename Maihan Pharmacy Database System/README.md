@@ -48,7 +48,7 @@ In this project, I design and implement the database that will serve as the foun
 - **Supplier Contact**
     - Phone Number
     - Email
-    - Whatsapp Number
+    - Whatspp Number
 - **Purchase Bill**
     - Purchase Date
     - Purchased Items
@@ -68,6 +68,9 @@ In this project, I design and implement the database that will serve as the foun
     - Sold Items
     - Bill Total
 - **Sale**
+
+### ERD
+![ERD](Assets/ERD.png)
 
 ---
 
