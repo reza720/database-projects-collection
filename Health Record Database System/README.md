@@ -75,9 +75,9 @@ During each visit, the doctor records and manages the following information in t
 - **Patient**
 - **Doctor Document**
     - Photo
-    - Job Contact Scan
-    - National ID Scan
-    - CV
+    - Contract Document 
+    - National Id
+    - CV Document
 - **Hospital Department**
     - Department Name
 - **Doctor**
@@ -112,7 +112,83 @@ During each visit, the doctor records and manages the following information in t
 ---
 
 ## Logical Design
-
+### Tables
+- **Person**
+    - fist_name
+    - last_name
+    - gender
+    - date_of_birth
+    - created_at
+- **Contact**
+    - email
+    - phone_number
+    - whatsapp_number
+    - created_at
+    - updated_at
+- **Address**
+    - province
+    - district
+    - street
+    - house_number
+    - created_at
+    - updated_at
+- **Patient**
+    - created_at
+- **Doctor_Document**
+    - photo
+    - contract_document
+    - national_id
+    - cv_document
+    - created_at
+    - updated_at
+- **Hospital_Department**
+    - department_name
+    - created_at
+    - updated_at
+- **Doctor**
+    - created_at
+    - updated_at
+- **Illness_Symptoms**
+    - symptom
+    - created_at
+- **History_of_Present_Illness**
+    - symptom_timeline
+    - symptom_severity
+    - created_at
+- **Vital_Signs**
+    - blood_pressure
+    - heart_rate
+    - temperature
+    - oxygen_saturation
+    - created_at
+- **Diagnosis**
+    - condition_name
+    - note
+    - created_at
+- **Lab_Order**
+    - test_name
+    - created_at
+    - updated_at
+- **Lab_Test_Result**
+    - result_file
+    - created_at
+- **Radiology_Order**
+    - body_part
+    - image_name
+    - created_at
+    - updated_at
+- **Radiology_Image**
+    - digital_image_file
+    - created_at
+- **Prescription**
+    - prescription_file
+    - created_at
+- **Visit**
+    - date
+    - reason
+    - progress_note
+    - created_at
+    - updated_at
 
 
 --- 
