@@ -31,7 +31,6 @@ During each visit, the doctor records and manages the following information in t
     - Contact: Stores communication details for doctors and patients.
     - Doctor Document: Stores doctors' personal and professional documents.
     - Hospital Department: Keeps details of hospital sections where patients go for visit
-
     - History of Present Illness: Stores details about the timeline, severity and symptoms
     - Vital Signs: Stores patients' vital signs recorded during a visit.
     - Diagnosis: Stores details of a patient's confirmed diagnosis.
@@ -43,7 +42,7 @@ During each visit, the doctor records and manages the following information in t
 
 ### Relationships of Objects
 - Each Patient and Doctor is considered a Person.
-- Each Patient and Doctor has one or more Contacts and Addresses.
+- Each Patient and Doctor has one Contacts and Addresses.
 - Each Doctor has one Doctor Document.
 - Each Doctor works in one or more Hospital Departments.
 - Each Visit involves one Doctor and one Patient.
@@ -114,18 +113,23 @@ During each visit, the doctor records and manages the following information in t
 ## Logical Design
 ### Tables
 - **Person**
+    - id - surrogate PK
     - fist_name
     - last_name
     - gender
     - date_of_birth
     - created_at
 - **Contact**
+    - id - surrogate PK
+    - person_id - FK; on delete: cascade;
     - email
     - phone_number
     - whatsapp_number
     - created_at
     - updated_at
 - **Address**
+    - id - surrogate PK
+    - person_id - FK; on delete: cascade 
     - province
     - district
     - street
@@ -133,8 +137,14 @@ During each visit, the doctor records and manages the following information in t
     - created_at
     - updated_at
 - **Patient**
+    - Person_id - PK, FK; on delete: cascade
     - created_at
+- **Doctor**
+    - person_id - PK; FK; on delete: cascade 
+    - created_at
+    - updated_at
 - **Doctor_Document**
+    - Doctor_id - PK; FK; on delete: cascade
     - photo
     - contract_document
     - national_id
@@ -142,54 +152,64 @@ During each visit, the doctor records and manages the following information in t
     - created_at
     - updated_at
 - **Hospital_Department**
-    - department_name
+    - id - surrogate PK
+    - department_name 
     - created_at
     - updated_at
-- **Doctor**
+- **Visit**
+    - id - surrogate PK
+    - patient_id - FK;
+    - doctor_id - FK;
+    - hospital_department_id - FK;
+    - date
+    - reason
+    - progress_note
     - created_at
     - updated_at
-- **Illness_Symptoms**
+- **Illness_Symptom**
+    - visit_id - PK; FK
     - symptom
     - created_at
 - **History_of_Present_Illness**
+    - visit_id - PK; FK
     - symptom_timeline
     - symptom_severity
     - created_at
 - **Vital_Signs**
+    - visit_id - PK; FK; 
     - blood_pressure
     - heart_rate
     - temperature
     - oxygen_saturation
     - created_at
 - **Diagnosis**
+    - visit_id - PK; FK
     - condition_name
     - note
     - created_at
 - **Lab_Order**
+    - visit_id - PK; FK
     - test_name
     - created_at
     - updated_at
 - **Lab_Test_Result**
+    - lab_order_id - PK; FK
     - result_file
     - created_at
 - **Radiology_Order**
+    - visit_id - PK; FK
     - body_part
     - image_name
     - created_at
     - updated_at
 - **Radiology_Image**
+    - radiology_order_id - PK, FK
     - digital_image_file
     - created_at
 - **Prescription**
+    - visit_id - PK, FK
     - prescription_file
     - created_at
-- **Visit**
-    - date
-    - reason
-    - progress_note
-    - created_at
-    - updated_at
-
 
 --- 
 
