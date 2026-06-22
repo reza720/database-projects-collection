@@ -113,103 +113,103 @@ During each visit, the doctor records and manages the following information in t
 ## Logical Design
 ### Tables
 - **Person**
-    - id - surrogate PK
-    - fist_name
-    - last_name
-    - gender
-    - date_of_birth
-    - created_at
+    - id - surrogate PK; integer; 
+    - fist_name - varchar;
+    - last_name - varchar;
+    - gender - enum(Male, Female)
+    - date_of_birth - date;
+    - created_at - timestamp
 - **Contact**
-    - id - surrogate PK
-    - person_id - FK; on delete: cascade;
-    - email
-    - phone_number
-    - whatsapp_number
-    - created_at
-    - updated_at
+    - id - surrogate PK; integer;
+    - person_id - FK; on delete: cascade; integer;
+    - email - varchar
+    - phone_number - varchar
+    - whatsapp_number - varchar
+    - created_at - timestamp
+    - updated_at - timestamp
 - **Address**
-    - id - surrogate PK
-    - person_id - FK; on delete: cascade 
-    - province
-    - district
-    - street
-    - house_number
-    - created_at
-    - updated_at
+    - id - surrogate PK; integer;
+    - person_id - FK; on delete: cascade; integer; 
+    - province - varchar;
+    - district - varchar;
+    - street - varchar; 
+    - house_number - varchar;
+    - created_at - timestamp;
+    - updated_at - timestamp;
 - **Patient**
-    - Person_id - PK, FK; on delete: cascade
-    - created_at
+    - Person_id - PK, FK; on delete: cascade; integer;
+    - created_at - timestamp
 - **Doctor**
-    - person_id - PK; FK; on delete: cascade 
-    - created_at
-    - updated_at
+    - person_id - PK; FK; on delete: cascade; integer; 
+    - created_at - timestamp
+    - updated_at - timestamp
 - **Doctor_Document**
-    - Doctor_id - PK; FK; on delete: cascade
-    - photo
-    - contract_document
-    - national_id
-    - cv_document
-    - created_at
-    - updated_at
+    - Doctor_id - PK; FK; on delete: cascade; integer;
+    - photo_url - varchar;
+    - contract_document_url - varchar;
+    - national_id_ulr - varchar;
+    - cv_document_url - varchar;
+    - created_at - timestamp;
+    - updated_at - timestamp;
 - **Hospital_Department**
-    - id - surrogate PK
-    - department_name 
-    - created_at
-    - updated_at
+    - id - surrogate PK; integer;
+    - department_name_url - varchar;
+    - created_at - timestamp;
+    - updated_at - timestamp;
 - **Visit**
-    - id - surrogate PK
-    - patient_id - FK;
-    - doctor_id - FK;
-    - hospital_department_id - FK;
-    - date
-    - reason
-    - progress_note
-    - created_at
-    - updated_at
+    - id - surrogate PK; integer;
+    - patient_id - FK; integer;
+    - doctor_id - FK; integer; 
+    - hospital_department_id - FK; integer;
+    - date - date;
+    - reason - text;
+    - progress_note - text;
+    - created_at - timestamp;
+    - updated_at - timestamp;
 - **Illness_Symptom**
-    - visit_id - PK; FK
-    - symptom
-    - created_at
+    - visit_id - PK; FK; integer;
+    - symptom - varchar;
+    - created_at - timestamp;
 - **History_of_Present_Illness**
-    - visit_id - PK; FK
-    - symptom_timeline
-    - symptom_severity
-    - created_at
+    - visit_id - PK; FK; integer;
+    - symptom_timeline - date;
+    - symptom_severity - varchar;
+    - created_at - timestamp;
 - **Vital_Signs**
-    - visit_id - PK; FK; 
-    - blood_pressure
-    - heart_rate
-    - temperature
-    - oxygen_saturation
-    - created_at
+    - visit_id - PK; FK; integer;
+    - blood_pressure - varchar;
+    - heart_rate - integer;
+    - temperature - decimal;
+    - oxygen_saturation - decimal
+    - created_at - timestamp
 - **Diagnosis**
-    - visit_id - PK; FK
-    - condition_name
-    - note
-    - created_at
+    - visit_id - PK; FK; integer;
+    - condition_name - varchar;
+    - note - text;
+    - created_at - timestamp
 - **Lab_Order**
-    - visit_id - PK; FK
-    - test_name
-    - created_at
-    - updated_at
+    - visit_id - PK; FK; integer;
+    - test_name - varchar;
+    - created_at - timestamp
+    - updated_at - timestamp
 - **Lab_Test_Result**
-    - lab_order_id - PK; FK
-    - result_file
-    - created_at
+    - lab_order_id - PK; FK; integer;
+    - result_file_url - varchar;
+    - created_at - timestamp
 - **Radiology_Order**
-    - visit_id - PK; FK
-    - body_part
-    - image_name
-    - created_at
-    - updated_at
+    - visit_id - PK; FK; integer; 
+    - body_part - varchar;
+    - image_name - varchar;
+    - created_at - timestamp
+    - updated_at - timestamp
 - **Radiology_Image**
-    - radiology_order_id - PK, FK
-    - digital_image_file
-    - created_at
+    - radiology_order_id - PK, FK; integer;
+    - digital_image_file_url - varchar;
+    - created_at - timestamp
 - **Prescription**
-    - visit_id - PK, FK
-    - prescription_file
-    - created_at
+    - visit_id - PK, FK; integer;
+    - prescription_file_url - varchar;
+    - created_at - timestamp
 
 --- 
 
