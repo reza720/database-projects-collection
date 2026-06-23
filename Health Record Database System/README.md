@@ -114,102 +114,102 @@ During each visit, the doctor records and manages the following information in t
 ### Tables
 - **Person**
     - id - surrogate PK; integer; 
-    - fist_name - varchar;
-    - last_name - varchar;
-    - gender - enum(Male, Female)
-    - date_of_birth - date;
-    - created_at - timestamp
+    - fist_name - varchar; mandatory; 
+    - last_name - varchar; mandatory;
+    - gender - enum(Male, Female); mandatory;
+    - date_of_birth - date; optional
+    - created_at - timestamp; mandatory;
 - **Contact**
     - id - surrogate PK; integer;
-    - person_id - FK; on delete: cascade; integer;
-    - email - varchar
-    - phone_number - varchar
-    - whatsapp_number - varchar
-    - created_at - timestamp
-    - updated_at - timestamp
+    - person_id - FK; on delete: cascade; integer; mandatory;
+    - email - varchar; mandatory;
+    - phone_number - varchar; mandatory;
+    - whatsapp_number - varchar; optional
+    - created_at - timestamp; mandatory;
+    - updated_at - timestamp; mandatory;
 - **Address**
     - id - surrogate PK; integer;
-    - person_id - FK; on delete: cascade; integer; 
-    - province - varchar;
-    - district - varchar;
-    - street - varchar; 
+    - person_id - FK; on delete: cascade; integer; mandatory;
+    - province - varchar; mandatory;
+    - district - varchar; mandatory;
+    - street - varchar; optional; 
     - house_number - varchar;
-    - created_at - timestamp;
-    - updated_at - timestamp;
+    - created_at - timestamp; mandatory;
+    - updated_at - timestamp; mandatory;
 - **Patient**
     - Person_id - PK, FK; on delete: cascade; integer;
-    - created_at - timestamp
+    - created_at - timestamp; mandatory;
 - **Doctor**
     - person_id - PK; FK; on delete: cascade; integer; 
-    - created_at - timestamp
-    - updated_at - timestamp
+    - created_at - timestamp; mandatory;
+    - updated_at - timestamp; mandatory;
 - **Doctor_Document**
     - Doctor_id - PK; FK; on delete: cascade; integer;
-    - photo_url - varchar;
-    - contract_document_url - varchar;
-    - national_id_ulr - varchar;
-    - cv_document_url - varchar;
-    - created_at - timestamp;
-    - updated_at - timestamp;
+    - photo_url - varchar; mandatory;
+    - contract_document_url - varchar; mandatory;
+    - national_id_ulr - varchar; mandatory;
+    - cv_document_url - varchar; mandatory;
+    - created_at - timestamp; mandatory;
+    - updated_at - timestamp; mandatory;
 - **Hospital_Department**
     - id - surrogate PK; integer;
-    - department_name_url - varchar;
-    - created_at - timestamp;
-    - updated_at - timestamp;
+    - department_name_url - varchar; mandatory;
+    - created_at - timestamp; mandatory;
+    - updated_at - timestamp; mandatory;
 - **Visit**
     - id - surrogate PK; integer;
-    - patient_id - FK; integer;
-    - doctor_id - FK; integer; 
-    - hospital_department_id - FK; integer;
-    - date - date;
-    - reason - text;
-    - progress_note - text;
-    - created_at - timestamp;
-    - updated_at - timestamp;
+    - patient_id - FK; integer; mandatory;
+    - doctor_id - FK; integer; mandatory;
+    - hospital_department_id - FK; integer; mandatory;
+    - date - date; mandatory;
+    - reason - text; optional; 
+    - progress_note - text; optional
+    - created_at - timestamp; mandatory;
+    - updated_at - timestamp; mandatory;
 - **Illness_Symptom**
     - visit_id - PK; FK; integer;
-    - symptom - varchar;
-    - created_at - timestamp;
+    - symptom - varchar; mandatory;
+    - created_at - timestamp; mandatory;
 - **History_of_Present_Illness**
     - visit_id - PK; FK; integer;
-    - symptom_timeline - date;
-    - symptom_severity - varchar;
-    - created_at - timestamp;
+    - symptom_timeline - date; mandatory;
+    - symptom_severity - varchar; mandatory;
+    - created_at - timestamp; mandatory;
 - **Vital_Signs**
     - visit_id - PK; FK; integer;
-    - blood_pressure - varchar;
-    - heart_rate - integer;
-    - temperature - decimal;
-    - oxygen_saturation - decimal
-    - created_at - timestamp
+    - blood_pressure - varchar; mandatory;
+    - heart_rate - integer; mandatory; 
+    - temperature - decimal; mandatory;
+    - oxygen_saturation - decimal; mandatory;
+    - created_at - timestamp; mandatory;
 - **Diagnosis**
     - visit_id - PK; FK; integer;
-    - condition_name - varchar;
-    - note - text;
-    - created_at - timestamp
+    - condition_name - varchar; mandatory;
+    - note - text; optional
+    - created_at - timestamp; mandatory;
 - **Lab_Order**
     - visit_id - PK; FK; integer;
-    - test_name - varchar;
-    - created_at - timestamp
-    - updated_at - timestamp
+    - test_name - varchar; mandatory;
+    - created_at - timestamp; mandatory;
+    - updated_at - timestamp; mandatory;
 - **Lab_Test_Result**
     - lab_order_id - PK; FK; integer;
-    - result_file_url - varchar;
-    - created_at - timestamp
+    - result_file_url - varchar; mandatory;
+    - created_at - timestamp; mandatory;
 - **Radiology_Order**
     - visit_id - PK; FK; integer; 
-    - body_part - varchar;
-    - image_name - varchar;
-    - created_at - timestamp
-    - updated_at - timestamp
+    - body_part - varchar; mandatory;
+    - image_name - varchar; mandatory;
+    - created_at - timestamp; mandatory;
+    - updated_at - timestamp; mandatory;
 - **Radiology_Image**
     - radiology_order_id - PK, FK; integer;
-    - digital_image_file_url - varchar;
-    - created_at - timestamp
+    - digital_image_file_url - varchar; mandatory;
+    - created_at - timestamp; mandatory;
 - **Prescription**
     - visit_id - PK, FK; integer;
-    - prescription_file_url - varchar;
-    - created_at - timestamp
+    - prescription_file_url - varchar; mandatory;
+    - created_at - timestamp; mandatory;
 
 --- 
 
