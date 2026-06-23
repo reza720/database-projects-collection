@@ -114,16 +114,16 @@ During each visit, the doctor records and manages the following information in t
 ### Tables
 - **Person**
     - id - surrogate PK; integer; 
-    - fist_name - varchar; mandatory; 
-    - last_name - varchar; mandatory;
+    - fist_name - varchar; mandatory; only letters and spaces allowed 
+    - last_name - varchar; mandatory; only letters and spaces allowed,
     - gender - enum(Male, Female); mandatory;
-    - date_of_birth - date; optional
+    - date_of_birth - date; optional; only past dates allowed
     - created_at - timestamp; mandatory;
 - **Contact**
     - id - surrogate PK; integer;
     - person_id - FK; on delete: cascade; integer; mandatory;
     - email - varchar; mandatory; unique 
-    - phone_number - varchar; mandatory;
+    - phone_number - varchar; mandatory; 
     - whatsapp_number - varchar; optional
     - created_at - timestamp; mandatory;
     - updated_at - timestamp; mandatory;
@@ -177,9 +177,9 @@ During each visit, the doctor records and manages the following information in t
 - **Vital_Signs**
     - visit_id - PK; FK; integer;
     - blood_pressure - varchar; mandatory;
-    - heart_rate - integer; mandatory; 
-    - temperature - decimal; mandatory;
-    - oxygen_saturation - decimal; mandatory;
+    - heart_rate - integer; mandatory; must be between 0 and 300; 
+    - temperature - decimal; mandatory; must be between 30 and 45;
+    - oxygen_saturation - decimal; mandatory; must be between 0 and 100 percent;
     - created_at - timestamp; mandatory;
 - **Diagnosis**
     - visit_id - PK; FK; integer;
