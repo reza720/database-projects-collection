@@ -122,7 +122,7 @@ During each visit, the doctor records and manages the following information in t
 - **Contact**
     - id - surrogate PK; integer;
     - person_id - FK; on delete: cascade; integer; mandatory;
-    - email - varchar; mandatory;
+    - email - varchar; mandatory; unique 
     - phone_number - varchar; mandatory;
     - whatsapp_number - varchar; optional
     - created_at - timestamp; mandatory;
@@ -147,20 +147,19 @@ During each visit, the doctor records and manages the following information in t
     - Doctor_id - PK; FK; on delete: cascade; integer;
     - photo_url - varchar; mandatory;
     - contract_document_url - varchar; mandatory;
-    - national_id_ulr - varchar; mandatory;
+    - national_id_ulr - varchar; mandatory; unique
     - cv_document_url - varchar; mandatory;
     - created_at - timestamp; mandatory;
     - updated_at - timestamp; mandatory;
 - **Hospital_Department**
-    - id - surrogate PK; integer;
-    - department_name_url - varchar; mandatory;
+    - department_name - PK; varchar; 
     - created_at - timestamp; mandatory;
     - updated_at - timestamp; mandatory;
 - **Visit**
     - id - surrogate PK; integer;
     - patient_id - FK; integer; mandatory;
     - doctor_id - FK; integer; mandatory;
-    - hospital_department_id - FK; integer; mandatory;
+    - hospital_department_id - FK; varchar; mandatory;
     - date - date; mandatory;
     - reason - text; optional; 
     - progress_note - text; optional
@@ -194,7 +193,7 @@ During each visit, the doctor records and manages the following information in t
     - updated_at - timestamp; mandatory;
 - **Lab_Test_Result**
     - lab_order_id - PK; FK; integer;
-    - result_file_url - varchar; mandatory;
+    - result_file_url - varchar; mandatory; unique
     - created_at - timestamp; mandatory;
 - **Radiology_Order**
     - visit_id - PK; FK; integer; 
@@ -204,11 +203,11 @@ During each visit, the doctor records and manages the following information in t
     - updated_at - timestamp; mandatory;
 - **Radiology_Image**
     - radiology_order_id - PK, FK; integer;
-    - digital_image_file_url - varchar; mandatory;
+    - digital_image_file_url - varchar; mandatory; unique
     - created_at - timestamp; mandatory;
 - **Prescription**
     - visit_id - PK, FK; integer;
-    - prescription_file_url - varchar; mandatory;
+    - prescription_file_url - varchar; mandatory; unique
     - created_at - timestamp; mandatory;
 
 --- 
