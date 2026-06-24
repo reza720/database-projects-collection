@@ -21,6 +21,7 @@ In addition to the design and implementation of the database, this project also 
 ### Domain Objects:
 - **Core Radiology Objects**
     - Staff (Technicians, Manager)
+    - Patient
     - Imaging Order
     - Imaging
 
@@ -33,12 +34,23 @@ In addition to the design and implementation of the database, this project also 
     - Imaging Request Sender: imaging order identifier details  
     - Clinic: details of the clinic sending the imaging request  
     - Hospital Department: identification details of the hospital department sending the imaging request  
-    - Patient: personal details of the person for whom the imaging is issued  
     - Requested Image: details of the type of image to be performed  
     - Image: images generated after imaging patients  
     - Imaging Payment: supports the payment process / holds details of imaging payments
 
-### Attributes of Objects
+### Object Relationships 
+- Each Person is the supertype of a Staff Member or a Patient.
+- Each Staff, Patient, or Request Sender can be associated with many Contacts and Addresses.
+- Each Staff has exactly one Staff Document.
+- Each Staff Member can generate many Staff Schedules.
+- Each Imaging Request Sender can send many Imaging Order.
+- Each Imaging Request Sender is either a Hospital Department or an external Clinic.
+- Each Imaging Order is issued for one Patient.
+- Each Imaging Order may needs many Imaging
+- Each completed Imaging Procedure produces one or more Images.
+- Each completed Imaging Procedure requires a corresponding Payment
+
+### Object Attributes
 - **Person**
     - First Name
     - Last Name
@@ -77,18 +89,6 @@ In addition to the design and implementation of the database, this project also 
 - **Image**
 - **Imaging Payment**
     - Amount
-
-### Relationships Between Objects
-- Each Person is the supertype of a Staff Member or a Patient.
-- Each Staff, Patient, or Request Sender can be associated with many Contacts and Addresses.
-- Each Staff has exactly one Staff Document.
-- Each Staff Member can generate many Staff Schedules.
-- Each Imaging Request Sender can send many Imaging Order.
-- Each Imaging Request Sender is either a Hospital Department or an external Clinic.
-- Each Imaging Order is issued for one Patient.
-- Each Imaging Order may needs many Imaging
-- Each completed Imaging Procedure produces one or more Images.
-- Each completed Imaging Procedure requires a corresponding Payment
 
 ### ERD
 ![ERD](Assets/ERD.drawio.png)
