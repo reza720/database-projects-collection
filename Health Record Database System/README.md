@@ -114,17 +114,17 @@ During each visit, the doctor records and manages the following information in t
 ### Tables
 - **Person**
     - id - surrogate PK; integer; 
-    - fist_name - varchar; mandatory; only letters and spaces allowed 
-    - last_name - varchar; mandatory; only letters and spaces allowed,
+    - fist_name - varchar; mandatory; only letters and spaces allowed;
+    - last_name - varchar; mandatory; only letters and spaces allowed;
     - gender - enum(Male, Female); mandatory;
-    - date_of_birth - date; optional; only past dates allowed
+    - date_of_birth - date; optional; only past dates allowed;
     - created_at - timestamp; mandatory;
 - **Contact**
     - id - surrogate PK; integer;
     - person_id - FK; on delete: cascade; integer; mandatory;
-    - email - varchar; mandatory; unique 
+    - email - varchar; mandatory; unique;
     - phone_number - varchar; mandatory; 
-    - whatsapp_number - varchar; optional
+    - whatsapp_number - varchar; optional;
     - created_at - timestamp; mandatory;
     - updated_at - timestamp; mandatory;
 - **Address**
@@ -144,7 +144,7 @@ During each visit, the doctor records and manages the following information in t
     - created_at - timestamp; mandatory;
     - updated_at - timestamp; mandatory;
 - **Doctor_Document**
-    - Doctor_id - PK; FK; on delete: cascade; integer;
+    - doctor_id - PK; FK; on delete: cascade; integer;
     - photo_url - varchar; mandatory;
     - contract_document_url - varchar; mandatory;
     - national_id_ulr - varchar; mandatory; unique
@@ -162,7 +162,7 @@ During each visit, the doctor records and manages the following information in t
     - hospital_department_id - FK; varchar; mandatory;
     - date - date; mandatory;
     - reason - text; optional; 
-    - progress_note - text; optional
+    - progress_note - text; optional;
     - created_at - timestamp; mandatory;
     - updated_at - timestamp; mandatory;
 - **Illness_Symptom**
@@ -184,7 +184,7 @@ During each visit, the doctor records and manages the following information in t
 - **Diagnosis**
     - visit_id - PK; FK; integer;
     - condition_name - varchar; mandatory;
-    - note - text; optional
+    - note - text; optional;
     - created_at - timestamp; mandatory;
 - **Lab_Order**
     - visit_id - PK; FK; integer;
@@ -193,7 +193,7 @@ During each visit, the doctor records and manages the following information in t
     - updated_at - timestamp; mandatory;
 - **Lab_Test_Result**
     - lab_order_id - PK; FK; integer;
-    - result_file_url - varchar; mandatory; unique
+    - result_file_url - varchar; mandatory; unique;
     - created_at - timestamp; mandatory;
 - **Radiology_Order**
     - visit_id - PK; FK; integer; 
@@ -203,12 +203,15 @@ During each visit, the doctor records and manages the following information in t
     - updated_at - timestamp; mandatory;
 - **Radiology_Image**
     - radiology_order_id - PK, FK; integer;
-    - digital_image_file_url - varchar; mandatory; unique
+    - digital_image_file_url - varchar; mandatory; unique;
     - created_at - timestamp; mandatory;
 - **Prescription**
     - visit_id - PK, FK; integer;
-    - prescription_file_url - varchar; mandatory; unique
+    - prescription_file_url - varchar; mandatory; unique;
     - created_at - timestamp; mandatory;
+
+### ERD
+![ERD](Assets/ERD.png)
 
 --- 
 
