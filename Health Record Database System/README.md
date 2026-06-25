@@ -24,13 +24,13 @@ During each visit, the doctor records and manages the following information in t
     - Patient
     - Doctor
     - Visit
+    - Hospital Department
 
 - **Supporting Objects**
     - Person: Acts as a supertype for Doctor and Patient.
     - Address: Stores location information for doctors and patients.
     - Contact: Stores communication details for doctors and patients.
     - Doctor Document: Stores doctors' personal and professional documents.
-    - Hospital Department: Keeps details of hospital sections where patients go for visit
     - History of Present Illness: Stores details about the timeline, severity and symptoms
     - Vital Signs: Stores patients' vital signs recorded during a visit.
     - Diagnosis: Stores details of a patient's confirmed diagnosis.
