@@ -16,26 +16,15 @@ In this project, I design and implement the database that will serve as the foun
 ## Conceptual Design
 ### Domain Objects
 - **Core Objects**
-    - Purchase: Handle acquisition of drugs and medical devices from suppliers
+    - Purchase: 
     - Medical Device
     - Drug
-    - Sale: Handle Selling drugs and medical devices to customers
-
+    - Sale
 - **Supporting Objects**    
-    - Supplier
-    - Supplier Contact: Communication details of supplier
-    - Supplier Address: Location details of supplier
-    - Purchase Bill: Holds the complete bill information for a purchase
-    - Payment: Payment details for a purchase bill
-    - Sale Bill: Holds the complete bill information for a sale
- 
-### Objects Relationships
-- Each Purchase is made from one Supplier
-- Each Supplier has one or more Addresses and Contacts
-- Each Purchase may include many Drugs and Medical Devices
-- Each Purchase generates one Purchase Bill
-- Each Purchase Bill generates one Payment
-- Each Sale generates one Sale Bill
+    - Supplier: Information about suppliers.
+    - Supplier Contact: Contact information for suppliers.
+    - Supplier Address: Address information for suppliers.
+    - Purchase Payment: Payment details for purchase
 
 ### Objects Attributes
 - **Supplier**
@@ -49,11 +38,7 @@ In this project, I design and implement the database that will serve as the foun
     - Phone Number
     - Email
     - Whatspp Number
-- **Purchase Bill**
-    - Purchase Date
-    - Purchased Items
-    - Bill Total
-- **Purchase Bill Payment**
+- **Purchase Payment**
     - Date
 - **Medical Device**
     - Name
@@ -63,11 +48,11 @@ In this project, I design and implement the database that will serve as the foun
     - Brand Name
     - Expiration Date
 - **Purchase**
-- **Sale Bill**
+    - Purchase Date
+    - Purchased Items
+- **Sale**
     - Sale Date
     - Sold Items
-    - Bill Total
-- **Sale**
 
 ### ERD
 ![ERD](Assets/ERD.png)
