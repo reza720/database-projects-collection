@@ -24,31 +24,18 @@ In addition to the design and implementation of the database, this project also 
     - Patient
     - Imaging Order
     - Imaging
-
 - **Supporting Objects:**
-    - Person: supertype for Staff and Patient  
-    - Contact: communication details of Staff, Request Sender, and Patient  
-    - Address: location details of Staff, Request Sender, and Patient  
-    - Staff Document: staff personal details  
-    - Staff Schedule: staff presence in the lab  
-    - Imaging Request Sender: imaging order identifier details  
-    - Clinic: details of the clinic sending the imaging request  
-    - Hospital Department: identification details of the hospital department sending the imaging request  
-    - Requested Image: details of the type of image to be performed  
-    - Image: images generated after imaging patients  
-    - Imaging Payment: supports the payment process / holds details of imaging payments
-
-### Object Relationships 
-- Each Person is the supertype of a Staff Member or a Patient.
-- Each Staff, Patient, or Request Sender can be associated with many Contacts and Addresses.
-- Each Staff has exactly one Staff Document.
-- Each Staff Member can generate many Staff Schedules.
-- Each Imaging Request Sender can send many Imaging Order.
-- Each Imaging Request Sender is either a Hospital Department or an external Clinic.
-- Each Imaging Order is issued for one Patient.
-- Each Imaging Order may needs many Imaging
-- Each completed Imaging Procedure produces one or more Images.
-- Each completed Imaging Procedure requires a corresponding Payment
+    - Person: Base object for staff and patients.
+    - Contact: Contact information for staff, request senders, and patients.
+    - Address: Address information for staff, request senders, and patients.
+    - Staff Document: Personal and professional documents for staff.
+    - Staff Schedule: Staff work schedules.
+    - Imaging Request Sender: Information about the sender of an imaging request.
+    - Clinic: Information about the clinic that sent the imaging request.
+    - Hospital Department: Information about the hospital department that sent the imaging request.
+    - Requested Image: Details of the imaging study requested.
+    - Image: Images generated from imaging procedures.
+    - Imaging Payment: Payment details for imaging services.
 
 ### Object Attributes
 - **Person**
