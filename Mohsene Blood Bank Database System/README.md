@@ -23,20 +23,20 @@ In this project, I design and implement the database for this system and demonst
 - **Core Mohsene Blood Bank Entities**
     - Blood Donor
     - Staff
+    - Blood Test
+    - Blood Group
     - Blood Request
 
 - **Supporting Entities:**
-    - Person: Supertype for Staff and Donor
-    - Contact: Communication details of Donor, Staff, and Blood Request Sender
-    - Address: Location details of Donor, Staff, and Blood Request Sender
-    - Blood Donation: Supports the donation process
-    - Blood Group: Classifies donated blood
-    - Blood Unit: Represents the quantity of donated blood
-    - Blood Test: Supports the testing process of blood units
-    - Staff Schedule: Keeps records of staff daily presence
-    - Staff Documentation: Holds personal identification files of staff
-    - Blood Request Sender: Identification details of the blood request origin
-    - Blood Issuance: Supports the blood issuance process
+    - Person: Base object for staff and donors.
+    - Contact: Contact information for donors, staff, and blood request senders.
+    - Address: Address information for donors, staff, and blood request senders.
+    - Blood Donation: Records of blood donations.
+    - Blood Unit: Individual donated blood units.
+    - Staff Schedule: Staff work schedules.
+    - Staff Documentation: Personal and professional documents for staff.
+    - Blood Request Sender: Information about the sender of a blood request.
+    - Blood Issuance: Records of blood issued to recipients.
 
 ### Attributes of Entites
 - **Person**
@@ -81,20 +81,6 @@ In this project, I design and implement the database for this system and demonst
     - Request Date
     - Requested Blood Type
     - Requested Units
-
-
-### Entities Relationships
-- Each Person is a supertype of Staff or Donor
-- Each Staff, Donor, and Blood Request Sender has one or more Addresses
-- Each Staff, Donor, and Blood Request Sender has one or more Contacts
-- Each Donor donates one to many times
-- Each Blood Donation creates one or more Blood Units
-- Each Blood Unit belongs to a Blood Group
-- Each Blood Unit needs to be tested
-- Each Staff Presence creates a Staff Schedule
-- Each Staff has at least one Staff Document
-- Each Blood Request is sent by a Blood Request Sender
-- Each Blood Request may create one Blood Issuance
 
 ### ERD
 ![ERD](Assets/ERD.png)
