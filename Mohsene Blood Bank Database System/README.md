@@ -26,7 +26,6 @@ In this project, I design and implement the database for this system and demonst
     - Blood Test
     - Blood Group
     - Blood Request
-
 - **Supporting Entities:**
     - Person: Base object for staff and donors.
     - Contact: Contact information for donors, staff, and blood request senders.

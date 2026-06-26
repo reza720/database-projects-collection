@@ -20,17 +20,16 @@ In this project, I design and implement the database for this information system
     - Staff 
     - Test Order
     - Test
-
 - **Supporting Objects**
-    - Person: supertype of Staff and Patient  
-    - Address: location details of Staff, Patient, and Order Sender  
-    - Contact: communication details of Staff, Patient, and Order Sender  
-    - Staff Document: personal details of Staff  
-    - Order Sender: details of the test order sender  
-    - Patient: personal details of the patient  
-    - Test Result: results of tests  
-    - Test Payment: payment details of tests  
-    - Test Result Approval: supports the approval process 
+    - Person: Base object for staff and patients.
+    - Address: Address information for staff, patients, and order senders.
+    - Contact: Contact information for staff, patients, and order senders.
+    - Staff Document: Personal and professional documents for staff.
+    - Order Sender: Information about the sender of a test order.
+    - Patient: Information about patients.
+    - Test Result: Results of laboratory tests.
+    - Test Payment: Payment details for laboratory tests.
+    - Test Result Approval: Records of test result approvals.
 
 ### Attributes of Object
 - **Person**
@@ -65,18 +64,6 @@ In this project, I design and implement the database for this information system
     - Approval Date
 - **Test**
     - Test Date
-    
-### Relationships Between Objects
-- Each Person is a supertype of a Staff or a Patient.
-- Each Staff, Patient, and Order Sender can have zero, one, or many Addresses.
-- Each Staff, Patient, and Order Sender must have at least one Contact.
-- Each Staff must have a Staff Document.
-- Each Test Order contains an Order Sender.
-- Each Test Order contains a Patient.
-- Each Test Order may needs one to many Tests
-- Each Test generates a Test Result.
-- Each Test requires a Payment.
-- Each Test Result requires a Test Result Approval.
 
 ### ERD
 ![ERD](Assets/ERD.drawio.png)
