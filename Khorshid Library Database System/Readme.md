@@ -22,32 +22,16 @@ In this project, I designed and implemented the database. I also demonstrate how
     - Book
     - Staff
     - Member
-
 - **Supporting Objects**
-    - Person: acts as the supertype of Staff, Member, and Author  
-    - Author: holds details of book authors  
-    - Publisher: holds book publisher details  
-    - Genre: stores book categorization details  
-    - Schedule: keeps records of staff daily presence  
-    - Log: stores staff logs in the system  
-    - Book Transaction: handles the transaction process  
-    - Fine (for late return of books): handles the fine process  
-    - Address: hold location details of Staff and Member 
-
-### Relationships Between Objects
-- Every Author is a Person 
-- Every Staff is a Person 
-- Every Member is a Person 
-- Every Member has an Address 
-- Every Staff has an Address 
-- Every Book is published by a Publisher 
-- Every Book fits in a Genre
-- Every Book has Many Author and Each Author may have written many Books 
-- A Member makes Transactions 
-- A Book is involved in Transactions 
-- A Transaction may generate a Fine 
-- Every Staff has Schedules 
-- Every Staff has Logs 
+    - Person: Base object for staff, members, and authors.
+    - Author: Information about book authors.
+    - Publisher: Information about book publishers.
+    - Genre: Book genre information.
+    - Schedule: Staff work schedules.
+    - Log: Staff activity logs.
+    - Book Transaction: Records of book borrowing and returning.
+    - Fine: Details of late return fines.
+    - Address: Address information for staff and members.
 
 ### Attributes of Objects
 - **Address**
@@ -183,8 +167,6 @@ In this project, I designed and implemented the database. I also demonstrate how
 ### ERD
 ![ERD](assets/ERD.png)
 
-### Note: This design is normalized to Third Normal Form (3NF).
-
 ---
 
 ## Physical Design 
@@ -233,9 +215,6 @@ Since these columns are not part of the primary key, MySQL does not support this
 ---
 
 ## Database Usage
-This section defines how the database is used in practice directly with no application layer <br>
-
-### Use Case Queries  
 The database should be able to support the following use case queries:
 
 - **Staff Queries**
@@ -359,7 +338,7 @@ To ensure that data remains consistent during business operations, we define the
 - Staff Registration Transaction: Add full profile of a Staff: Person + Staff + Address
 - Author Registration Transaction: Add full profile of an Author: Person + Author
 
- ### Procedures
+### Procedures
 To automate transactions, we define them inside stored procedures. Therefore, the following procedures are required: 
 - Member Registration Procedure
 - Staff Registration Procedure
