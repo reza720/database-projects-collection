@@ -27,34 +27,18 @@ During each visit, the doctor records and manages the following information in t
     - Hospital Department
 
 - **Supporting Objects**
-    - Person: Acts as a supertype for Doctor and Patient.
-    - Address: Stores location information for doctors and patients.
-    - Contact: Stores communication details for doctors and patients.
-    - Doctor Document: Stores doctors' personal and professional documents.
-    - History of Present Illness: Stores details about the timeline, severity and symptoms
-    - Vital Signs: Stores patients' vital signs recorded during a visit.
-    - Diagnosis: Stores details of a patient's confirmed diagnosis.
-    - Lab Order: Stores details of laboratory tests ordered by a doctor.
-    - Lab Test Result: Stores the results of patients' laboratory tests.
-    - Radiology Order: Stores details of radiology imaging studies ordered by a doctor.
-    - Radiology Image: Stores radiology images associated with imaging studies.
-    - Prescription: Stores details of prescriptions issued to patients by doctors.
-
-### Relationships of Objects
-- Each Patient and Doctor is considered a Person.
-- Each Patient and Doctor has one Contacts and Addresses.
-- Each Doctor has one Doctor Document.
-- Each Doctor works in one or more Hospital Departments.
-- Each Visit involves one Doctor and one Patient.
-- Each Visit takes place in one Hospital Department.
-- Each Visit requires one History of Present Illness.
-- Each Visit may include one Vital Signs record.
-- Each Visit may result in one Diagnosis.
-- Each Visit may require one or more Lab Orders and Radiology Orders.
-- Each Lab Order may have one Lab Test Result.
-- Each Radiology Order may have one or more Radiology Images.
-- Each Visit may generate one or more Prescriptions.
-- Each Visit may include one or more Progress Notes.
+    - Person: Base object for doctors and patients.
+    - Address: Address information for doctors and patients.
+    - Contact: Contact information for doctors and patients.
+    - Doctor Document: Personal and professional documents for doctors.
+    - History of Present Illness: Information about the patient's illness, including symptoms, severity, and timeline, recorded during a visit.
+    - Vital Signs: Patient vital signs recorded during a visit.
+    - Diagnosis: Confirmed diagnosis recorded during a visit.
+    - Lab Order: Laboratory tests ordered during a visit.
+    - Lab Test Result: Results of laboratory tests.
+    - Radiology Order: Imaging tests ordered during a visit.
+    - Radiology Image: Images produced from radiology tests.
+    - Prescription: Medications prescribed during a visit.
 
 ### Attributes of Objects
 - **Person**
