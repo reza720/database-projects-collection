@@ -1,19 +1,7 @@
-## Scenario
-### Radiology 
-This database is designed and implemented for a electronic information system to support the operations of a hospital radiology department. It is not developed for a specific hospital; instead, it provides a generic solution that can be adapted by any hospital.
+## Scenario 
+A radiology information system manages radiology staff, patients, imaging orders, imaging procedures, medical images, and imaging payments. Imaging orders are received from hospital departments or external clinics, processed by radiology staff, and the resulting medical images are stored and managed within the system.
 
-Many radiology departments in Afghanistan still rely on paper-based processes. This can lead to various challenges, including loss of patient information, misidentification of imaging records, workflow delays, security concerns, and many more.
-
-A typical radiology information system should support the following functions:
-- Management of radiology staff and their work activities
-- Management of imaging orders received from other hospital departments/Other clinics
-- Management of patients
-- Management of imaging procedures
-- Management of medical images 
-- Management of imaging payments
-
-In addition to the design and implementation of the database, this project also demonstrates how the database can be used directly without an application layer, allowing users to perform common operational tasks through database queries and procedures.
-
+In this project, I design and implement the database for this information system. I also demonstrate how the database can be used directly, without an application layer.
 
 --- 
 
@@ -84,15 +72,84 @@ In addition to the design and implementation of the database, this project also 
 
 ## Logical Design
 ### Tables
+- **Person**
+    - id - surrogate PK
+    - first_name
+    - last_name
+    - gender
+    - created_at
+    - updated_at
+- **Staff**
+    - person_id - PK
+    - role
+- **Patient**
+    - person_id - PK; FK
+    - age
+- **Imaging_Order**
+    - id - surrogate PK
+    - imaging_request_sender_id - FK
+    - order_date
+    - created_at
+    - updated_at
+- **Imaging**
+    - id - surrogate PK
+    - imagin_order_id - FK
+    - imaging_date
+    - created_at
+- **Contact**
+    - id - surrogate PK
+    - 
+    - phone_umber
+    - email
+    - created_at
+    - updated_at
+- **Address**
+    - id - surrogate PK
+    - province
+    - district
+    - street
+    - created_at
+    - updated_at
+- **Staff_Document**
+    - staff_id - PK; FK
+    - tazkira_docuemnt
+    - contract_document
+    - created_at
+    - updated_at
+- **Staff_Schedule**    
+    - id - surrogate PK
+    - day_of_week
+    - start_time
+    - end_time
+    - created_at
+- **Imaging_Request_Sender**
+    - id - surrogate PK
+    - doctor_name
+    - created_at
+    - updated_at
+- **Clinic**
+    - clinic_name - PK
+    - created_at
+    - updated_at
+- **Hospital_Department**
+    - department_name - PK
+    - created_at
+    - updated_at
 
-
-### Normalization Notes
-
-
-### Tables
-
-
-
+- **Requested_Image**
+    - id - surrogate PK
+    - body_part
+    - type_of_image
+    - created_at
+    - updated_at
+- **Image**
+    - id - surrogate PK
+    - created_at
+    - updated_at
+- **Imaging_Payment**
+    - imaging_id - PK; FK
+    - Amount
+    - created_at
 --- 
 
 ## Physical Design
