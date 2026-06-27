@@ -10,7 +10,6 @@ When patients arrive at the hospital, they are first registered and assigned a u
     - Doctor
     - Visit
     - Hospital Department
-
 - **Supporting Objects**
     - Person: Base object for doctors and patients.
     - Address: Address information for doctors and patients.
