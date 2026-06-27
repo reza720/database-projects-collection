@@ -1,20 +1,5 @@
 ## Scenario
-### Electronic Health Record 
-This database project is designed and implemented to transform paper-based health record management into an electronic database system. The system enables efficient storage, management, retrieval, and maintenance of patient health records.
-
-The creation of a health record in a hospital, whether paper-based or electronic, begins with patient registration. During registration, the patient’s basic information is recorded, and a unique patient ID is assigned to identify the patient across all future visits.
-
-After registration, the patient can visit a doctor in any department whenever required. Each visit creates a new visit within the patient’s health record.
-
-During each visit, the doctor records and manages the following information in the patient’s health record:
-- Visit Details: Date of visit, attending doctor, and department
-- Reason for Visit: The main complaint of the patient
-- History of Present Illness: timeline, severity, and symptoms
-- Vital Signs: blood pressure, heart rate, temperature, and oxygen saturation
-- Diagnosis: confirmed condition
-- Orders: Requests for laboratory tests or radiology images
-- Prescriptions: Medications prescribed to the patient
-- Progress Notes: Updates on the patient’s condition
+When patients arrive at the hospital, they are first registered and assigned a unique patient ID. After that, they can visit doctors in any department whenever needed, and each visit is recorded separately in their health record. During every visit, the doctor add visit details such as reason for the visit, illness symptoms and history, patient vital signs, diagnosis, lab or imaging orders, and prescriptions.
 
 --- 
 
@@ -64,6 +49,7 @@ During each visit, the doctor records and manages the following information in t
 - **Hospital Department**
     - Department Name
 - **Doctor**
+    - Status (Active/Leaft/On Break)
 - **History of Present Illness**
     - Symptoms
     - Symptom Timeline
@@ -97,102 +83,99 @@ During each visit, the doctor records and manages the following information in t
 ## Logical Design
 ### Tables
 - **Person**
-    - id - surrogate PK; integer; 
-    - fist_name - varchar; mandatory; only letters and spaces allowed;
-    - last_name - varchar; mandatory; only letters and spaces allowed;
-    - gender - enum(Male, Female); mandatory;
-    - date_of_birth - date; optional; only past dates allowed;
-    - created_at - timestamp; mandatory;
+    - id - surrogate PK; 
+    - fist_name - mandatory; only letters and spaces allowed;
+    - last_name - mandatory; only letters and spaces allowed;
+    - gender - mandatory;
+    - date_of_birth - optional; only past dates allowed;
+    - created_at - mandatory;
 - **Contact**
-    - id - surrogate PK; integer;
-    - person_id - FK; on delete: cascade; integer; mandatory;
-    - email - varchar; mandatory; unique;
-    - phone_number - varchar; mandatory; 
-    - whatsapp_number - varchar; optional;
-    - created_at - timestamp; mandatory;
-    - updated_at - timestamp; mandatory;
+    - id - surrogate PK;
+    - person_id - FK; on delete: cascade; mandatory;
+    - email - mandatory; unique;
+    - phone_number - mandatory; 
+    - whatsapp_number - optional;
+    - created_at - mandatory;
+    - updated_at - mandatory;
 - **Address**
-    - id - surrogate PK; integer;
-    - person_id - FK; on delete: cascade; integer; mandatory;
-    - province - varchar; mandatory;
-    - district - varchar; mandatory;
-    - street - varchar; optional; 
-    - house_number - varchar;
-    - created_at - timestamp; mandatory;
-    - updated_at - timestamp; mandatory;
+    - id - surrogate PK;
+    - person_id - FK; on delete: cascade; mandatory;
+    - province - mandatory;
+    - district - mandatory;
+    - street - optional; 
+    - house_number - optional
+    - created_at - mandatory;
+    - updated_at - mandatory;
 - **Patient**
-    - Person_id - PK, FK; on delete: cascade; integer;
-    - created_at - timestamp; mandatory;
+    - Person_id - PK, FK; on delete: cascade; 
 - **Doctor**
-    - person_id - PK; FK; on delete: cascade; integer; 
-    - created_at - timestamp; mandatory;
-    - updated_at - timestamp; mandatory;
+    - person_id - PK; FK; on delete: cascade;
 - **Doctor_Document**
-    - doctor_id - PK; FK; on delete: cascade; integer;
-    - photo_url - varchar; mandatory;
-    - contract_document_url - varchar; mandatory;
-    - national_id_ulr - varchar; mandatory; unique
-    - cv_document_url - varchar; mandatory;
-    - created_at - timestamp; mandatory;
-    - updated_at - timestamp; mandatory;
+    - doctor_id - PK; FK; on delete: cascade; 
+    - photo_url - mandatory;
+    - contract_document_url - mandatory;
+    - national_id_ulr - mandatory; unique
+    - cv_document_url - mandatory;
+    - created_at - mandatory;
+    - updated_at - mandatory;
 - **Hospital_Department**
-    - department_name - PK; varchar; 
-    - created_at - timestamp; mandatory;
-    - updated_at - timestamp; mandatory;
+    - department_name - PK;  
+    - created_at - mandatory;
+    - updated_at - mandatory;
 - **Visit**
-    - id - surrogate PK; integer;
-    - patient_id - FK; integer; mandatory;
-    - doctor_id - FK; integer; mandatory;
-    - hospital_department_id - FK; varchar; mandatory;
-    - date - date; mandatory;
-    - reason - text; optional; 
-    - progress_note - text; optional;
-    - created_at - timestamp; mandatory;
-    - updated_at - timestamp; mandatory;
+    - id - surrogate PK; 
+    - patient_id - FK; mandatory;
+    - doctor_id - FK; mandatory;
+    - hospital_department_id - FK; mandatory;
+    - date - mandatory;
+    - reason - optional; 
+    - progress_note - optional;
+    - created_at - mandatory;
+    - updated_at - mandatory;
 - **Illness_Symptom**
-    - visit_id - PK; FK; integer;
-    - symptom - varchar; mandatory;
-    - created_at - timestamp; mandatory;
+    - visit_id - PK; FK; 
+    - symptom - mandatory;
+    - created_at - mandatory;
 - **History_of_Present_Illness**
-    - visit_id - PK; FK; integer;
-    - symptom_timeline - date; mandatory;
-    - symptom_severity - varchar; mandatory;
-    - created_at - timestamp; mandatory;
+    - visit_id - PK; FK; 
+    - symptom_timeline - mandatory;
+    - symptom_severity - mandatory;
+    - created_at - mandatory;
 - **Vital_Signs**
-    - visit_id - PK; FK; integer;
-    - blood_pressure - varchar; mandatory;
-    - heart_rate - integer; mandatory; must be between 0 and 300; 
-    - temperature - decimal; mandatory; must be between 30 and 45;
-    - oxygen_saturation - decimal; mandatory; must be between 0 and 100 percent;
-    - created_at - timestamp; mandatory;
+    - visit_id - PK; FK; 
+    - blood_pressure - mandatory;
+    - heart_rate - mandatory; must be between 0 and 300; 
+    - temperature - mandatory; must be between 30 and 45;
+    - oxygen_saturation - mandatory; must be between 0 and 100 percent;
+    - created_at - mandatory;
 - **Diagnosis**
-    - visit_id - PK; FK; integer;
-    - condition_name - varchar; mandatory;
-    - note - text; optional;
-    - created_at - timestamp; mandatory;
+    - visit_id - PK; FK; 
+    - condition_name - mandatory;
+    - note - optional;
+    - created_at - mandatory;
 - **Lab_Order**
-    - visit_id - PK; FK; integer;
-    - test_name - varchar; mandatory;
-    - created_at - timestamp; mandatory;
-    - updated_at - timestamp; mandatory;
+    - visit_id - PK; FK; 
+    - test_name - mandatory;
+    - created_at - mandatory;
+    - updated_at - mandatory;
 - **Lab_Test_Result**
-    - lab_order_id - PK; FK; integer;
-    - result_file_url - varchar; mandatory; unique;
-    - created_at - timestamp; mandatory;
+    - lab_order_id - PK; FK;
+    - result_file_url - mandatory; unique;
+    - created_at - mandatory;
 - **Radiology_Order**
-    - visit_id - PK; FK; integer; 
-    - body_part - varchar; mandatory;
-    - image_name - varchar; mandatory;
-    - created_at - timestamp; mandatory;
-    - updated_at - timestamp; mandatory;
+    - visit_id - PK; FK;  
+    - body_part - mandatory;
+    - image_name - mandatory;
+    - created_at - mandatory;
+    - updated_at - mandatory;
 - **Radiology_Image**
-    - radiology_order_id - PK, FK; integer;
-    - digital_image_file_url - varchar; mandatory; unique;
-    - created_at - timestamp; mandatory;
+    - radiology_order_id - PK, FK;
+    - digital_image_file_url - mandatory; unique;
+    - created_at - mandatory;
 - **Prescription**
-    - visit_id - PK, FK; integer;
-    - prescription_file_url - varchar; mandatory; unique;
-    - created_at - timestamp; mandatory;
+    - visit_id - PK, FK; 
+    - prescription_file_url - mandatory; unique;
+    - created_at - mandatory;
 
 ### ERD
 ![ERD](Assets/ERD.png)
