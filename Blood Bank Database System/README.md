@@ -15,8 +15,8 @@ In this project, I design and implement the database for this system and demonst
     - Blood Request
 - **Supporting Entities:**
     - Person: Base object for staff and donors.
-    - Contact: Contact information for donors, staff, and blood request senders.
-    - Address: Address information for donors, staff, and blood request senders.
+    - Contact: Contact information for donors and staff
+    - Address: Address information for donors and staff
     - Blood Donation: Records of blood donations.
     - Blood Unit: Individual donated blood units.
     - Staff Schedule: Staff work schedules.
@@ -25,11 +25,11 @@ In this project, I design and implement the database for this system and demonst
     - Blood Issuance: Records of blood issued to recipients.
 
 ### Attributes of Entites
-- **Person**
-    - First Name
-    - Last Name
-    - Gender
-    - Date of Birth
+Person
+- First Name
+- Last Name
+- Gender
+- Date of Birth
 - **Contact**
     - Phone
     - Email
@@ -56,9 +56,9 @@ In this project, I design and implement the database for this system and demonst
 - **Staff Documents**
     - National Id Document
     - Photo
-    - Contact Document
+    - Contract Document
 - **Staff**
-    - Status (Active, Left)
+    - Status (Active, Inactive)
 - **Blood Request Sender**
     - Sender Name
 - **Blood Issuance**
