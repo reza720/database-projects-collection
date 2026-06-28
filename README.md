@@ -1,37 +1,36 @@
 # Overview
-This repository contains database projects for real businesses.
-For each project, I discuss the following:
-- **Scenario:** The business context, why it needs a database system, and what the database must support.
-- **Conceptual Model:** Business entities and relationships.
-- **Logical Model:** Relational schema.
-- **Physical Model:** Storage and performance design.
-- **Database Usage:** Notes on how the database can be used directly without any application layer.
-- **Implementation:** SQL Scripts
+This repository contains standalone database projects designed for real business scenarios.  
+Each project can be used directly without an application layer, while remaining flexible enough to integrate with one if needed.
+
+Every project includes:
+- **ER Model Diagram** – conceptual representation of entities and relationships
+- **Relational Schema** – logical design of tables, keys, and constraints
+- **Physical Modeling Techniques** – optimizations such as indexing and partitioning
+- **Database Features** – advanced capabilities like views, transactions, functions, procedures, and access control
 
 ## Project Structure
 ### README.md
-Contains:
-- Scenario 
-- Conceptual Design
-- Logical Design 
-- Physical Design 
-- Database Usage
+Documents:
+- Scenario
+- ER Model Diagram
+- Relational Schema
+- Physical modeling techniques
+- Database features
 
 ### implementation/
-Contains:
-- tables.sql
-- indexes.sql
-- partitionings.sql
-- views.sql  
-- procedures.sql  
-- access_control.sql
-- seed_data.sql
-- Use Case Queries.sql
-- functions.sql
-- triggers.sql
+Contains SQL scripts for:
+- `tables.sql` 
+- `indexes.sql` 
+- `partitionings.sql` 
+- `views.sql`
+- `procedures.sql` 
+- `access_control.sql` 
+- `seed_data.sql` 
+- `use_case_queries.sql`
+- `functions.sql`
+- `triggers.sql` 
 
-### Assets
+### assets/
 Contains:
-- Diagram Images
+- ER diagrams images
 
-# How I Design and Implement Database Projects
