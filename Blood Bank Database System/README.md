@@ -66,9 +66,9 @@ A blood bank information system is needed to manage staff, blood donors, blood d
 - **Blood_unit**
     - bag_id - PK
     - donation_id - FK, mandatory
-    - blood_groupd_id - FK, mandatory
+    - groupd_id - FK, mandatory
     - volume - mandatory, between 450–500
-    - status(Available, Issued) - mandatory, default value(Available)
+    - status(Available, Issued, Discarded) - mandatory, default value(Available)
     - created_at
     - updated_at
 - **Request_Sender**
@@ -81,13 +81,10 @@ A blood bank information system is needed to manage staff, blood donors, blood d
     - date - mandatory
     - blood_group_id - FK, mandatory
     - number_of_units - mandatory, only postive number
+    - status(Rejected, Accepted, Pending)
     - created_at
     - updated_at
 - **Blood_Issuance**    
     - request_id - PK, FK
     - date - mandatory
     - created_at 
-
-
-
-
