@@ -2,101 +2,111 @@
 When patients arrive at the hospital, they are first registered and assigned a unique patient ID. After that, they can visit doctors in any department whenever needed, and each visit is recorded separately in their health record. During every visit, the doctor add visit details such as reason for the visit, illness symptoms and history, patient vital signs, diagnosis, lab or imaging orders, and prescriptions.
 
 # Entity Relationship Diagram (ERD)
-
+![ERD](Assets/ERD.png)
 
 # Relational Schema
-- **Person**
-    - id - surrogate PK; 
-    - fist_name - mandatory; only letters and spaces allowed;
-    - last_name - mandatory; only letters and spaces allowed;
-    - gender - mandatory;
-    - date_of_birth - optional; only past dates allowed;
-    - created_at - mandatory;
+- **Person**    
+    - id - surrogate PK
+    - first_name
+    - last_name
+    - gender
+    - date_of_birth
+    - created_at
+    - updated_at
 - **Contact**
-    - id - surrogate PK;
-    - person_id - FK; on delete: cascade; mandatory;
-    - email - mandatory; unique;
-    - phone_number - mandatory; 
-    - whatsapp_number - optional;
-    - created_at - mandatory;
-    - updated_at - mandatory;
-- **Address**
-    - id - surrogate PK;
-    - person_id - FK; on delete: cascade; mandatory;
-    - province - mandatory;
-    - district - mandatory;
-    - street - optional; 
-    - house_number - optional
-    - created_at - mandatory;
-    - updated_at - mandatory;
+    - person_id - PK, FK, on delete: cascade
+    - phone_number
+    - email
+    - whatsapp_number
+    - created_at
+    - updated_at
 - **Patient**
-    - Person_id - PK, FK; on delete: cascade; 
-- **Doctor**
-    - person_id - PK; FK; on delete: cascade;
-- **Doctor_Document**
-    - doctor_id - PK; FK; on delete: cascade; 
-    - photo_url - mandatory;
-    - contract_document_url - mandatory;
-    - national_id_ulr - mandatory; unique
-    - cv_document_url - mandatory;
-    - created_at - mandatory;
-    - updated_at - mandatory;
+    - person_id - PK, FK, on delete: cascade
+- **User**
+    - person_id - PK, FK, on delete: cascade
+    - role (Doctor, Admin)
+    - status (Active, Inactive, Left)
+- **Address**
+    - person_id - PK, FK, on delete: cascade
+    - street
+    - district
+    - province
+- **Docuemnt**
+    - person_id - PK, FK, on delete: cascade
+    - photo_url
+    - tazkira_url
+    - contract_url
+    - created_at
+    - updated_at
 - **Hospital_Department**
-    - department_name - PK;  
-    - created_at - mandatory;
-    - updated_at - mandatory;
+    - name - PK
+    - created_at
+    - updated_at
+- **Department_Doctor**
+    - doctor_id - FK -> Person_id, on delete: cascade
+    - department_name - FK -> Hospital_Department.name, on delete: cascade
+    - PK (doctor_id, department_name)
+    - created_at
 - **Visit**
-    - id - surrogate PK; 
-    - patient_id - FK; mandatory;
-    - doctor_id - FK; mandatory;
-    - hospital_department_id - FK; mandatory;
-    - date - mandatory;
-    - reason - optional; 
-    - progress_note - optional;
-    - created_at - mandatory;
-    - updated_at - mandatory;
-- **Illness_Symptom**
-    - visit_id - PK; FK; 
-    - symptom - mandatory;
-    - created_at - mandatory;
-- **History_of_Present_Illness**
-    - visit_id - PK; FK; 
-    - symptom_timeline - mandatory;
-    - symptom_severity - mandatory;
-    - created_at - mandatory;
+    - id - surrogate PK
+    - department_id - FK
+    - doctor_id - FK -> Person.id
+    - patient_id - FK -> Person.id, on delete: cascade
+    - date
+    - reason
+    - progress_note
+    - created_at
+    - updated_at
+- **History_of_Illness**
+    - visit_id - PK, FK, on delete: cascade
+    - timeline
+    - serverity
+    - created_at
+    - updated_at
+- **Symptom**
+    - id - surroate PK
+    - visit_id - FK, on delete: cascade
+    - symptom
+    - created_at
+    - updated_at
 - **Vital_Signs**
-    - visit_id - PK; FK; 
-    - blood_pressure - mandatory;
-    - heart_rate - mandatory; must be between 0 and 300; 
-    - temperature - mandatory; must be between 30 and 45;
-    - oxygen_saturation - mandatory; must be between 0 and 100 percent;
-    - created_at - mandatory;
-- **Diagnosis**
-    - visit_id - PK; FK; 
-    - condition_name - mandatory;
-    - note - optional;
-    - created_at - mandatory;
-- **Lab_Order**
-    - visit_id - PK; FK; 
-    - test_name - mandatory;
-    - created_at - mandatory;
-    - updated_at - mandatory;
+    - visit_id - PK, FK, on delete: cascade
+    - blood_pressure
+    - heart_rate
+    - temperature
+    - created_at
+    - updated_at
+- **lab_order**
+    - id - surrogate PK
+    - visit_id - FK, on delete: cascade
+    - test_name 
+    - created_at
+    - updated_at
 - **Lab_Test_Result**
-    - lab_order_id - PK; FK;
-    - result_file_url - mandatory; unique;
-    - created_at - mandatory;
+    - lab_order_id - PK, FK, on delete: cascade
+    - result_file_url
 - **Radiology_Order**
-    - visit_id - PK; FK;  
-    - body_part - mandatory;
-    - image_name - mandatory;
-    - created_at - mandatory;
-    - updated_at - mandatory;
+    - id - surrogate PK
+    - visit_id - FK, on delete: cascade
+    - body_part
+    - image_type
+    - created_at
+    - updated_at
 - **Radiology_Image**
-    - radiology_order_id - PK, FK;
-    - digital_image_file_url - mandatory; unique;
-    - created_at - mandatory;
+    - radiology_order_id - PK, FK, on delete: cascade
+    - image_file_url
+    - created_at
+    - updated_at
+- **Diagnosis**
+    - id - surrogate PK
+    - visit_id - FK, on delete: cascade
+    - condition_name
+    - note
+    - created_at
+    - updated_at
 - **Prescription**
-    - visit_id - PK, FK; 
-    - prescription_file_url - mandatory; unique;
-    - created_at - mandatory;
+    - visit_id - PK, FK, on delete: cascade
+    - prescription_file_url
+    - created_at
+    - updated_at
 
