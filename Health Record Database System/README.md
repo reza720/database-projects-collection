@@ -1,5 +1,5 @@
-# Scenario
-When patients arrive at the hospital, they are first registered and assigned a unique patient ID. After that, they can visit doctors in any department whenever needed, and each visit is recorded separately in their health record. During every visit, the doctor add visit details such as reason for the visit, illness symptoms and history, patient vital signs, diagnosis, lab or imaging orders, and prescriptions.
+# Overview
+This database project is designed for a system which must supprot following scenario: When patients arrive at the hospital, they are first registered and assigned a unique patient ID. After that, they can visit doctors in any department whenever needed, and each visit is recorded separately in their health record. During every visit, the doctor add visit details such as reason for the visit, illness symptoms and history, patient vital signs, diagnosis, lab or imaging orders, and prescriptions.
 
 # Entity Relationship Diagram (ERD)
 ![ERD](Assets/ERD.png)
@@ -9,7 +9,7 @@ When patients arrive at the hospital, they are first registered and assigned a u
     - id - surrogate PK
     - first_name - mandatory
     - last_name - mandatory
-    - gender - mandatory
+    - gender(Male, Female) - mandatory
     - date_of_birth - optional
     - created_at
     - updated_at
@@ -25,7 +25,7 @@ When patients arrive at the hospital, they are first registered and assigned a u
 - **User**
     - person_id - PK, FK, on delete: cascade
     - role (Doctor, Admin) - mandatory
-    - status (Active, Inactive, Left) - mandatory
+    - status (Active, Inactive, Left) - mandatory, default value(Active)
 - **Address**
     - person_id - PK, FK, on delete: cascade
     - street - optional
