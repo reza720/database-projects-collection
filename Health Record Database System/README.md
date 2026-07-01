@@ -7,39 +7,39 @@ When patients arrive at the hospital, they are first registered and assigned a u
 # Relational Schema
 - **Person**    
     - id - surrogate PK
-    - first_name
-    - last_name
-    - gender
-    - date_of_birth
+    - first_name - mandatory
+    - last_name - mandatory
+    - gender - mandatory
+    - date_of_birth - optional
     - created_at
     - updated_at
 - **Contact**
     - person_id - PK, FK, on delete: cascade
-    - phone_number
-    - email
-    - whatsapp_number
+    - phone_number - mandatory
+    - email - optional, unique
+    - whatsapp_number - optional
     - created_at
     - updated_at
 - **Patient**
     - person_id - PK, FK, on delete: cascade
 - **User**
     - person_id - PK, FK, on delete: cascade
-    - role (Doctor, Admin)
-    - status (Active, Inactive, Left)
+    - role (Doctor, Admin) - mandatory
+    - status (Active, Inactive, Left) - mandatory
 - **Address**
     - person_id - PK, FK, on delete: cascade
-    - street
-    - district
-    - province
+    - street - optional
+    - district - mandatory
+    - province -mandatory
 - **Docuemnt**
     - person_id - PK, FK, on delete: cascade
-    - photo_url
-    - tazkira_url
-    - contract_url
+    - photo_url - optional, unique
+    - tazkira_url - optional, unique
+    - contract_url - optional, unique
     - created_at
     - updated_at
 - **Hospital_Department**
-    - name - PK
+    - name - PK 
     - created_at
     - updated_at
 - **Department_Doctor**
@@ -49,64 +49,64 @@ When patients arrive at the hospital, they are first registered and assigned a u
     - created_at
 - **Visit**
     - id - surrogate PK
-    - department_id - FK
-    - doctor_id - FK -> Person.id
-    - patient_id - FK -> Person.id, on delete: cascade
-    - date
-    - reason
-    - progress_note
+    - department_id - FK, mandatory
+    - doctor_id - FK -> Person.id, mandatory
+    - patient_id - FK -> Person.id, on delete: cascade, mandatory
+    - date - mandatory
+    - reason - optional
+    - progress_note - optional
     - created_at
     - updated_at
 - **History_of_Illness**
     - visit_id - PK, FK, on delete: cascade
-    - timeline
-    - serverity
+    - timeline - optional 
+    - serverity - optional
     - created_at
     - updated_at
 - **Symptom**
     - id - surroate PK
-    - visit_id - FK, on delete: cascade
-    - symptom
+    - visit_id - FK, on delete: cascade, mandatory
+    - symptom - mandatory
     - created_at
     - updated_at
 - **Vital_Signs**
     - visit_id - PK, FK, on delete: cascade
-    - blood_pressure
-    - heart_rate
-    - temperature
+    - blood_pressure - optional
+    - heart_rate - optional
+    - temperature - optional
     - created_at
     - updated_at
 - **lab_order**
     - id - surrogate PK
-    - visit_id - FK, on delete: cascade
-    - test_name 
+    - visit_id - FK, on delete: cascade, mandatory
+    - test_name - mandatory
     - created_at
     - updated_at
 - **Lab_Test_Result**
     - lab_order_id - PK, FK, on delete: cascade
-    - result_file_url
+    - result_file_url, mandatory
 - **Radiology_Order**
     - id - surrogate PK
-    - visit_id - FK, on delete: cascade
-    - body_part
-    - image_type
+    - visit_id - FK, on delete: cascade, mandatory
+    - body_part - optional
+    - image_type - mandatory
     - created_at
     - updated_at
 - **Radiology_Image**
     - radiology_order_id - PK, FK, on delete: cascade
-    - image_file_url
+    - image_file_url - mandatory, unique
     - created_at
     - updated_at
 - **Diagnosis**
     - id - surrogate PK
-    - visit_id - FK, on delete: cascade
-    - condition_name
-    - note
+    - visit_id - FK, on delete: cascade, mandatory
+    - condition_name - mandatory
+    - note - optional
     - created_at
     - updated_at
 - **Prescription**
     - visit_id - PK, FK, on delete: cascade
-    - prescription_file_url
+    - prescription_file_url - mandatory, unique
     - created_at
     - updated_at
 
