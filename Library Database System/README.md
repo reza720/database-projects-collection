@@ -1,163 +1,96 @@
-### Scenario
+# Overview
+This database project is designed for a library system that manages books, staff, customers, and borrowing activities. Employees can sign up and log in to the system, manage their own profiles, and handle full CRUD operations for customers and books. They can also mark books as borrowed or returned, manage book availability, and create or update fines for late returns. Employees are also able to set their work schedule by defining start and end times. The manager beside having full privileges of employee, can view employee schedules and check employee account details.
 
-A library system is used to manage books, staff, and borrowing activities. Staff members register books in the system and manage their availability. Members borrow and return books, and the system tracks due dates and calculates fines for late returns. Library managers oversee staff access and ensure proper control of system operations. 
-
-In this project, only the database layer is designed and implemented, and it is demonstrated how the database can be used independently, even without a full application layer.
-
----
-
-## Conceptual Model
-### Domain Objects 
-- **Core Khorshid Library Objects**
-    - Book
-    - Staff
-    - Member
-- **Supporting Objects**
-    - Person: Base object for staff, members, and authors.
-    - Author: Information about book authors.
-    - Publisher: Information about book publishers.
-    - Genre: Book genre information.
-    - Schedule: Staff work schedules.
-    - Log: Staff activity logs.
-    - Book Transaction: Records of book borrowing and returning.
-    - Fine: Details of late return fines.
-    - Address: Address information for staff and members.
-
-### Attributes of Objects
-- **Address**
-    - province 
-    - district 
-    - street 
-    - house_number 
-- **Person**
-    - first_name
-    - last_name
-- **Author**
-    - date_of_birth
-- **Member**
-    - email 
-    - membership_type: values:Basic/Standard/Premium
-    - phone_number 
-    - membership_status: values:Active/Expired
-- **Staff**
-    - role: values:Admin/Employee
-- **Publisher**
-    - name
-    - establish_year 
-- **Genre**
-    - name 
-    - description 
-- **Book**
-    - isbn 
-    - title 
-    - publication_year 
-    - edition 
-    - price 
-- **Book_Transaction**
-    - book_issue_date 
-    - due_date 
-- **Fine**
-    - amount 
-- **Schedule**
-    - day_of_week 
-    - start_time 
-    - end_time 
-- **Log**
-    - login_time
-    - logout_time
-
----
-
-## Logical Design
-### Tables
-- **Address**
-    - address_id - Surrogate PK
-    - province- Mandatory
-    - district - Mandatory
-    - street - Mandatory
-    - house_number - Mandatory
-    - created_at - Mandatory
-    - update_at - Mandatory
-- **Person**
-    - id - Surrogate PK
-    - first_name - Mandatory,  only alphabet and space
-    - last_name - Mandatory, only alphabet and space
-    - created_at - Mandatory
-    - update_at - Mandatory
-- **Author**
-    - id - PK, FK, on delete:cascade
-    - date_of_birth - Optional, Only past date
-    - created_at - Mandatory
-    - update_at - Mandatory
-- **Member**
-    - id - PK, FK, on delete:cascade
-    - email - Mandatory, unique
-    - membership_type - vaues(Basic/Standard/Premium), Mandatory, Default value(Basic)
-    - address_id - Mandatory, FK
-    - phone_number- Mandatory, length <= 13
-    - membership_status - values(Active/Expired), Mandatory, Default value(Active)
-    - created_at - Mandatory
-    - update_at - Mandatory
-- **Staff**
-    - id - PK, FK -> Person.id, on delete:cascade
-    - address_id - Mandatory, FK -> Addresses.id
-    - role - values(Admin/Employee), Mandatory, Default value(Employee)
-    - created_at - Mandatory
-    - updated_at - Mandatory
-- **Publisher**
-    - id - Surrogate PK
-    - name - Mandatory, unique
-    - establish_year - Optional, Only past date
-- **Genre**
-    - id - Surrogate PK
-    - name - Mandatory, unique
-    - description - Optional
-- **Book**
-    - isbn - PK
-    - title - Mandatory
-    - publisher_id - Mandatory, FK
-    - genre_id -  Mandatory, FK 
-    - publication_year - Optional, Only past date
-    - edition - Optional, edition > 0
-    - price - Mandatory, price > 0
-    - is_available - Mandatory, Default value(true)
-    - created_at - Mandatory
-    - update_at - Mandatory
-- **Book_Author**
-    - book_isbn - Mandatory, FK 
-    - author_id - Mandatory, FK 
-    - PK (book_isbn, author_id)
-- **Book_Transaction**
-    - id - Surrogate PK
-    - member_id - Mandatory, FK 
-    - book_isbn - Mandatory, FK 
-    - book_issue_date - Mandatory, Default value(Current date)
-    - due_date - Mandatory
-    - is_returned - Mandatory
-    - created_at - Mandatory
-- **Fine**
-    - book_transaction_id - Pk, FK 
-    - amount - Mandatory, Default value(0), amount >= 0
-    - is_paid - Mandatory, Default value(false)
-    - created_at - Mandatory
-- **Schedule**
-    - id - Surrogate PK
-    - staff_id - Mandatory, FK: on delete: cascade
-    - day_of_week - values(days of week), Mandatory
-    - start_time - Mandatory
-    - end_time - Optional
-    - created_at - Mandatory
-- **Log**
-    - id - Surrogate PK
-    - staff_id - Mandatory, FK: on delete:cascade
-    - login_time - Mandatory, Default value(Current Date)
-    - logout_time - Optional, logout_time > login_time
-    - created_at - Mandatory
-
-### ERD
+# Entity Relationship Diagram (ERD)
 ![ERD](assets/ERD.png)
 
----
+# Relational Schema
+- **Person**
+    - id - Surrogate PK
+    - first_name - mandatory,  only alphabet and space
+    - last_name - mandatory, only alphabet and space
+    - created_at - mandatory
+    - update_at - mandatory
+- **Address**
+    - person_id - PK, FK, on delete: cascade
+    - district - mandatory
+    - street - mandatory
+    - house_number - mandatory
+    - created_at - mandatory
+    - update_at - mandatory
+- **Contact**
+    - person_id - PK, FK, on delete: cascade
+    - phone_number - mandatory, only AFG format
+    - whatsapp_number - optional
+    - created_at - mandatory
+    - updated_at - mandatory
+- **Document**
+    - person_id - PK, FK, on delete: cascade
+    - photo_url - mandatory, unique
+    - nationa_id_url - mandatory, unique
+    - created_at - mandatory
+    - updated_at - mandatory
+- **staff**
+    - person_id - PK, FK, on delete: casacde
+    - role (Manager, Employee) - mandatory
+    - created_at - mandatory
+    - updated_at - mandatory
+- **Schedule**
+    - id - surrogate PK
+    - date - mandatory
+    - start_time - optional 
+    - end_time - optional
+    - created_at - mandatory
+- **Customer**
+    - person_id - PK, FK, on delete: cascade
+    - status (Active, Inactive) - mandatory, defualt(Active)
+    - created_at - mandatory
+    - updated_at - mandatory
+- **Publisher**
+    - name - PK
+    - creatd_at - mandatory
+    - updated_at - mandatory
+- **Genre**
+    - name - PK
+    - created_at - mandatory
+    - updated_at - mandatory
+- **Author**
+    - name - PK, only alphabet and space
+    - created_at - mandatory
+    - updated_at - mandatory
+- **Book**
+    - id - surrogate PK
+    - publisher_id - FK - mandatory
+    - title - mandatory
+    - fee - mandatory, between 20-100
+    - total_copies - mandatory, only positive
+    - created_at - mandatory
+    - updated_at - mandatory
+- **Book_Genre**
+    - book_id - FK, mandatory
+    - genre_name - FK, mandatory
+    PK(book_id, genre_name)
+- **Book_Author**
+    - book_id - FK, mandatory
+    - author_name - FK, mandatory
+    PK(book_id, author_id)
+- **Borrow**
+    - id - surrogate PK
+    - book_id - FK - mandatory
+    - customer_id - PK - mandatory
+    - borrow_date - mandatory
+    - due_date - mandatory, after borrow date
+    - return_date - optional, after or same as borrow date
+    - created_at - mandatory
+    - updated_at - mandatory
+- **Fine**
+    - borrow_id - PK, FK
+    - amount - mandatory, bigger then 10
+    - created_at - mandatory
+    - updated_at - mandatory
+
+
+
 
 ## Physical Design 
 ### Indexing
