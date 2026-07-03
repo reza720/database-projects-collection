@@ -1,75 +1,16 @@
-## Scenario
-A laboratory information system is used to manage staff, test orders, laboratory tests, test results, test payments, and supervisor approvals. Staff perform laboratory tests, record the results, process payments, and supervisors review and approve completed tests when required.
+# Overview
+This database project is the foundation of a Laboratory Information System. The system is used by supervisors and technicians and supports the following use cases:
+- Technicians and Supervisors can signup, login, and add and update their profile information, including address, contact details, and personal documents.
+- Supervisors can view the complete profiles of all technicians.
+- Technicians and Supervisors can record their daily check-in and check-out times for attendance.
+- Supervisors can view the complete attendance history of all technicians.
 
-In this project, I design and implement the database for this information system. Additionally, I demonstrate how the database can be used directly without an application layer.
+- Supervisors can register patients and create their test orders.
+- Technicians can perform laboratory tests and record the test results.
+- Supervisors can review and approve test results, print reports, and manage payments.
 
---- 
-
-## Conceptual Design
-### Domain Objects:
-- **Core Labratory Objects**
-    - Staff 
-    - Test Order
-    - Test
-- **Supporting Objects**
-    - Person: Base object for staff and patients.
-    - Address: Address information for staff, patients, and order senders.
-    - Contact: Contact information for staff, patients, and order senders.
-    - Staff Document: Personal and professional documents for staff.
-    - Order Sender: Information about the sender of a test order.
-    - Patient: Information about patients.
-    - Test Result: Results of laboratory tests.
-    - Test Payment: Payment details for laboratory tests.
-    - Test Result Approval: Records of test result approvals.
-
-### Attributes of Object
-- **Person**
-    - First Name
-    - Last Name
-    - Gender
-- **Address**
-    - Province
-    - District
-    - Street
-- **Contact**
-    - Email
-    - Phone Number
-- **Staff Document**
-    - Tazkira Document
-    - Contract Document
-- **Staff**
-    - Role
-- **Order Sender**
-    - Name
-    - Doctor Name
-- **Patient**
-    - Age
-- **Test Order**
-    - Order Date
-    - Requested Test
-- **Test Result**
-    - Description
-- **Test Payement**
-    - Amount
-- **Test Approval**
-    - Approval Date
-- **Test**
-    - Test Date
-
-### ERD
-![ERD](Assets/ERD.drawio.png)
-
----
-
-## Logical Design
+# ERD
 
 
+# Relational Schema
 
---- 
-
-## Physical Design
-
-
---- 
-
-## Database Usage
