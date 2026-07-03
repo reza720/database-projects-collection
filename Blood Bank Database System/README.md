@@ -11,5 +11,5 @@ This database project is designed for a blood bank information system. The syste
 - Both can manage the issuance of blood units to approved requests.
 
 # ER diagram 
-![ERD](ERD Files/ERD Image.png)
+![ERD](ERD_Files/ERD_Image.png)
  
