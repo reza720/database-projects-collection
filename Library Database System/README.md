@@ -1,5 +1,10 @@
 # Overview
-This database project is designed for a library system that manages books, staff, customers, and borrowing activities. Employees can sign up and log in to the system, manage their own profiles, and handle full CRUD operations for customers and books. They can also mark books as borrowed or returned, manage book availability, and create or update fines for late returns. Employees are also able to set their work schedule by defining start and end times. The manager beside having full privileges of employee, can view employee schedules and check employee account details.
+This database project is designed for a library management system. The system is used by managers and staff members and supports the following use cases:
+- Both managers and staff members can sign up, log in to the system, and manage their own profiles.
+- Both can perform full CRUD operations on customers and books.
+- Both can record book borrowings and returns, and create or update fines for overdue books.
+- Both can record their daily check-in and check-out times.
+- Managers can view staff attendance records and access staff account details.
 
 # Entity Relationship Diagram (ERD)
 ![ERD](assets/ERD.png)
@@ -35,11 +40,11 @@ This database project is designed for a library system that manages books, staff
     - role (Manager, Employee) - mandatory
     - created_at - mandatory
     - updated_at - mandatory
-- **Schedule**
+- **Attendance**
     - id - surrogate PK
     - date - mandatory
-    - start_time - optional 
-    - end_time - optional
+    - time_in - optional 
+    - time_out - optional
     - created_at - mandatory
 - **Customer**
     - person_id - PK, FK, on delete: cascade
