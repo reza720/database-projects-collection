@@ -24,12 +24,12 @@ This database project is designed for a blood bank information system. The syste
     - contract_url - mandatory, unique
     - created_at
     - updated_at
-- **Schedule**
+- **Attendance**
     - id - surrogate PK
     - person_id - FK, on delete: cascade, mandatory
-    - day_of_week - mandatory
-    - start_time - mandatory
-    - end_time - optional
+    - date - mandatory
+    - time_in - mandatory
+    - time_out - optional
     - created_at
 - **Address**
     - person_id - PK, FK, on delete: cascade
