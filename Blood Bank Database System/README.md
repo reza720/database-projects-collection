@@ -1,4 +1,4 @@
-# Overview
+# System Requirements
 This database project is designed for a blood bank information system. The system is used by managers and staff members and supports the following use cases:
 - Both managers and staff can sign up and log in to the system.
 - Both can add and update their profile details, such as contact information, address, and personal documents.
