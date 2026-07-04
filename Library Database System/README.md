@@ -1,4 +1,4 @@
-# Overview
+# System Requirements
 This database project is designed for a library management system. The system is used by managers and staff members and supports the following use cases:
 - Both managers and staff members can sign up, log in to the system, and manage their own profiles.
 - Both can perform full CRUD operations on customers and books.
@@ -7,7 +7,7 @@ This database project is designed for a library management system. The system is
 - Managers can view staff attendance records and access staff account details.
 
 # Entity Relationship Diagram (ERD)
-![ERD](assets/ERD.png)
+![ERD](ERD_Files/ERD_Image.png)
 
 ## Physical Design 
 ### Indexing
