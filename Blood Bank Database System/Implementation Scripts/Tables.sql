@@ -27,16 +27,16 @@ CREATE TABLE Donor (
 );
 CREATE TABLE Contact (
     person_id INT PRIMARY KEY,
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
     whatsapp_numener VARCHAR(20) NULL,
     phone_number VARCHAR(20) NOT NULL,
-    created_at timestamp default current_timestamp,
-    updated_at timestamp default current_timestamp on update current_timestamp,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_contact_person FOREIGN KEY (person_id)
         REFERENCES Person (id)
         ON DELETE CASCADE
 );
-CREATE TABLE Attendace (
+CREATE TABLE Attendance (
     person_id INT PRIMARY KEY,
     date DATE NOT NULL,
     time_in TIME NOT NULL,
