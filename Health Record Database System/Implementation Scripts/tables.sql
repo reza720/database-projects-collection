@@ -103,7 +103,7 @@ CREATE TABLE History_of_Illness (
 CREATE TABLE Symptom (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     history_of_illness_id BIGINT NOT NULL,
-    sympom VARCHAR(100) NOT NULL,
+    symptom VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_symptom_history_of_illness FOREIGN KEY (history_of_illness_id)
