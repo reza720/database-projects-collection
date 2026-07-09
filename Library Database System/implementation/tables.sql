@@ -1,142 +1,141 @@
 create database Library_Management;
 use Library_Management;
 
-CREATE TABLE Address (
-    address_id INT AUTO_INCREMENT PRIMARY KEY,
-    province VARCHAR(100) NOT NULL,
-    district VARCHAR(100) NOT NULL,
-    street VARCHAR(100) NOT NULL,
-    house_number VARCHAR(20) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
+-- Tables
 CREATE TABLE Person (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(100) NOT NULL CHECK (first_name REGEXP '^[A-Za-z ]+$'),
-    last_name VARCHAR(100) NOT NULL CHECK (last_name REGEXP '^[A-Za-z ]+$'),
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    gender ENUM('Male', 'Female') NOT NULL,
+    date_of_birth DATE NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-CREATE TABLE Author (
-    id INT PRIMARY KEY,
-    date_of_birth DATE NULL,
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE Address (
+    person_id INT PRIMARY KEY,
+    district VARCHAR(100) NOT NULL,
+    street VARCHAR(100) NOT NULL,
+    house_number VARCHAR(20) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (id)
+    CONSTRAINT fk_address_person FOREIGN KEY (person_id)
         REFERENCES Person (id)
         ON DELETE CASCADE
 );
-
-CREATE TABLE Member (
-    id INT PRIMARY KEY,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    membership_type ENUM('Basic', 'Standard', 'Premium') DEFAULT 'Basic' NOT NULL,
-    address_id INT NOT NULL,
-    phone_number VARCHAR(15) NOT NULL CHECK (CHAR_LENGTH(phone_number) <= 13),
-    membership_status ENUM('Active', 'Expired') DEFAULT 'Active' NOT NULL,
+CREATE TABLE Document (
+    person_id INT PRIMARY KEY,
+    photo_url VARCHAR(200) NULL UNIQUE,
+    national_id_url VARCHAR(200) NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CHECK (CHAR_LENGTH(phone_number) = 13),
-    FOREIGN KEY (id)
+    CONSTRAINT fk_document_person FOREIGN KEY (person_id)
         REFERENCES Person (id)
-        ON DELETE CASCADE,
-    FOREIGN KEY (address_id)
-        REFERENCES Address (address_id)
+        ON DELETE CASCADE
 );
-
+CREATE TABLE Contact (
+    person_id INT PRIMARY KEY,
+    phone_number VARCHAR(15) NOT NULL,
+    whatsapp_number VARCHAR(15) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_contact_person FOREIGN KEY (person_id)
+        REFERENCES Person (id)
+        ON DELETE CASCADE
+);
 CREATE TABLE Staff (
-    id INT PRIMARY KEY,
-    address_id INT NOT NULL,
-    role ENUM('Admin', 'Employee') DEFAULT 'Employee' NOT NULL,
+    person_id INT PRIMARY KEY,
+    role ENUM('Manager', 'Employee') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (id)
+    CONSTRAINT fk_staff_person FOREIGN KEY (person_id)
         REFERENCES Person (id)
-        ON DELETE CASCADE,
-    FOREIGN KEY (address_id)
-        REFERENCES Address (address_id)
+        ON DELETE CASCADE
 );
-
+CREATE TABLE Attendance (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    staff_id INT NOT NULL,
+    date DATE NOT NULL,
+    time_in TIME NOT NULL,
+    time_out TIME NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_attendance_staff FOREIGN KEY (staff_id)
+        REFERENCES Staff (person_id)
+        ON DELETE CASCADE
+);
+CREATE TABLE Customer (
+    person_id INT PRIMARY KEY,
+    status ENUM('Active', 'Inactive') NOT NULL DEFAULT 'Active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_customer_person FOREIGN KEY (person_id)
+        REFERENCES Person (id)
+        ON DELETE CASCADE
+);
 CREATE TABLE Publisher (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    establish_year YEAR NULL
+    publisher_name VARCHAR(100) PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-CREATE TABLE Genre (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    description TEXT NULL
-);
-
 CREATE TABLE Book (
-    isbn VARCHAR(30) PRIMARY KEY,
+    isbn VARCHAR(20) PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
-    publisher_id INT NOT NULL,
-    genre_id INT NOT NULL,
-    publication_year YEAR NULL,
-    edition INT NULL CHECK (edition > 0),
-    price DECIMAL(10 , 2 ) NOT NULL CHECK (price > 0),
-    is_available BOOLEAN DEFAULT TRUE NOT NULL,
+    publisher_name VARCHAR(100) NOT NULL,
+    fee SMALLINT UNSIGNED NOT NULL,
+    total_copies TINYINT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (publisher_id)
-        REFERENCES Publisher (id),
-    FOREIGN KEY (genre_id)
-        REFERENCES Genre (id)
+    CONSTRAINT fk_book_publisher FOREIGN KEY (publisher_name)
+        REFERENCES Publisher (publisher_name)
 );
-
+create table Genre (
+	genre_name varchar(100) primary key,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+CREATE TABLE Book_Genre (
+    book_isbn VARCHAR(20) NOT NULL,
+    genre_name VARCHAR(100) NOT NULL,
+    PRIMARY KEY (book_isbn , genre_name),
+    CONSTRAINT fk_book_genre_book FOREIGN KEY (book_isbn)
+        REFERENCES Book (isbn),
+    CONSTRAINT fk_book_genre_genre FOREIGN KEY (genre_name)
+        REFERENCES Genre (genre_name)
+);
+CREATE TABLE Author (
+    author_name VARCHAR(100) PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 CREATE TABLE Book_Author (
-    book_isbn VARCHAR(30) NOT NULL,
-    author_id INT NOT NULL,
-    PRIMARY KEY (book_isbn , author_id)
+    book_isbn VARCHAR(20) NOT NULL,
+    author_name VARCHAR(100) NOT NULL,
+    PRIMARY KEY (book_isbn , author_name),
+    CONSTRAINT fk_book_author_book FOREIGN KEY (book_isbn)
+        REFERENCES Book (isbn),
+    CONSTRAINT fk_book_author_author FOREIGN KEY (author_name)
+        REFERENCES Author (author_name)
 );
-
-CREATE TABLE Book_Transaction (
+CREATE TABLE Borrow (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    member_id INT NOT NULL,
-    book_isbn VARCHAR(30) NOT NULL,
-    book_issue_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    due_date DATE NOT NULL,  
-    is_returned BOOLEAN DEFAULT FALSE NOT NULL,
+    customer_id INT NOT NULL,
+    book_isbn VARCHAR(20) NOT NULL,
+    borrow_date DATE NOT NULL,
+    due_date DATE NOT NULL,
+    return_date DATE NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (member_id) REFERENCES Member(id),
-    FOREIGN KEY (book_isbn) REFERENCES Book(isbn)
+    CONSTRAINT fk_borrow_customer FOREIGN KEY (customer_id)
+        REFERENCES Customer (person_id),
+    CONSTRAINT fk_borrow_book FOREIGN KEY (book_isbn)
+        REFERENCES Book (isbn)
 );
-
 CREATE TABLE Fine (
-    book_transaction_id INT PRIMARY KEY,
-    amount DECIMAL(10 , 2 ) DEFAULT 0 NOT NULL,
-    is_paid BOOLEAN DEFAULT FALSE NOT NULL,
-    FOREIGN KEY (book_transaction_id)
-        REFERENCES Book_Transaction (id)
-);
-
-CREATE TABLE Schedule (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    staff_id INT NOT NULL,
-    day_of_week ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
-    start_time TIME NOT NULL,
-    end_time TIME NULL,
+    borrow_id INT PRIMARY KEY,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (staff_id)
-        REFERENCES Staff (id)
-);
-
-CREATE TABLE Log (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    staff_id INT NOT NULL,
-    login_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    logout_time DATETIME NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (staff_id)
-        REFERENCES Staff (id)
+    CONSTRAINT fk_fine_borrow FOREIGN KEY (borrow_id)
+        REFERENCES Borrow (id)
 );
 
 
-    
