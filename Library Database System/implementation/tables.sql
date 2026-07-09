@@ -132,10 +132,12 @@ CREATE TABLE Borrow (
 );
 CREATE TABLE Fine (
     borrow_id INT PRIMARY KEY,
+    amount decimal(5,2) not null,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_fine_borrow FOREIGN KEY (borrow_id)
         REFERENCES Borrow (id)
 );
+
 
 
