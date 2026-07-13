@@ -1,161 +1,114 @@
-use Library_Management;
+use library_management;
 
--- Staff Views
-CREATE VIEW staff_full_profile AS
+-- Views
+CREATE VIEW vw_staff_profile AS
     SELECT 
-        p.id,
-        p.first_name,
-        p.last_name,
+		p.id,
+        CONCAT(p.first_name, ' ', p.last_name) AS staff_name,
+        p.gender,
+        p.date_of_birth,
         s.role,
-        a.province,
-        a.district,
-        a.street,
-        a.house_number
+        CONCAT(a.district,
+                '/',
+                street,
+                '/',
+                house_number) AS address,
+        c.phone_number,
+        c.whatsapp_number,
+        d.photo_url,
+        d.national_id_url
     FROM
         Staff s
-            JOIN
-        Person p ON s.id = p.id
-            JOIN
-        Address a ON s.address_id = a.address_id;
-
-CREATE VIEW staff_logs AS
+            LEFT JOIN
+        Person p ON s.person_id = p.id
+            LEFT JOIN
+        Address a ON s.person_id = a.person_id
+            LEFT JOIN
+        contact c ON s.person_id = c.person_id
+            LEFT JOIN
+        document d ON s.person_id = d.person_id;    
+        
+CREATE VIEW vw_customer_profile AS
     SELECT 
-        p.id, 
-        p.first_name, 
-        p.last_name, 
-        l.login_time, 
-        l.logout_time
+        p.id,
+        CONCAT(p.first_name, ' ', p.last_name) AS staff_name,
+        p.gender,
+        p.date_of_birth,
+        cu.status,
+        CONCAT(a.district,
+                '/',
+                street,
+                '/',
+                house_number) AS address,
+        c.phone_number,
+        c.whatsapp_number,
+        d.photo_url,
+        d.national_id_url
+    FROM
+        customer cu
+            LEFT JOIN
+        Person p ON cu.person_id = p.id
+            LEFT JOIN
+        Address a ON cu.person_id = a.person_id
+            LEFT JOIN
+        contact c ON cu.person_id = c.person_id
+            LEFT JOIN
+        document d ON cu.person_id = d.person_id;
+
+CREATE VIEW vw_staff_attendance AS
+    SELECT 
+        p.id AS staff_id,
+        CONCAT(p.first_name, ' ', p.last_name) AS name,
+        a.date,
+        a.time_in,
+        a.time_out
     FROM
         Staff s
-            JOIN
-        Person p ON p.id = s.id
-            JOIN
-        Log l ON l.staff_id = s.id;
-    
-CREATE VIEW staff_chedules AS
-    SELECT 
-        p.id,
-        p.first_name,
-        p.last_name,
-        sc.day_of_week,
-        sc.start_time,
-        sc.end_time
-    FROM
-        Staff s
-            JOIN
-        Person p ON s.id = p.id
-            JOIN
-        Schedule sc ON s.id = sc.staff_id;
+            LEFT JOIN
+        Person p ON s.person_id = p.id
+            LEFT JOIN
+        attendance a ON s.person_id = a.staff_id;
 
-
--- Member Views
-CREATE VIEW member_full_profile AS
-    SELECT 
-        p.id,
-        p.first_name,
-        p.last_name,
-        m.email,
-        m.membership_type,
-        m.phone_number,
-        m.membership_status,
-        a.province,
-        a.district,
-        a.street,
-        a.house_number
-    FROM
-        Member m
-            JOIN
-        Person p ON m.id = p.id
-            JOIN
-        Address a ON m.address_id = a.address_id;
-
-CREATE VIEW member_transactions AS
-    SELECT 
-        p.id as member_id,
-        p.first_name as member_first_name,
-        p.last_name as member_last_name,
-        m.email as member_email,
-        b.isbn as book_isbn,
-        b.title as book_title,
-        b.edition as book_edition,
-        b.price as book_price,
-        t.book_issue_date,
-        t.due_date as book_return_due_date,
-        t.is_returned as is_book_returned
-    FROM
-        Member m
-            JOIN
-        Person p ON m.id = p.id
-            JOIN
-        Book_Transaction t ON m.id = t.member_id
-            JOIN
-        Book b ON b.isbn = t.book_isbn;
-
-CREATE VIEW member_fines AS
-    SELECT 
-        p.id,
-        p.first_name,
-        p.last_name,
-        t.book_isbn,
-        t.book_issue_date,
-        t.due_date,
-        f.amount,
-        f.is_paid
-    FROM
-        Member m
-            JOIN
-        Person p ON m.id = p.id
-            JOIN
-        Book_Transaction t ON t.member_id = m.id
-            JOIN
-        Fine f ON t.id = f.book_transaction_id;
-    
-
--- Book Views
-CREATE VIEW book_details AS
+CREATE VIEW vw_book_details AS
     SELECT 
         b.isbn,
         b.title,
-        b.publication_year,
-        b.edition,
-        b.price,
-        p.name AS publisher_name,
-        g.name AS genre_name
+        b.fee,
+        b.total_copies AS copies,
+        pub.publisher_name AS publisher,
+        bg.genre_name AS genre,
+        ba.author_name AS author
     FROM
         Book b
+            LEFT JOIN
+        Publisher pub ON b.publisher_name = pub.publisher_name
+            LEFT JOIN
+        book_author ba ON ba.book_isbn = b.isbn
             JOIN
-        Genre g ON g.id = b.genre_id
+        author a ON ba.author_name = a.author_name
+            LEFT JOIN
+        book_genre bg ON bg.book_isbn = b.isbn
             JOIN
-        Publisher p ON p.id = b.publisher_id;
+        Genre g ON bg.genre_name = g.genre_name;
 
-CREATE VIEW book_authors AS
+CREATE VIEW vw_borrow_details AS
     SELECT 
-        p.id AS author_id,
-        p.first_name AS author_first_name,
-        p.last_name AS author_last_name,
+        bor.id AS borrow_id,
+        CONCAT(p.first_name, ' ', p.last_name) AS customer,
         b.isbn AS book_isbn,
-        b.title AS book_title
+        b.title AS book_title,
+        b.fee AS book_fee,
+        bor.borrow_date,
+        bor.due_date AS borrow_due_date,
+        bor.return_date
     FROM
-        Book b
+        borrow bor
+            LEFT JOIN
+        Customer c ON bor.customer_id = c.person_id
             JOIN
-        Book_Author ba ON b.isbn = ba.book_isbn
-            JOIN
-        Person p ON p.id = ba.author_id;
-
-CREATE VIEW author_full_profile AS
-    SELECT 
-        p.id AS author_id,
-        p.first_name AS author_first_name,
-        p.last_name AS author_last_name,
-        a.date_of_birth
-    FROM
-        Author a
-            JOIN
-        Person p ON p.id = a.id;
-	
+        Person p ON c.person_id = p.id
+            LEFT JOIN
+        Book b ON bor.book_isbn = b.isbn;
 
 
 
-
-
- 
