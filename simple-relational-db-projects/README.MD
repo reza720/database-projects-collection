@@ -1,4 +1,4 @@
-This folder contains small to medium-sized relational database projects, typically with 15–30 tables.
+Here, I have included small to medium sized relational database projects, each typically consisting of 15–30 tables.
 
 Each project includes:
 - An introduction to the system the database is designed for.
