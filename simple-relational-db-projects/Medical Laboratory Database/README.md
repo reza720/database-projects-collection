@@ -1,4 +1,3 @@
-# System Requirements
 This database project is the foundation of a Laboratory Information System. The system is used by supervisors and technicians and supports the following use cases:
 - Technicians and Supervisors can signup, login, and add and update their profile information, including address, contact details, and personal documents.
 - Supervisors can view the complete profiles of all technicians.
